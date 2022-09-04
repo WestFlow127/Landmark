@@ -6,11 +6,21 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                GeometryReader { proxy in
+                    MapView(coordinate: CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060))
+                        .frame(width: proxy.size.width,
+                               height: proxy.size.height,
+                               alignment: .center)
+                }
+            }
+            .navigationTitle("Landmark")
+        }
     }
 }
 
