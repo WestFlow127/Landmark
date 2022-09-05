@@ -8,15 +8,20 @@
 import SwiftUI
 import CoreLocation
 
-struct ContentView: View {
+struct LandmarkMainView: View {
+    @StateObject private var viewModel = LandmarkMainViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
                 GeometryReader { proxy in
-                    MapView(coordinate: CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060))
+                    MapView(region: $viewModel.region)
                         .frame(width: proxy.size.width,
                                height: proxy.size.height,
                                alignment: .center)
+                        .onAppear{
+                            viewModel.checkIfLocationServicesIsEnabled()
+                        }
                 }
             }
             .navigationTitle("Landmark")
@@ -26,6 +31,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LandmarkMainView()
     }
 }
