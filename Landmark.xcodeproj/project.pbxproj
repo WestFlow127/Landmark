@@ -15,7 +15,6 @@
 		227B484E28C46ED400C9897A /* LandmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B484D28C46ED400C9897A /* LandmarkTests.swift */; };
 		227B485828C46ED400C9897A /* LandmarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485728C46ED400C9897A /* LandmarkUITests.swift */; };
 		227B485A28C46ED400C9897A /* LandmarkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */; };
-		227B486728C4770D00C9897A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B486628C4770D00C9897A /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,6 @@
 		227B485328C46ED400C9897A /* LandmarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227B485728C46ED400C9897A /* LandmarkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkUITests.swift; sourceTree = "<group>"; };
 		227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		227B486628C4770D00C9897A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +99,6 @@
 				227B483C28C46ED100C9897A /* LandmarkApp.swift */,
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
-				227B486628C4770D00C9897A /* MapView.swift */,
 				227B484028C46ED400C9897A /* Assets.xcassets */,
 				227B484228C46ED400C9897A /* Preview Content */,
 			);
@@ -265,7 +262,6 @@
 			files = (
 				227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */,
 				2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */,
-				227B486728C4770D00C9897A /* MapView.swift in Sources */,
 				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
