@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
@@ -15,7 +16,7 @@ struct LandmarkMainView: View {
         NavigationView {
             VStack {
                 GeometryReader { proxy in
-                    MapView(region: $viewModel.region)
+                    Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
                         .frame(width: proxy.size.width,
                                height: proxy.size.height,
                                alignment: .center)
@@ -24,7 +25,13 @@ struct LandmarkMainView: View {
                         }
                 }
             }
-            .navigationTitle("Landmark")
+            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Landmark").font(.largeTitle).bold()
+                    
+                }
+            }
         }
     }
 }

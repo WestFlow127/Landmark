@@ -7,6 +7,11 @@
 
 import MapKit
 
+enum MapDetails {
+    static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
+    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)
+}
+
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     

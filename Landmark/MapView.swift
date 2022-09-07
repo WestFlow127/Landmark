@@ -9,22 +9,19 @@ import SwiftUI
 import UIKit
 import MapKit
 
-enum MapDetails {
-    static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
-    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)
-}
 
+// Leaving this MapView out of the code for now, doesn't seem to be necessary...
 struct MapView: UIViewRepresentable {
     typealias UIViewType = UIView
     
     var map: MKMapView = MKMapView()
-    var region: Binding<MKCoordinateRegion>
+    @Binding var region: MKCoordinateRegion
 
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
         
         map.showsUserLocation = true
-        map.setRegion(region.wrappedValue, animated: true)
+        map.setRegion(region, animated: true)
         
         view.addSubview(map)
         
@@ -46,8 +43,8 @@ struct MapView: UIViewRepresentable {
     }
     // TODO: Find out why map doesn's update to user location
     func updateUIView(_ uiView: UIView, context: Context) {
-        debugPrint("region: \(region.wrappedValue.center)") // Region's center is changed
-        map.setCenter(region.wrappedValue.center, animated: true)
+        debugPrint("region: \(region.center)") // Region's center is changed
+        map.setCenter(region.center, animated: true)
     }
     
 }
