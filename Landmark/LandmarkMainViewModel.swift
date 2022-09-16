@@ -9,7 +9,7 @@ import MapKit
 
 enum MapDetails {
     static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
-    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)
+    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
 }
 
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -22,6 +22,15 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             locationManager = CLLocationManager()
             locationManager?.activityType = .other
             locationManager?.delegate = self
+            
+//            var geoLoader = CLGeocoder()
+//            geoLoader.geocodeAddressString("Ocean Front Walk, Venice, CA 90291") { placemark, error in
+//
+//                debugPrint("GeoLoader.Error: \(error?.localizedDescription)")
+//                if let coord = placemark?.first?.location?.coordinate {
+//                    debugPrint("Coord \(coord)")
+//                }
+//            }
         } else {
             // TODO: show alert to enabled locations services
             print("You need to turn on Location Services for this app in iOS Settings.")
