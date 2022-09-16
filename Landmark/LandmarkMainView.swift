@@ -25,6 +25,7 @@ struct LandmarkMainView: View {
                         }
                 }
             }
+            .ignoresSafeArea()
             .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
