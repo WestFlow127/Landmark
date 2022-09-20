@@ -10,7 +10,9 @@ import SwiftUI
 struct LoginMainView: View {
     @State var email = ""
     @State var password = ""
-    
+    @State private var emptyPasswordAlertIsPresented = false
+    @State private var emptyEmailAlertIsPresented = false
+
     @EnvironmentObject var viewModel: LoginViewModel
     
     var body: some View {
@@ -26,15 +28,29 @@ struct LoginMainView: View {
                     .autocapitalization(.none)
                     .padding()
                     .background(Color(.secondarySystemBackground))
+                    .alert(isPresented: $emptyEmailAlertIsPresented) {
+                        Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
+                    }
+                
                 
                 SecureField("Password", text: $password)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
                     .background(Color(.secondarySystemBackground))
+                    .alert(isPresented: $emptyPasswordAlertIsPresented) {
+                        Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
+                    }
+                
                 
                 Button {
                     guard !email.isEmpty, !password.isEmpty else {
+                        if email.isEmpty {
+                            emptyEmailAlertIsPresented = true
+                        }
+                        if password.isEmpty{
+                            emptyPasswordAlertIsPresented = true
+                        }
                         return
                     }
                     
@@ -62,7 +78,10 @@ struct LoginMainView: View {
 struct CreateAccountView: View {
     @State private var email = ""
     @State private var password = ""
-    @State private var alertIsPresented = false
+    
+    @State private var emptyPasswordAlertIsPresented = false
+    @State private var emptyEmailAlertIsPresented = false
+    
     @EnvironmentObject var viewModel: LoginViewModel
     
     var body: some View {
@@ -78,8 +97,8 @@ struct CreateAccountView: View {
                     .autocapitalization(.none)
                     .padding()
                     .background(Color(.secondarySystemBackground))
-                    .alert(isPresented: $alertIsPresented) {
-                        Alert(title: Text("Email cannot be empty."))
+                    .alert(isPresented: $emptyEmailAlertIsPresented) {
+                        Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
                     }
                 
                 SecureField("Password", text: $password)
@@ -87,17 +106,17 @@ struct CreateAccountView: View {
                     .autocapitalization(.none)
                     .padding()
                     .background(Color(.secondarySystemBackground))
-                    .alert(isPresented: $alertIsPresented) {
-                        Alert(title: Text("Password cannot be empty."))
+                    .alert(isPresented: $emptyPasswordAlertIsPresented) {
+                        Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
                     }
                 
                 Button {
                     guard !email.isEmpty, !password.isEmpty else {
                         if email.isEmpty {
-                            alertIsPresented = true
+                            emptyEmailAlertIsPresented = true
                         }
                         if password.isEmpty{
-                            alertIsPresented = true
+                            emptyPasswordAlertIsPresented = true
                         }
                         return
                     }
