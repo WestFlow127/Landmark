@@ -1,2 +1,36 @@
+## Build generated
+build/
+DerivedData/
+codesigndoc_exports/
 
-Landmark.xcodeproj/xcuserdata/westflow.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+## Various settings
+xcuserdata/
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+Pods/
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Packages/
+# Package.pins
+# Package.resolved
+.build/
+
+# Operating System files
+.DS_Store
