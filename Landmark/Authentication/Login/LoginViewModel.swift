@@ -41,4 +41,16 @@ class LoginViewModel: ObservableObject {
             }
         }
     }
+    
+    func logout() {
+        do {
+            try authManager.auth.signOut()
+            
+            debugPrint("Sign out success!")
+        } catch {
+            debugPrint("Sign Out Error: \(error)")
+        }
+        
+        signedIn = false
+    }
 }
