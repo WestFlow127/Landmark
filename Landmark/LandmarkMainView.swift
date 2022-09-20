@@ -18,11 +18,8 @@ struct LandmarkMainView: View {
     
             if loginViewModel.signedIn {
                 VStack {
-                    GeometryReader { proxy in
+                    ViewThatFits {
                         Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
-                            .frame(width: proxy.size.width,
-                                   height: proxy.size.height,
-                                   alignment: .center)
                             .onAppear{
                                 viewModel.checkIfLocationServicesIsEnabled()
                             }
@@ -35,6 +32,25 @@ struct LandmarkMainView: View {
                         Text("Landmark")
                             .font(.largeTitle)
                             .bold()
+                    }
+                    ToolbarItem (placement: .navigationBarTrailing){
+                        Menu {
+                            Button {
+                                loginViewModel.logout()
+                            } label: {
+                                Text("Logout")
+                            }
+                        } label: {
+                            Label {
+                                Text("Add")
+                            } icon: {
+                                Image(systemName: "plus")
+                                    .padding(.trailing, 7)
+                            }
+                        }
+                        .frame(width: 35, height: 35, alignment: .center)
+                        .background(Color.white)
+                        .cornerRadius(25)
                     }
                 }
             } else {
@@ -49,6 +65,9 @@ struct LandmarkMainView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+        let viewModel = LoginViewModel()
+        
         LandmarkMainView()
+            .environmentObject(viewModel)
     }
 }
