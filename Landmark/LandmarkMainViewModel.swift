@@ -22,7 +22,6 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             locationManager = CLLocationManager()
             locationManager?.activityType = .other
             locationManager?.delegate = self
-            
         } else {
             // TODO: show alert to enabled locations services
             print("You need to turn on Location Services for this app in iOS Settings.")
