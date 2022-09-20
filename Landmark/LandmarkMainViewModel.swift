@@ -23,19 +23,10 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             locationManager?.activityType = .other
             locationManager?.delegate = self
             
-//            var geoLoader = CLGeocoder()
-//            geoLoader.geocodeAddressString("Ocean Front Walk, Venice, CA 90291") { placemark, error in
-//
-//                debugPrint("GeoLoader.Error: \(error?.localizedDescription)")
-//                if let coord = placemark?.first?.location?.coordinate {
-//                    debugPrint("Coord \(coord)")
-//                }
-//            }
         } else {
             // TODO: show alert to enabled locations services
             print("You need to turn on Location Services for this app in iOS Settings.")
         }
-        
     }
     
     private func checkLocationAuthorization() {
@@ -66,3 +57,13 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         checkLocationAuthorization()
     }
 }
+
+
+//            var geoLoader = CLGeocoder()
+//            geoLoader.geocodeAddressString("Ocean Front Walk, Venice, CA 90291") { placemark, error in
+//
+//                debugPrint("GeoLoader.Error: \(error?.localizedDescription)")
+//                if let coord = placemark?.first?.location?.coordinate {
+//                    debugPrint("Coord \(coord)")
+//                }
+//            }
