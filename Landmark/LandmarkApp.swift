@@ -16,7 +16,7 @@ struct LandmarkApp: App {
     
     var body: some Scene {
         WindowGroup {
-            var viewModel = LoginViewModel()
+            let viewModel = LoginViewModel()
             
             LandmarkMainView()
                 .environmentObject(viewModel)
