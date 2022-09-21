@@ -173,7 +173,6 @@
 		227B483B28C46ED100C9897A /* Landmark */ = {
 			isa = PBXGroup;
 			children = (
-				229980AB28DB988A006A8538 /* Info.plist */,
 				227B483C28C46ED100C9897A /* LandmarkApp.swift */,
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
@@ -182,6 +181,7 @@
 				224388CD28D92B7000833CF7 /* Authentication */,
 				229980A928DB904A006A8538 /* LandmarkConstants.swift */,
 				227B484028C46ED400C9897A /* Assets.xcassets */,
+				229980AB28DB988A006A8538 /* Info.plist */,
 				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
 				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
 				224388C628D9107C00833CF7 /* Extensions */,
