@@ -7,7 +7,25 @@
 		<key>Landmark.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>26</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>227B483828C46ED100C9897A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>227B484828C46ED400C9897A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>227B485228C46ED400C9897A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

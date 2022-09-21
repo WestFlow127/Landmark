@@ -8,7 +8,7 @@ target 'Landmark' do
   pod 'FirebaseAppCheck'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
   
   
   target 'LandmarkTests' do

@@ -19,7 +19,15 @@ struct LandmarkMainView: View {
             if loginViewModel.signedIn {
                 VStack {
                     ViewThatFits {
-                        Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
+                        Map(coordinateRegion: $viewModel.region,
+                            showsUserLocation: true,
+                            annotationItems: viewModel.landmarks) { landmark in
+                            
+                                MapAnnotation(coordinate: landmark._2DCoord) {
+                                    Rectangle().stroke(Color.blue)
+                                        .frame(width: 20, height: 20)
+                                }
+                        }
                             .onAppear{
                                 viewModel.checkIfLocationServicesIsEnabled()
                             }
