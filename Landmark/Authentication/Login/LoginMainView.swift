@@ -16,62 +16,71 @@ struct LoginMainView: View {
     @EnvironmentObject var viewModel: LoginViewModel
     
     var body: some View {
-        VStack{
-            Image("logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 150, height: 150)
-            
-            VStack{
-                TextField("Email Address", text: $email)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .alert(isPresented: $emptyEmailAlertIsPresented) {
-                        Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
+        NavigationView {
+            if viewModel.signedIn {
+                LandmarkMainView()
+                    .onAppear{
+                        email = ""
+                        password = ""
                     }
-                
-                
-                SecureField("Password", text: $password)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .alert(isPresented: $emptyPasswordAlertIsPresented) {
-                        Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
-                    }
-                
-                
-                Button {
-                    guard !email.isEmpty, !password.isEmpty else {
-                        if email.isEmpty {
-                            emptyEmailAlertIsPresented = true
-                        }
-                        if password.isEmpty{
-                            emptyPasswordAlertIsPresented = true
-                        }
-                        return
-                    }
+            } else {
+                VStack{
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
                     
-                    viewModel.signIn(email: email, password: password)
-                } label: {
-                    Text("Sign In")
-                        .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50)
-                        .cornerRadius(8)
-                        .background(Color.blue)
+                    VStack{
+                        TextField("Email Address", text: $email)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .alert(isPresented: $emptyEmailAlertIsPresented) {
+                                Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
+                            }
+                        
+                        SecureField("Password", text: $password)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .alert(isPresented: $emptyPasswordAlertIsPresented) {
+                                Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
+                            }
+                        
+                        
+                        Button {
+                            guard !email.isEmpty, !password.isEmpty else {
+                                if email.isEmpty {
+                                    emptyEmailAlertIsPresented = true
+                                }
+                                if password.isEmpty{
+                                    emptyPasswordAlertIsPresented = true
+                                }
+                                return
+                            }
+                            
+                            viewModel.signIn(email: email, password: password)
+                        } label: {
+                            Text("Sign In")
+                                .foregroundColor(Color.white)
+                                .frame(width: 200, height: 50)
+                                .cornerRadius(8)
+                                .background(Color.blue)
+                            
+                        }
+                        NavigationLink("Create Account", destination: CreateAccountView())
+                            .padding()
+                    }
+                    .padding()
                     
+                    Spacer()
                 }
-                NavigationLink("Create Account", destination: CreateAccountView())
-                    .padding()
+                .navigationTitle("Sign In")
+                .background(Color.ui.mainColor)
             }
-            .padding()
-            
-            Spacer()
         }
-        .navigationTitle("Sign In")
-        .background(Color.ui.mainColor)
     }
 }
 
