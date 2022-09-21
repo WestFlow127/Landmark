@@ -10,6 +10,8 @@ import SwiftUI
 struct LoginMainView: View {
     @State var email = ""
     @State var password = ""
+    @State var isCreatingAccount = false
+    
     @State private var emptyPasswordAlertIsPresented = false
     @State private var emptyEmailAlertIsPresented = false
 
@@ -49,7 +51,6 @@ struct LoginMainView: View {
                                 Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
                             }
                         
-                        
                         Button {
                             guard !email.isEmpty, !password.isEmpty else {
                                 if email.isEmpty {
@@ -61,91 +62,39 @@ struct LoginMainView: View {
                                 return
                             }
                             
-                            viewModel.signIn(email: email, password: password)
+                            if !isCreatingAccount {
+                                viewModel.signIn(email: email, password: password)
+                            } else {
+                                viewModel.signUp(email: email, password: password)
+                            }
                         } label: {
-                            Text("Sign In")
+                            Text(isCreatingAccount ? "Create Account" : "Sign In")
                                 .foregroundColor(Color.white)
                                 .frame(width: 200, height: 50)
                                 .cornerRadius(8)
                                 .background(Color.blue)
                             
                         }
-                        NavigationLink("Create Account", destination: CreateAccountView())
-                            .padding()
+                        .alert(isPresented: $viewModel.hasLoginError) {
+                            debugPrint("Login Error: \(viewModel.loginError!)")
+
+                            return Alert(title: Text("Failed to login or create account.\n Check Internet connection."), dismissButton: .default(Text("Ok")))
+                        }
+                        
+                        Button {
+                            isCreatingAccount = !isCreatingAccount
+                        } label: {
+                            Text(isCreatingAccount ? "Sign In" : "Create Acoount")
+                        }
                     }
                     .padding()
                     
                     Spacer()
                 }
-                .navigationTitle("Sign In")
+                .navigationTitle(!isCreatingAccount ? "Sign In" : "Create Acount")
                 .background(Color.ui.mainColor)
             }
         }
-    }
-}
-
-struct CreateAccountView: View {
-    @State private var email = ""
-    @State private var password = ""
-    
-    @State private var emptyPasswordAlertIsPresented = false
-    @State private var emptyEmailAlertIsPresented = false
-    
-    @EnvironmentObject var viewModel: LoginViewModel
-    
-    var body: some View {
-        VStack{
-            Image("logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 150, height: 150)
-            
-            VStack{
-                TextField("Email Address", text: $email)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .alert(isPresented: $emptyEmailAlertIsPresented) {
-                        Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
-                    }
-                
-                SecureField("Password", text: $password)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .alert(isPresented: $emptyPasswordAlertIsPresented) {
-                        Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
-                    }
-                
-                Button {
-                    guard !email.isEmpty, !password.isEmpty else {
-                        if email.isEmpty {
-                            emptyEmailAlertIsPresented = true
-                        }
-                        if password.isEmpty{
-                            emptyPasswordAlertIsPresented = true
-                        }
-                        return
-                    }
-                    
-                    viewModel.signUp(email: email, password: password)
-                } label: {
-                    Text("Create Account")
-                        .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50)
-                        .cornerRadius(8)
-                        .background(Color.blue)
-                    
-                }
-            }
-            .padding()
-            
-            Spacer()
-        }
-        .navigationTitle("Create Account")
-        .background(Color.ui.mainColor)
     }
 }
 
