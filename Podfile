@@ -4,10 +4,12 @@
 target 'Landmark' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
+  pod 'FirebaseAppCheck'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-  pod 'FirebaseAppCheck'
+  pod 'Firebase/Firestore'
+  
   
   target 'LandmarkTests' do
     inherit! :search_paths

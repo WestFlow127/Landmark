@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F3D7DFC6224E0872DA2ABEE /* Pods_Landmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CC136C0CD8D04FF3082C3 /* Pods_Landmark.framework */; };
+		220735A528DACEA300577AB8 /* LandmarkFirestoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */; };
 		2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */; };
 		224388C528D909A100833CF7 /* LoginMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388C428D909A100833CF7 /* LoginMainView.swift */; };
 		224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388C728D910A800833CF7 /* Color+Extensions.swift */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		1DEAC3153AC6842867CF117F /* Pods-LandmarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkTests/Pods-LandmarkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		220735A028DAB86C00577AB8 /* Landmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Landmark.entitlements; sourceTree = "<group>"; };
+		220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkFirestoreProvider.swift; sourceTree = "<group>"; };
 		2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMainViewModel.swift; sourceTree = "<group>"; };
 		224388C428D909A100833CF7 /* LoginMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainView.swift; sourceTree = "<group>"; };
 		224388C728D910A800833CF7 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
@@ -98,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220735A328DACE2100577AB8 /* LandmarkFirebase */ = {
+			isa = PBXGroup;
+			children = (
+				220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */,
+			);
+			path = LandmarkFirebase;
+			sourceTree = "<group>";
+		};
 		224388C328D9097000833CF7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +160,11 @@
 		227B483B28C46ED100C9897A /* Landmark */ = {
 			isa = PBXGroup;
 			children = (
+				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
 				227B483C28C46ED100C9897A /* LandmarkApp.swift */,
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
+				220735A328DACE2100577AB8 /* LandmarkFirebase */,
 				224388CD28D92B7000833CF7 /* Authentication */,
 				227B484028C46ED400C9897A /* Assets.xcassets */,
 				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
@@ -450,6 +463,7 @@
 			files = (
 				224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */,
 				224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */,
+				220735A528DACEA300577AB8 /* LandmarkFirestoreProvider.swift in Sources */,
 				227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */,
 				224388CC28D928FB00833CF7 /* LoginViewModel.swift in Sources */,
 				2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */,
@@ -611,6 +625,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Landmark/Landmark.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -648,6 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Landmark/Landmark.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
