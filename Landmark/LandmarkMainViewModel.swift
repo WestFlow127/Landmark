@@ -8,7 +8,7 @@
 import MapKit
 import Combine
 
-enum MapDetails {
+struct MapDetails {
     static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
     static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
 }
