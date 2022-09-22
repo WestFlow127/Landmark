@@ -13,12 +13,20 @@ class LoginViewModel: ObservableObject {
     let authManager = LandmarkAuthManager.shared
     
     @Published var signedIn = false
+    @Published var loginError: Error? {
+        didSet {
+            hasLoginError = loginError != nil
+        }
+    }
+    @Published var hasLoginError: Bool = false
+
     
     func signIn(email: String, password: String) {
         let auth = authManager.auth
         
         auth.signIn(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
+                self?.loginError = error
                 return
             }
             
@@ -33,6 +41,7 @@ class LoginViewModel: ObservableObject {
 
         auth.createUser(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
+                self?.loginError = error
                 return
             }
             
