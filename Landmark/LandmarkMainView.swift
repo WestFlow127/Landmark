@@ -12,49 +12,63 @@ import MapKit
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
     @EnvironmentObject var loginViewModel: LoginViewModel
-
-    var body: some View {
-        NavigationView {
     
-            if loginViewModel.signedIn {
-                VStack {
-                    ViewThatFits {
-                        Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
-                            .onAppear{
-                                viewModel.checkIfLocationServicesIsEnabled()
-                            }
-                    }
-                }
-                .ignoresSafeArea()
-                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("Landmark")
-                            .font(.largeTitle)
-                            .bold()
-                    }
-                    ToolbarItem (placement: .navigationBarTrailing){
-                        Menu {
-                            Button {
-                                loginViewModel.logout()
-                            } label: {
-                                Text("Logout")
-                            }
-                        } label: {
-                            Label {
-                                Text("Add")
-                            } icon: {
-                                Image(systemName: "plus")
-                                    .padding(.trailing, 7)
-                            }
+    @State private var selectedPlace: LandmarkEntity?
+    
+    var body: some View {
+        VStack {
+            ViewThatFits {
+                Map(coordinateRegion: $viewModel.region,
+                    showsUserLocation: true,
+                    annotationItems: viewModel.landmarks) { landmark in
+                    
+                    MapAnnotation(coordinate: landmark._2DCoord) {
+                        VStack{
+                            Image(systemName: "star.circle")
+                                .resizable()
+                                .foregroundColor(.red)
+                                .frame(width: 25, height: 25)
+                                .background(.white)
+                                .clipShape(Circle())
+                            
+                            Text(landmark.name)
+                                .font(Font.caption)
+                                .lineLimit(2)
                         }
-                        .frame(width: 35, height: 35, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(25)
+                        .onTapGesture {
+                            selectedPlace = landmark
+                        }
                     }
                 }
-            } else {
-                LoginMainView()
+                .onAppear{
+                    viewModel.checkIfLocationServicesIsEnabled()
+                }
+            }
+            .sheet(item: $selectedPlace) { landmark in
+                SelectedLandmarkView(landmark: landmark)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Landmark")
+                    .font(.largeTitle)
+                    .bold()
+            }
+            ToolbarItem (placement: .navigationBarTrailing){
+                Menu {
+                    Button {
+                        loginViewModel.logout()
+                    } label: {
+                        Text("Logout")
+                    }
+                } label: {
+                    Label {
+                        Text("Add")
+                    } icon: {
+                        Image(systemName: "plus")
+                            .padding(.trailing, 7)
+                    }
+                }
             }
         }
         .onAppear{
