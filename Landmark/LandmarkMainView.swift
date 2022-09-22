@@ -69,11 +69,13 @@ struct LandmarkMainView: View {
                             .padding(.trailing, 7)
                     }
                 }
+                .frame(width: 35, height: 35, alignment: .center)
+                .background(Color.white)
+                .cornerRadius(25)
             }
         }
-        .onAppear{
-            loginViewModel.signedIn = loginViewModel.authManager.isSignedIn
-        }
+        .ignoresSafeArea()
+        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
     }
 }
 
