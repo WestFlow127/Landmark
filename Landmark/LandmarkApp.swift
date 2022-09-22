@@ -10,16 +10,17 @@ import Firebase
 
 @main
 struct LandmarkApp: App {
-    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    
+
     var body: some Scene {
         WindowGroup {
             let viewModel = LoginViewModel()
             
-            LandmarkMainView()
+            LoginMainView()
                 .environmentObject(viewModel)
+                .onAppear{
+                    viewModel.signedIn = viewModel.authManager.isSignedIn
+                }
         }
     }
 }

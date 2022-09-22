@@ -6,17 +6,30 @@
 //
 
 import MapKit
+import Combine
 
-enum MapDetails {
+struct MapDetails {
     static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
     static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
 }
 
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    var locationManager: CLLocationManager?
-    
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
+    @Published var landmarkProvider = LandmarkFirestoreProvider()
+    @Published var landmarks: [LandmarkEntity] = []
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    var locationManager: CLLocationManager?
 
+    override init() {
+        super.init()
+        
+        landmarkProvider.$landmarks
+            .assign(to: \.landmarks, on: self)
+            .store(in: &cancellables)
+    }
+    
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
