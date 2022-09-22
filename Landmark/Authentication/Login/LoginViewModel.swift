@@ -19,6 +19,7 @@ class LoginViewModel: ObservableObject {
         }
     }
     @Published var hasLoginError: Bool = false
+
     
     func signIn(email: String, password: String) {
         let auth = authManager.auth

@@ -11,7 +11,7 @@ struct LoginMainView: View {
     @State var email = ""
     @State var password = ""
     @State var isCreatingAccount = false
-    
+   
     @State private var emptyPasswordAlertIsPresented = false
     @State private var emptyEmailAlertIsPresented = false
 

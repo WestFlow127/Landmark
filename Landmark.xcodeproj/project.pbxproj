@@ -187,6 +187,9 @@
 				229980AB28DB988A006A8538 /* Info.plist */,
 				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
 				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
+				224388CD28D92B7000833CF7 /* Authentication */,
+				227B484028C46ED400C9897A /* Assets.xcassets */,
+				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
 				224388C628D9107C00833CF7 /* Extensions */,
 				227B484228C46ED400C9897A /* Preview Content */,
 			);
@@ -491,6 +494,13 @@
 				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */,
+				224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */,
+				224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */,
+				227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */,
+				224388CC28D928FB00833CF7 /* LoginViewModel.swift in Sources */,
+				2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */,
+				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
+				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

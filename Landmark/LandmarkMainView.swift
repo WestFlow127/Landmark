@@ -11,8 +11,7 @@ import MapKit
 
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
-    @EnvironmentObject var loginViewModel: LoginViewModel
-    
+    @EnvironmentObject var loginViewModel: LoginViewModel    
     
     var body: some View {
         VStack {

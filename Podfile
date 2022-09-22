@@ -10,7 +10,6 @@ target 'Landmark' do
   pod 'Firebase/Auth'
   pod 'FirebaseFirestoreSwift'
   
-  
   target 'LandmarkTests' do
     inherit! :search_paths
     # Pods for testing

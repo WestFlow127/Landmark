@@ -6,6 +6,7 @@ codesigndoc_exports/
 ## Various settings
 *.pbxuser
 !default.pbxuser
+
 xcuserdata/
 
 ## Obj-C/Swift specific
@@ -36,4 +37,4 @@ Pods/
 
 # Operating System files
 .DS_Store
-Landmark.xcodeproj/xcuserdata/westflow.xcuserdatad/xcschemes/xcschememanagement.plist
+
