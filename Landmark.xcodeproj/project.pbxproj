@@ -160,6 +160,15 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		2274E65D28DFC20F00175614 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */,
+				229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		227B483028C46ED100C9897A = {
 			isa = PBXGroup;
 			children = (
@@ -193,11 +202,11 @@
 				229980AE28DBC9F0006A8538 /* Components */,
 				220735A628DAD54200577AB8 /* Entities */,
 				220735A328DACE2100577AB8 /* LandmarkFirebase */,
+				224388C628D9107C00833CF7 /* Extensions */,
 				229980B128DBE1FD006A8538 /* Resources */,
 				227B484028C46ED400C9897A /* Assets.xcassets */,
 				229980AB28DB988A006A8538 /* Info.plist */,
 				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
-				224388C628D9107C00833CF7 /* Extensions */,
 				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
 				227B484228C46ED400C9897A /* Preview Content */,
 			);
@@ -240,8 +249,7 @@
 		229980B128DBE1FD006A8538 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */,
-				229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */,
+				2274E65D28DFC20F00175614 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

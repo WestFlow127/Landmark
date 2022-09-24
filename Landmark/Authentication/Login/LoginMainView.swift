@@ -18,7 +18,7 @@ struct LoginMainView: View {
     @EnvironmentObject var viewModel: LoginViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if viewModel.signedIn {
                 LandmarkMainView()
                     .onAppear{
@@ -100,6 +100,9 @@ struct LoginMainView: View {
 
 struct LoginMainView_Previews: PreviewProvider {
     static var previews: some View {
+        let viewModel = LoginViewModel()
+        
         LoginMainView()
+            .environmentObject(viewModel)
     }
 }
