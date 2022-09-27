@@ -103,6 +103,9 @@ struct LoginMainView: View {
 
 struct LoginMainView_Previews: PreviewProvider {
     static var previews: some View {
+        let viewModel = LoginViewModel()
+
         LoginMainView()
+            .environmentObject(viewModel)
     }
 }
