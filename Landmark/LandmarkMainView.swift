@@ -39,6 +39,7 @@ struct LandmarkMainView: View {
             ToolbarItem (placement: .navigationBarTrailing){
                 Menu {
                     Button {
+                        viewModel.landmarkProvider.cancelListeners()
                         loginViewModel.logout()
                     } label: {
                         Text("Logout")
