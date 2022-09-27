@@ -16,6 +16,7 @@ struct LandmarkEntity: Identifiable, Codable {
     var location: String
     var description: String
     var name: String
+    var imageUrlPaths: [String]?
     var geoLocation: GeoPoint
     var _2DCoord: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: geoLocation.latitude, longitude: geoLocation.longitude)
@@ -26,6 +27,7 @@ struct LandmarkEntity: Identifiable, Codable {
         self.location = "Ocean Front Walk, Venice, CA 90291"
         self.description = "Venice has some really cool art and more things to buy!"
         self.name = name
+        self.imageUrlPaths = []
         self.geoLocation = GeoPoint(latitude: 33.33, longitude: 118.333)
     }
 }
