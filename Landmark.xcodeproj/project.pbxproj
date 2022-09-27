@@ -25,6 +25,7 @@
 		227B485A28C46ED400C9897A /* LandmarkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */; };
 		229980AA28DB904A006A8538 /* LandmarkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980A928DB904A006A8538 /* LandmarkConstants.swift */; };
 		229980AD28DBAFEE006A8538 /* AppleSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AC28DBAFEE006A8538 /* AppleSignInController.swift */; };
+		22BD892628E2997D0025CB0C /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 22BD892328E27EA80025CB0C /* Shiny */; };
 		661FAE2900190D739E818FDB /* Pods_Landmark_LandmarkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DDD617E751B9CD5851A867 /* Pods_Landmark_LandmarkUITests.framework */; };
 		6DEA96B6838876E26E270702 /* Pods_LandmarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453539C21DEF0191487D9241 /* Pods_LandmarkTests.framework */; };
 /* End PBXBuildFile section */
@@ -85,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22BD892428E27EA80025CB0C /* Shiny in Frameworks */,
+				22BD892628E2997D0025CB0C /* Shiny in Frameworks */,
 				1F3D7DFC6224E0872DA2ABEE /* Pods_Landmark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,18 +181,15 @@
 				227B483C28C46ED100C9897A /* LandmarkApp.swift */,
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
-				220735A628DAD54200577AB8 /* Entities */,
-				220735A328DACE2100577AB8 /* LandmarkFirebase */,
-				224388CD28D92B7000833CF7 /* Authentication */,
 				229980A928DB904A006A8538 /* LandmarkConstants.swift */,
-				227B484028C46ED400C9897A /* Assets.xcassets */,
-				229980AB28DB988A006A8538 /* Info.plist */,
-				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
-				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
+				220735A628DAD54200577AB8 /* Entities */,
 				224388CD28D92B7000833CF7 /* Authentication */,
+				220735A328DACE2100577AB8 /* LandmarkFirebase */,
+				224388C628D9107C00833CF7 /* Extensions */,
+				229980AB28DB988A006A8538 /* Info.plist */,
+				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
 				227B484028C46ED400C9897A /* Assets.xcassets */,
 				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
-				224388C628D9107C00833CF7 /* Extensions */,
 				227B484228C46ED400C9897A /* Preview Content */,
 			);
 			path = Landmark;
