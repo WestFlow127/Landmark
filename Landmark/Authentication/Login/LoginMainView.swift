@@ -16,6 +16,10 @@ struct LoginMainView: View {
     @State private var emptyEmailAlertIsPresented = false
 
     @EnvironmentObject var viewModel: LoginViewModel
+    @Environment(\.colorScheme) var colorScheme
+    var isDarkMode: Bool {
+        colorScheme == .dark
+    }
     
     var body: some View {
         NavigationView {
@@ -27,7 +31,7 @@ struct LoginMainView: View {
                     }
             } else {
                 VStack{
-                    Image("logo")
+                    Image(isDarkMode ? "castle_dark" : "castle")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
@@ -78,6 +82,7 @@ struct LoginMainView: View {
                             
                         }
                         .cornerRadius(8)
+                        .padding(10)
                         .alert(isPresented: $viewModel.hasLoginError) {
                             debugPrint("Login Error: \(viewModel.loginError!)")
 
@@ -89,6 +94,7 @@ struct LoginMainView: View {
                         } label: {
                             Text(isCreatingAccount ? "Sign In" : "Create Acoount")
                         }
+                        .padding(5)
                     }
                     .padding()
                     
@@ -104,8 +110,15 @@ struct LoginMainView: View {
 struct LoginMainView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = LoginViewModel()
-
-        LoginMainView()
-            .environmentObject(viewModel)
+        
+        Group{
+            LoginMainView()
+                .preferredColorScheme(.light)
+                .environmentObject(viewModel)
+            
+            LoginMainView()
+                .preferredColorScheme(.dark)
+                .environmentObject(viewModel)
+        }
     }
 }
