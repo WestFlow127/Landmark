@@ -38,6 +38,7 @@ struct LoginMainView: View {
                             .autocapitalization(.none)
                             .padding()
                             .background(Color(.secondarySystemBackground))
+                            .cornerRadius(8)
                             .alert(isPresented: $emptyEmailAlertIsPresented) {
                                 Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
                             }
@@ -47,6 +48,7 @@ struct LoginMainView: View {
                             .autocapitalization(.none)
                             .padding()
                             .background(Color(.secondarySystemBackground))
+                            .cornerRadius(8)
                             .alert(isPresented: $emptyPasswordAlertIsPresented) {
                                 Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
                             }
@@ -75,6 +77,7 @@ struct LoginMainView: View {
                                 .background(Color.blue)
                             
                         }
+                        .cornerRadius(8)
                         .alert(isPresented: $viewModel.hasLoginError) {
                             debugPrint("Login Error: \(viewModel.loginError!)")
 
