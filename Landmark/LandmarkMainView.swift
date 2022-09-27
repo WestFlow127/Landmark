@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import Shiny
 
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
@@ -34,7 +35,9 @@ struct LandmarkMainView: View {
             ToolbarItem(placement: .principal) {
                 Text("Landmark")
                     .font(.largeTitle)
-                    .bold()
+                    .fontWeight(.bold)
+                    .shiny(.rainbow)
+
             }
             ToolbarItem (placement: .navigationBarTrailing){
                 Menu {
