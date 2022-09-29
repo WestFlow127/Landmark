@@ -68,7 +68,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = LoginViewModel()
         
-        LandmarkMainView()
-            .environmentObject(viewModel)
+        NavigationStack {
+            LandmarkMainView()
+                .environmentObject(viewModel)
+        }
     }
 }
