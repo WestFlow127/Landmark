@@ -60,7 +60,7 @@ struct LandmarkMainView: View {
             }
         }
         .ignoresSafeArea()
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
