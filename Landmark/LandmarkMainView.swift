@@ -43,7 +43,7 @@ struct LandmarkMainView: View {
                 Menu {
                     Button("Logout", action: {
                         viewModel.landmarkProvider.cancelListeners()
-                        loginViewModel.logout
+                        loginViewModel.logout()
                     })
                 } label: {
                     Image(systemName: "plus")
