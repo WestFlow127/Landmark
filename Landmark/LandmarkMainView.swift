@@ -36,27 +36,20 @@ struct LandmarkMainView: View {
                 Text("Landmark")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .shiny(.rainbow)
-
+                    .shiny()
             }
+            
             ToolbarItem (placement: .navigationBarTrailing){
                 Menu {
-                    Button {
-                        loginViewModel.logout()
-                    } label: {
-                        Text("Logout")
-                    }
+                    Button("Logout", action: loginViewModel.logout)
                 } label: {
-                    Label {
-                        Text("Add")
-                    } icon: {
-                        Image(systemName: "plus")
-                            .padding(.trailing, 7)
-                    }
+                    Image(systemName: "plus")
+                        .padding(.trailing, 7)
+                        .shiny()
                 }
-                .frame(width: 35, height: 35, alignment: .center)
+                .frame(width: 36, height: 36, alignment: .center)
                 .background(Color.white)
-                .cornerRadius(25)
+                .cornerRadius(36/2)
             }
         }
         .ignoresSafeArea()
