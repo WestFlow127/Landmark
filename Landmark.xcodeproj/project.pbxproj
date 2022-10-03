@@ -11,6 +11,11 @@
 		220735A528DACEA300577AB8 /* LandmarkFirestoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */; };
 		220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A728DAD58D00577AB8 /* LandmarkEntity.swift */; };
 		2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */; };
+		223715A128EA7A3A009521DC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2237159F28EA7A3A009521DC /* Montserrat-Regular.ttf */; };
+		223715A228EA7A3A009521DC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223715A028EA7A3A009521DC /* Montserrat-Bold.ttf */; };
+		223715A628EA7B3C009521DC /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223715A328EA7B3C009521DC /* JosefinSans-Bold.ttf */; };
+		223715A728EA7B3C009521DC /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223715A428EA7B3C009521DC /* JosefinSans-SemiBold.ttf */; };
+		223715A828EA7B3C009521DC /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223715A528EA7B3C009521DC /* JosefinSans-Regular.ttf */; };
 		224388C528D909A100833CF7 /* LoginMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388C428D909A100833CF7 /* LoginMainView.swift */; };
 		224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388C728D910A800833CF7 /* Color+Extensions.swift */; };
 		224388CA28D926F300833CF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 224388C928D926F300833CF7 /* GoogleService-Info.plist */; };
@@ -57,6 +62,11 @@
 		220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkFirestoreProvider.swift; sourceTree = "<group>"; };
 		220735A728DAD58D00577AB8 /* LandmarkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkEntity.swift; sourceTree = "<group>"; };
 		2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMainViewModel.swift; sourceTree = "<group>"; };
+		2237159F28EA7A3A009521DC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		223715A028EA7A3A009521DC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		223715A328EA7B3C009521DC /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
+		223715A428EA7B3C009521DC /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		223715A528EA7B3C009521DC /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
 		224388C428D909A100833CF7 /* LoginMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainView.swift; sourceTree = "<group>"; };
 		224388C728D910A800833CF7 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		224388C928D926F300833CF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -165,6 +175,11 @@
 		2274E65D28DFC20F00175614 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				223715A328EA7B3C009521DC /* JosefinSans-Bold.ttf */,
+				223715A528EA7B3C009521DC /* JosefinSans-Regular.ttf */,
+				223715A428EA7B3C009521DC /* JosefinSans-SemiBold.ttf */,
+				223715A028EA7A3A009521DC /* Montserrat-Bold.ttf */,
+				2237159F28EA7A3A009521DC /* Montserrat-Regular.ttf */,
 				229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */,
 				229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */,
 			);
@@ -200,13 +215,12 @@
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
 				229980A928DB904A006A8538 /* LandmarkConstants.swift */,
-				224388CD28D92B7000833CF7 /* Authentication */,
 				229980AE28DBC9F0006A8538 /* Components */,
-				229980B128DBE1FD006A8538 /* Resources */,
 				220735A628DAD54200577AB8 /* Entities */,
 				224388CD28D92B7000833CF7 /* Authentication */,
 				220735A328DACE2100577AB8 /* LandmarkFirebase */,
 				224388C628D9107C00833CF7 /* Extensions */,
+				229980B128DBE1FD006A8538 /* Resources */,
 				229980AB28DB988A006A8538 /* Info.plist */,
 				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
 				227B484028C46ED400C9897A /* Assets.xcassets */,
@@ -395,11 +409,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				223715A128EA7A3A009521DC /* Montserrat-Regular.ttf in Resources */,
+				223715A628EA7B3C009521DC /* JosefinSans-Bold.ttf in Resources */,
 				227B484428C46ED400C9897A /* Preview Assets.xcassets in Resources */,
+				223715A828EA7B3C009521DC /* JosefinSans-Regular.ttf in Resources */,
 				229980B828DBEAE0006A8538 /* DancingScript-Regular.ttf in Resources */,
 				227B484128C46ED400C9897A /* Assets.xcassets in Resources */,
 				224388CA28D926F300833CF7 /* GoogleService-Info.plist in Resources */,
 				229980B928DBEAE0006A8538 /* DancingScript-Bold.ttf in Resources */,
+				223715A728EA7B3C009521DC /* JosefinSans-SemiBold.ttf in Resources */,
+				223715A228EA7A3A009521DC /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

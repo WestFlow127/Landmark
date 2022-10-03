@@ -4,6 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>JosefinSans-Regular.ttf</string>
+		<string>JosefinSans-SemiBold.ttf</string>
+		<string>JosefinSans-Bold.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
 		<string>DancingScript-Regular.ttf</string>
 		<string>DancingScript-Bold.ttf</string>
 	</array>

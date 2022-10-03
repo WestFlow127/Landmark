@@ -10,10 +10,10 @@ import SwiftUI
 
 extension Font {
     static let landmarkFont: (CGFloat) -> Font = { size in
-        Font.custom("DancingScript", size: size)
+        Font.custom("JosefinSans-Regular", size: size)
     }
     
     static let landmarkFontBold: (CGFloat) -> Font = { size in
-        Font.custom("DancingScript-Bold", size: size)
+        Font.custom("JosefinSans-SemiBold", size: size)
     }
 }
