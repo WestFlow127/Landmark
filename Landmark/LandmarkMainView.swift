@@ -41,7 +41,10 @@ struct LandmarkMainView: View {
             
             ToolbarItem (placement: .navigationBarTrailing){
                 Menu {
-                    Button("Logout", action: loginViewModel.logout)
+                    Button("Logout", action: {
+                        viewModel.landmarkProvider.cancelListeners()
+                        loginViewModel.logout()
+                    })
                 } label: {
                     Image(systemName: "plus")
                         .padding(.trailing, 7)
