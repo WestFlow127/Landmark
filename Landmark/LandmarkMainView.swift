@@ -12,7 +12,9 @@ import Shiny
 
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
-    @EnvironmentObject var loginViewModel: LoginViewModel    
+    @EnvironmentObject var loginViewModel: LoginViewModel
+    
+    @State private var selectedPlace: LandmarkEntity?
     
     var body: some View {
         VStack {
@@ -22,13 +24,29 @@ struct LandmarkMainView: View {
                     annotationItems: viewModel.landmarks) { landmark in
                     
                     MapAnnotation(coordinate: landmark._2DCoord) {
-                        Rectangle().stroke(Color.blue)
-                            .frame(width: 20, height: 20)
+                        VStack{
+                            Image(systemName: "star.circle")
+                                .resizable()
+                                .foregroundColor(.red)
+                                .frame(width: 25, height: 25)
+                                .background(.white)
+                                .clipShape(Circle())
+                            
+                            Text(landmark.name)
+                                .font(Font.caption)
+                                .lineLimit(2)
+                        }
+                        .onTapGesture {
+                            selectedPlace = landmark
+                        }
                     }
                 }
-                    .onAppear{
-                        viewModel.checkIfLocationServicesIsEnabled()
-                    }
+                .onAppear{
+                    viewModel.checkIfLocationServicesIsEnabled()
+                }
+            }
+            .sheet(item: $selectedPlace) { landmark in
+                SelectedLandmarkView(landmark: landmark)
             }
         }
         .toolbar {

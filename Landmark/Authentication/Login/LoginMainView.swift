@@ -22,7 +22,7 @@ struct LoginMainView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if viewModel.signedIn {
                 LandmarkMainView()
                     .onAppear{
