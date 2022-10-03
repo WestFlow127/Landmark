@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import Shiny
 
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
@@ -52,30 +53,28 @@ struct LandmarkMainView: View {
             ToolbarItem(placement: .principal) {
                 Text("Landmark")
                     .font(.largeTitle)
-                    .bold()
+                    .fontWeight(.bold)
+                    .shiny()
             }
+            
             ToolbarItem (placement: .navigationBarTrailing){
                 Menu {
-                    Button {
+                    Button("Logout", action: {
+                        viewModel.landmarkProvider.cancelListeners()
                         loginViewModel.logout()
-                    } label: {
-                        Text("Logout")
-                    }
+                    })
                 } label: {
-                    Label {
-                        Text("Add")
-                    } icon: {
-                        Image(systemName: "plus")
-                            .padding(.trailing, 7)
-                    }
+                    Image(systemName: "plus")
+                        .padding(.trailing, 7)
+                        .shiny()
                 }
-                .frame(width: 35, height: 35, alignment: .center)
+                .frame(width: 36, height: 36, alignment: .center)
                 .background(Color.white)
-                .cornerRadius(25)
+                .cornerRadius(36/2)
             }
         }
         .ignoresSafeArea()
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
