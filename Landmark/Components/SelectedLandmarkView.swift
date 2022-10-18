@@ -18,6 +18,8 @@ struct SelectedLandmarkView: View {
     var landmark: LandmarkEntity
     var subTitles: [LandmarkDisplayTitles] = [.location, .description]
     
+    @StateObject private var viewModel: SelectedLandmarkViewModel
+
     @State private var name: String
     @State private var location: String
     @State private var description: String
@@ -27,11 +29,14 @@ struct SelectedLandmarkView: View {
             GeometryReader{ proxy in
                 
                 VStack(alignment: .leading) {
-                    Image("test_landmark")
-                        .resizable()
-                        .frame(width: proxy.size.width)
-                        .offset(CGSize(width: -5, height: -5))
-                        .aspectRatio(contentMode: .fit)
+//                    ForEach(viewModel.landmarkImages, id: \.self) { image in
+                    if let image = viewModel.landmarkImages.first {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: proxy.size.width)
+                            .offset(CGSize(width: -5, height: -5))
+                            .aspectRatio(contentMode: .fit)
+                    }
                     
                     HStack{
                         Text(LandmarkDisplayTitles.name.rawValue + ": ")
@@ -75,7 +80,8 @@ struct SelectedLandmarkView: View {
     
     init(landmark: LandmarkEntity) {
         self.landmark = landmark
-        
+        _viewModel = StateObject(wrappedValue: SelectedLandmarkViewModel(landmark: landmark))
+
         _name = State(initialValue: landmark.name)
         _location = State(initialValue: landmark.location)
         _description = State(initialValue: landmark.description)
