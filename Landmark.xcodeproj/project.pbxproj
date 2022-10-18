@@ -28,6 +28,7 @@
 		227B484E28C46ED400C9897A /* LandmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B484D28C46ED400C9897A /* LandmarkTests.swift */; };
 		227B485828C46ED400C9897A /* LandmarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485728C46ED400C9897A /* LandmarkUITests.swift */; };
 		227B485A28C46ED400C9897A /* LandmarkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */; };
+		2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289488E28FE4B3800C3A404 /* RequestErrors.swift */; };
 		229980AA28DB904A006A8538 /* LandmarkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980A928DB904A006A8538 /* LandmarkConstants.swift */; };
 		229980AD28DBAFEE006A8538 /* AppleSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AC28DBAFEE006A8538 /* AppleSignInController.swift */; };
 		229980B028DBCA1F006A8538 /* SelectedLandmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AF28DBCA1F006A8538 /* SelectedLandmarkView.swift */; };
@@ -82,6 +83,7 @@
 		227B485328C46ED400C9897A /* LandmarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227B485728C46ED400C9897A /* LandmarkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkUITests.swift; sourceTree = "<group>"; };
 		227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2289488E28FE4B3800C3A404 /* RequestErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestErrors.swift; sourceTree = "<group>"; };
 		229980A928DB904A006A8538 /* LandmarkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkConstants.swift; sourceTree = "<group>"; };
 		229980AB28DB988A006A8538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		229980AC28DBAFEE006A8538 /* AppleSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */,
+				2289488E28FE4B3800C3A404 /* RequestErrors.swift */,
 			);
 			path = LandmarkFirebase;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				229980B528DBE46F006A8538 /* Font+Extensions.swift in Sources */,
+				2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */,
 				220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */,
 				229980B028DBCA1F006A8538 /* SelectedLandmarkView.swift in Sources */,
 			);
