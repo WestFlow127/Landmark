@@ -24,7 +24,7 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
     
-    func getLandmarkPhoto(forPath: String) -> Future <UIImage, Error> {
+    func getLandmarkPhoto(forPath: String) -> Future <[UIImage], Error> {
         let ref = storage.reference(withPath: forPath)
         
         return Future() { promise in
@@ -33,7 +33,7 @@ class LandmarkFirestoreProvider: ObservableObject {
                     promise(Result.failure(error))
                 } else {
                     if let image = UIImage(data: data!) {
-                        promise(Result.success(image))
+                        promise(Result.success([image]))
                     } else {
                         promise(Result.failure(DataResponseError.emptyData))
                     }

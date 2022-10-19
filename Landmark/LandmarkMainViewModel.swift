@@ -17,6 +17,14 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [LandmarkEntity] = []
+    
+    // Selected Landmark Data
+    @Published  var selectedLandmark: LandmarkEntity? {
+        didSet {
+            getImages()
+        }
+    }
+    @Published var selectedLandmarkImages: [UIImage] = []
 
     private var cancellables: Set<AnyCancellable> = []
     
@@ -34,6 +42,21 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     
     func setLandmarks(_ landmarks: [LandmarkEntity]) {
         self.landmarks = landmarks
+    }
+    
+    
+    func getImages() {
+        if let imagePath = selectedLandmark?.imageUrlPaths?.first {
+            landmarkProvider.getLandmarkPhoto(forPath: imagePath)
+                .sink(receiveCompletion: { error in
+                    debugPrint("getLandmarkPhoto completed : \(error)")
+                }, receiveValue: setSelectedLandmarkImages)
+                .store(in: &cancellables)
+        }
+    }
+    
+    func setSelectedLandmarkImages(images: [UIImage]) {
+        self.selectedLandmarkImages = images
     }
     
     func checkIfLocationServicesIsEnabled() {

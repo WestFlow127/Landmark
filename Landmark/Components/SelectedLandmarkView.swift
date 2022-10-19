@@ -15,9 +15,8 @@ enum LandmarkDisplayTitles: String {
 
 struct SelectedLandmarkView: View {
     @Environment(\.dismiss) var dismiss
-    var subTitles: [LandmarkDisplayTitles] = [.location, .description]
     
-    @StateObject private var viewModel: SelectedLandmarkViewModel
+    @EnvironmentObject private var viewModel: LandmarkMainViewModel
     
     @State private var name: String
     @State private var location: String
@@ -25,79 +24,76 @@ struct SelectedLandmarkView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                TabView {
-                    ForEach(viewModel.landmarkImages, id: \.self) { image in
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: UIScreen.main.bounds.width)
-//                            .offset(CGSize(width: -5, height: -5))
-                    }
-                }
-                .frame(height: UIScreen.main.bounds.height / 3)
+            VStack(alignment: .leading, spacing: 10) {
+                imageTabView
                 
-                HStack{
-                    Text(LandmarkDisplayTitles.name.rawValue + ": ")
-                        .font(Font.landmarkFontBold(25))
-                        .padding(4)
-                        .offset(x: 2.5, y: 2.5)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.secondary, lineWidth: 2)
-                        }
-                    
+                VStack(alignment: .leading, spacing: 8){
                     Text(name)
-                        .font(Font.landmarkFontBold(25))
-                        .padding(5)
-                        .offset(x: 2.5, y: 2.5)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
                         .fixedSize()
-                }
-                
-                ForEach(subTitles, id: \.self) { title in
+                    
+                    Text(location)
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                    
                     Divider()
-                    HStack{
-                        Text(title.rawValue + ": ")
-                            .font(Font.landmarkFontBold(21))
-                            .padding(5)
-                            .offset(x: 2.5, y: 2.5)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.secondary, lineWidth: 2)
-                            }
-                        
-                        Text(getDisplayValue(forTitle: title))
-                            .font(Font.landmarkFontBold(21))
-                            .padding(5)
-                            .offset(x: 2.5, y: 2.5)
-                    }
+
+                    Text(description)
+                        .font(.headline)
+                        .foregroundColor(.secondary)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             }
-        }.ignoresSafeArea()
-    }
-    
-    init(viewModel: SelectedLandmarkViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-        
-        _name = State(initialValue: viewModel.landmark.name)
-        _location = State(initialValue: viewModel.landmark.location)
-        _description = State(initialValue: viewModel.landmark.description)
-    }
-    
-    func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String {
-        switch forTitle {
-        case .name:
-            return name
-        case .location:
-            return location
-        case .description:
-            return description
         }
+        .ignoresSafeArea()
+        .background(.ultraThinMaterial)
+        .overlay(backButton, alignment: .topTrailing)
+    }
+    
+    init(selectedLandmark: LandmarkEntity) {
+//        _viewModel = StateObject(wrappedValue: viewModel)
+        
+        _name = State(initialValue: selectedLandmark.name)
+        _location = State(initialValue: selectedLandmark.location)
+        _description = State(initialValue: selectedLandmark.description)
     }
 }
 
 struct SelectedLandmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: LandmarkEntity(name: "Venice Beach Boardwalk")))
+        SelectedLandmarkView(selectedLandmark: LandmarkEntity(name: "Venice Beach"))
+    }
+}
+
+extension SelectedLandmarkView {
+    private var imageTabView: some View {
+        TabView {
+            ForEach(viewModel.selectedLandmarkImages, id: \.self) { image in
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width)
+            }
+        }
+        .frame(height: UIScreen.main.bounds.height / 3)
+        .shadow(radius: 20, x: 0, y: 10)
+    }
+    
+    private var backButton: some View {
+        Button {
+            viewModel.selectedLandmark = nil
+        } label: {
+            Image(systemName: "xmark")
+                .font(.headline)
+                .padding(8)
+                .foregroundColor(.primary)
+                .background(.thickMaterial)
+                .cornerRadius(10)
+                .shadow(radius: 4)
+                .padding()
+        }
+
     }
 }
