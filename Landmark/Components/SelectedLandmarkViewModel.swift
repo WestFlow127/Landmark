@@ -10,14 +10,15 @@ import Combine
 
 class SelectedLandmarkViewModel: NSObject, ObservableObject {
     @Published var landmarkImages: [UIImage] = []
-    var landmark: LandmarkEntity!
+    @Published var landmark: LandmarkEntity
     var landmarkProvider = LandmarkFirestoreProvider()
     
     private var cancellables: Set<AnyCancellable> = []
 
     init(landmark: LandmarkEntity) {
-        super.init()
         self.landmark = landmark
+        
+        super.init()
 
         getImages()
     }

@@ -46,7 +46,9 @@ struct LandmarkMainView: View {
                 }
             }
             .sheet(item: $selectedPlace) { landmark in
-                SelectedLandmarkView(landmark: landmark)
+                let viewModel = SelectedLandmarkViewModel(landmark: landmark)
+
+                SelectedLandmarkView(viewModel: viewModel)
             }
         }
         .toolbar {
