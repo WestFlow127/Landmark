@@ -14,42 +14,9 @@ struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
     @EnvironmentObject var loginViewModel: LoginViewModel
     
-    @State private var selectedPlace: LandmarkEntity?
-    
     var body: some View {
         VStack {
-            ViewThatFits {
-                Map(coordinateRegion: $viewModel.region,
-                    showsUserLocation: true,
-                    annotationItems: viewModel.landmarks) { landmark in
-                    
-                    MapAnnotation(coordinate: landmark._2DCoord) {
-                        VStack{
-                            Image(systemName: "star.circle")
-                                .resizable()
-                                .foregroundColor(.red)
-                                .frame(width: 25, height: 25)
-                                .background(.white)
-                                .clipShape(Circle())
-                            
-                            Text(landmark.name)
-                                .font(Font.caption)
-                                .lineLimit(2)
-                        }
-                        .onTapGesture {
-                            selectedPlace = landmark
-                        }
-                    }
-                }
-                .onAppear{
-                    viewModel.checkIfLocationServicesIsEnabled()
-                }
-            }
-            .sheet(item: $selectedPlace) { landmark in
-                let viewModel = SelectedLandmarkViewModel(landmark: landmark)
-
-                SelectedLandmarkView(viewModel: viewModel)
-            }
+            mapLayer
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -60,19 +27,7 @@ struct LandmarkMainView: View {
             }
             
             ToolbarItem (placement: .navigationBarTrailing){
-                Menu {
-                    Button("Logout", action: {
-                        viewModel.landmarkProvider.cancelListeners()
-                        loginViewModel.logout()
-                    })
-                } label: {
-                    Image(systemName: "plus")
-                        .padding(.trailing, 7)
-                        .shiny()
-                }
-                .frame(width: 36, height: 36, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(36/2)
+                menu
             }
         }
         .ignoresSafeArea()
@@ -88,5 +43,46 @@ struct ContentView_Previews: PreviewProvider {
             LandmarkMainView()
                 .environmentObject(viewModel)
         }
+    }
+}
+
+extension LandmarkMainView {
+    private var mapLayer: some View {
+        ViewThatFits {
+            Map(coordinateRegion: $viewModel.region,
+                showsUserLocation: true,
+                annotationItems: viewModel.landmarks) { landmark in
+                
+                MapAnnotation(coordinate: landmark._2DCoord) {
+                    LandmarkAnnotationView(name: landmark.name)
+                        .onTapGesture {
+                            viewModel.selectedLandmark = landmark
+                        }
+                }
+            }
+            .onAppear{
+                viewModel.checkIfLocationServicesIsEnabled()
+            }
+        }
+        .sheet(item: $viewModel.selectedLandmark) { landmark in
+            SelectedLandmarkView(selectedLandmark: landmark)
+                .environmentObject(viewModel)
+        }
+    }
+    
+    private var menu: some View {
+        Menu {
+            Button("Logout", action: {
+                viewModel.landmarkProvider.cancelListeners()
+                loginViewModel.logout()
+            })
+        } label: {
+            Image(systemName: "plus")
+                .padding(.trailing, 7)
+                .shiny()
+        }
+        .frame(width: 36, height: 36, alignment: .center)
+        .background(Color.white)
+        .cornerRadius(36/2)
     }
 }
