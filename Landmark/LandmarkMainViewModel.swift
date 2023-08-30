@@ -8,12 +8,14 @@
 import MapKit
 import Combine
 
-struct MapDetails {
+struct MapDetails
+{
     static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
     static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
 }
 
-final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
+{
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [LandmarkEntity] = []
@@ -22,7 +24,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     
     var locationManager: CLLocationManager?
 
-    override init() {
+    override init()
+    {
         super.init()
         
         landmarkProvider.$landmarks
@@ -30,7 +33,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             .store(in: &cancellables)
     }
     
-    func checkIfLocationServicesIsEnabled() {
+    func checkIfLocationServicesIsEnabled()
+    {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
             locationManager?.activityType = .other
@@ -41,7 +45,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         }
     }
     
-    private func checkLocationAuthorization() {
+    private func checkLocationAuthorization()
+    {
         guard let locationManager = locationManager else { return }
 
         switch locationManager.authorizationStatus {
@@ -65,7 +70,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         }
     }
     
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager)
+    {
         checkLocationAuthorization()
     }
 }

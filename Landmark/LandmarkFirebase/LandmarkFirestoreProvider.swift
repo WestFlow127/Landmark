@@ -9,7 +9,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-class LandmarkFirestoreProvider: ObservableObject {
+class LandmarkFirestoreProvider: ObservableObject
+{
     let auth = LandmarkAuthManager.shared
     let db = Firestore.firestore()
     
@@ -17,15 +18,20 @@ class LandmarkFirestoreProvider: ObservableObject {
     
     @Published var landmarks: [LandmarkEntity] = []
     
-    init() {
+    init()
+    {
         if auth.isSignedIn {
             listeners = [ListenerRegistration]()
             listeners?.append(getLandmarks())
         }
     }
     
-    private func getLandmarks() -> ListenerRegistration {
-         db.collection("landmarks").addSnapshotListener{ [weak self] (querySnapshot, error) in
+    private func getLandmarks() -> ListenerRegistration
+    {
+         db.collection("landmarks").addSnapshotListener
+        {
+            [weak self] (querySnapshot, error) in
+            
             if let error = error {
                 debugPrint("Error in snapshotListener: \(error)")
                 return
@@ -53,13 +59,15 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
     
-    func addLandmark(landmark: LandmarkEntity) {
+    func addLandmark(landmark: LandmarkEntity)
+    {
 //        do {
 //            _ = try db.collection()
 //        }
     }
     
-    func cancelListeners() {
+    func cancelListeners()
+    {
         guard let listeners else { return }
         
         for listener in listeners {
