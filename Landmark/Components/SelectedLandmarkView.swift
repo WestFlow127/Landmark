@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-enum LandmarkDisplayTitles: String {
+enum LandmarkDisplayTitles: String
+{
     case name = "Landmark"
     case location = "Address"
     case description = "Description"
 }
 
-struct SelectedLandmarkView: View {
+struct SelectedLandmarkView: View
+{
     @Environment(\.dismiss) var dismiss
     var subTitles: [LandmarkDisplayTitles] = [.location, .description]
     
@@ -22,11 +24,15 @@ struct SelectedLandmarkView: View {
     @State private var name: String
     @State private var location: String
     @State private var description: String
-    
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                TabView {
+
+    var body: some View
+    {
+        ScrollView
+        {
+            VStack(alignment: .leading)
+            {
+                TabView
+                {
                     ForEach(viewModel.landmarkImages, id: \.self) { image in
                         Image(uiImage: image)
                             .resizable()
@@ -37,7 +43,8 @@ struct SelectedLandmarkView: View {
                 }
                 .frame(height: UIScreen.main.bounds.height / 3)
                 
-                HStack{
+                HStack
+                {
                     Text(LandmarkDisplayTitles.name.rawValue + ": ")
                         .font(Font.landmarkFontBold(25))
                         .padding(4)
@@ -54,8 +61,10 @@ struct SelectedLandmarkView: View {
                         .fixedSize()
                 }
                 
-                ForEach(subTitles, id: \.self) { title in
+                ForEach(subTitles, id: \.self)
+                { title in
                     Divider()
+                    
                     HStack{
                         Text(title.rawValue + ": ")
                             .font(Font.landmarkFontBold(21))
@@ -71,20 +80,22 @@ struct SelectedLandmarkView: View {
                             .padding(5)
                             .offset(x: 2.5, y: 2.5)
                     }
-                }
+                }.padding(5)
             }
         }.ignoresSafeArea()
     }
     
-    init(viewModel: SelectedLandmarkViewModel) {
+    init(viewModel: SelectedLandmarkViewModel)
+    {
         _viewModel = StateObject(wrappedValue: viewModel)
-        
+
         _name = State(initialValue: viewModel.landmark.name)
         _location = State(initialValue: viewModel.landmark.location)
         _description = State(initialValue: viewModel.landmark.description)
     }
     
-    func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String {
+    func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String
+    {
         switch forTitle {
         case .name:
             return name
@@ -96,7 +107,8 @@ struct SelectedLandmarkView: View {
     }
 }
 
-struct SelectedLandmarkView_Previews: PreviewProvider {
+struct SelectedLandmarkView_Previews: PreviewProvider
+{
     static var previews: some View {
         SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: LandmarkEntity(name: "Venice Beach Boardwalk")))
     }

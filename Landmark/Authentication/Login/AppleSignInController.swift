@@ -10,14 +10,16 @@ import CryptoKit
 import FirebaseAuth
 import Foundation
 
-class AppleSignInController: NSObject {
+class AppleSignInController: NSObject
+{
     weak var viewModel: LoginViewModel?
     var parentView: LoginMainView?
     
     fileprivate var currentNonce: String?
 }
 
-extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding
+{
     // - Create and return Apple Button
     func setupAppleLoginButton(parentView: LoginMainView?, style: ASAuthorizationAppleIDButton.Style) -> ASAuthorizationAppleIDButton {
         self.parentView = parentView
@@ -30,7 +32,8 @@ extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizat
     
     // - Start the Apple ID request
     @objc
-    func startSignInWithApple() {
+    func startSignInWithApple()
+    {
         let nonce = randomNonceString()
         currentNonce = nonce
         
@@ -46,7 +49,8 @@ extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizat
     }
     
     // - Did Complete Authorization
-    func authorizationController(controller _: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(controller _: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization)
+    {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -64,11 +68,13 @@ extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizat
         }
     }
     // - Did complete with error
-    func authorizationController(controller _: ASAuthorizationController, didCompleteWithError error: Error) {
+    func authorizationController(controller _: ASAuthorizationController, didCompleteWithError error: Error)
+    {
         print("Sign in with Apple errored: \(error)")
     }
     
-    private func sha256(_ input: String) -> String {
+    private func sha256(_ input: String) -> String
+    {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
         let hashString = hashedData.compactMap {
@@ -80,14 +86,16 @@ extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizat
     
     /// For every sign-in request, generate a random string—a "nonce"- which you will use to make sure the ID token
     /// you get was granted specifically in response to your app's authentication request.
-    private func randomNonceString(length: Int = 32) -> String {
+    private func randomNonceString(length: Int = 32) -> String
+    {
         precondition(length > 0)
-        let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
         
-        while remainingLength > 0 {
+        while remainingLength > 0
+        {
             let randoms: [UInt8] = (0 ..< 16).map { _ in
                 var random: UInt8 = 0
                 let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
@@ -112,9 +120,9 @@ extension AppleSignInController: ASAuthorizationControllerDelegate, ASAuthorizat
         return result
     }
     
-    
     // Provide Presentation Anchor
-    func presentationAnchor(for _: ASAuthorizationController) -> ASPresentationAnchor {
+    func presentationAnchor(for _: ASAuthorizationController) -> ASPresentationAnchor
+    {
         ASPresentationAnchor()
     }
 }

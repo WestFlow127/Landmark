@@ -10,7 +10,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-class LandmarkFirestoreProvider: ObservableObject {
+class LandmarkFirestoreProvider: ObservableObject
+{
     let auth = LandmarkAuthManager.shared
     let db = Firestore.firestore()
     let storage = Storage.storage()
@@ -18,16 +19,21 @@ class LandmarkFirestoreProvider: ObservableObject {
     var listeners: [ListenerRegistration]?
     
     
-    init() {
+    init()
+    {
         if auth.isSignedIn {
             listeners = [ListenerRegistration]()
         }
     }
     
-    func getLandmarkPhoto(forPath: String) -> Future <UIImage, Error> {
+    func getLandmarkPhoto(forPath: String) -> Future <UIImage, Error>
+    {
         let ref = storage.reference(withPath: forPath)
         
-        return Future() { promise in
+        return Future()
+        {
+            promise in
+            
             ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
                 if let error = error {
                     promise(Result.failure(error))
@@ -42,8 +48,12 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
     
-    func getLandmarks() -> Future <[LandmarkEntity], Error> {
-        Future() { [weak self] promise in
+    func getLandmarks() -> Future <[LandmarkEntity], Error>
+    {
+        Future()
+        {
+            [weak self] promise in
+            
             guard let self = self else { return }
             
             let landmarks = self.db.collection("landmarks").addSnapshotListener{ (querySnapshot, error) in
@@ -85,10 +95,12 @@ class LandmarkFirestoreProvider: ObservableObject {
         //        }
     }
     
-    func cancelListeners() {
+    func cancelListeners()
+    {
         guard let listeners else { return }
         
-        for listener in listeners {
+        for listener in listeners
+        {
             listener.remove()
         }
     }

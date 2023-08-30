@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct LoginMainView: View {
+struct LoginMainView: View
+{
     @State var email = ""
     @State var password = ""
     @State var isCreatingAccount = false
@@ -17,26 +18,32 @@ struct LoginMainView: View {
 
     @EnvironmentObject var viewModel: LoginViewModel
     @Environment(\.colorScheme) var colorScheme
+    
     var isDarkMode: Bool {
         colorScheme == .dark
     }
     
-    var body: some View {
-        NavigationStack {
-            if viewModel.signedIn {
+    var body: some View
+    {
+        NavigationStack
+        {
+            if viewModel.signedIn
+            {
                 LandmarkMainView()
                     .onAppear{
                         email = ""
                         password = ""
                     }
             } else {
-                VStack{
+                VStack
+                {
                     Image(isDarkMode ? "castle_dark" : "castle")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
                     
-                    VStack{
+                    VStack
+                    {
                         TextField("Email Address", text: $email)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
@@ -107,8 +114,10 @@ struct LoginMainView: View {
     }
 }
 
-struct LoginMainView_Previews: PreviewProvider {
-    static var previews: some View {
+struct LoginMainView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         let viewModel = LoginViewModel()
         
         Group{
