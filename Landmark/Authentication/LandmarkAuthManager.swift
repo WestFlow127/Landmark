@@ -8,8 +8,8 @@
 import Foundation
 import FirebaseAuth
 
-final class LandmarkAuthManager {
-    
+final class LandmarkAuthManager
+{
     static let shared = LandmarkAuthManager()
     
     private init() {}
@@ -19,6 +19,4 @@ final class LandmarkAuthManager {
     var isSignedIn: Bool {
         return auth.currentUser != nil
     }
-    
-    
 }

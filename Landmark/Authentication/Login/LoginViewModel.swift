@@ -8,8 +8,8 @@
 import Foundation
 import FirebaseAuth
 
-class LoginViewModel: ObservableObject {
-    
+class LoginViewModel: ObservableObject
+{
     let authManager = LandmarkAuthManager.shared
     
     @Published var signedIn = false
@@ -21,10 +21,14 @@ class LoginViewModel: ObservableObject {
     @Published var hasLoginError: Bool = false
 
     
-    func signIn(email: String, password: String) {
+    func signIn(email: String, password: String)
+    {
         let auth = authManager.auth
         
-        auth.signIn(withEmail: email, password: password) { [weak self] result, error in
+        auth.signIn(withEmail: email, password: password)
+        {
+            [weak self] result, error in
+        
             guard result != nil, error == nil else {
                 self?.loginError = error
                 return
@@ -36,10 +40,14 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func signUp(email: String, password: String) {
+    func signUp(email: String, password: String)
+    {
         let auth = authManager.auth
 
-        auth.createUser(withEmail: email, password: password) { [weak self] result, error in
+        auth.createUser(withEmail: email, password: password)
+        {
+            [weak self] result, error in
+            
             guard result != nil, error == nil else {
                 self?.loginError = error
                 return
@@ -51,7 +59,8 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func logout() {
+    func logout()
+    {
         do {
             try authManager.auth.signOut()
             

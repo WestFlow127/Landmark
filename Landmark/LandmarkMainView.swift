@@ -10,21 +10,28 @@ import CoreLocation
 import MapKit
 import Shiny
 
-struct LandmarkMainView: View {
+struct LandmarkMainView: View
+{
     @StateObject private var viewModel = LandmarkMainViewModel()
     @EnvironmentObject var loginViewModel: LoginViewModel
     
     @State private var selectedPlace: LandmarkEntity?
     
-    var body: some View {
-        VStack {
-            ViewThatFits {
+    var body: some View
+    {
+        VStack
+        {
+            ViewThatFits
+            {
                 Map(coordinateRegion: $viewModel.region,
                     showsUserLocation: true,
-                    annotationItems: viewModel.landmarks) { landmark in
+                    annotationItems: viewModel.landmarks)
+                { landmark in
                     
-                    MapAnnotation(coordinate: landmark._2DCoord) {
-                        VStack{
+                    MapAnnotation(coordinate: landmark._2DCoord)
+                    {
+                        VStack
+                        {
                             Image(systemName: "star.circle")
                                 .resizable()
                                 .foregroundColor(.red)
@@ -41,16 +48,18 @@ struct LandmarkMainView: View {
                         }
                     }
                 }
-                .onAppear{
+                .onAppear {
                     viewModel.checkIfLocationServicesIsEnabled()
                 }
             }
-            .sheet(item: $selectedPlace) { landmark in
+            .sheet(item: $selectedPlace)
+            { landmark in
                 SelectedLandmarkView(landmark: landmark)
             }
         }
         .toolbar {
-            ToolbarItem(placement: .principal) {
+            ToolbarItem(placement: .principal)
+            {
                 Text("Landmark")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -80,8 +89,10 @@ struct LandmarkMainView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
+struct ContentView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         let viewModel = LoginViewModel()
         
         NavigationStack {
