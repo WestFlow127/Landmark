@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-enum LandmarkDisplayTitles: String {
+enum LandmarkDisplayTitles: String
+{
     case name = "Landmark"
     case location = "Address"
     case description = "Description"
 }
 
-struct SelectedLandmarkView: View {
+struct SelectedLandmarkView: View
+{
     @Environment(\.dismiss) var dismiss
     var landmark: LandmarkEntity
     var subTitles: [LandmarkDisplayTitles] = [.location, .description]
@@ -22,18 +24,23 @@ struct SelectedLandmarkView: View {
     @State private var location: String
     @State private var description: String
     
-    var body: some View {
-        NavigationView {
-            GeometryReader{ proxy in
+    var body: some View
+    {
+        NavigationView
+        {
+            GeometryReader
+            { proxy in
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading)
+                {
                     Image("test_landmark")
                         .resizable()
                         .frame(width: proxy.size.width)
                         .offset(CGSize(width: -5, height: -5))
                         .aspectRatio(contentMode: .fit)
                     
-                    HStack{
+                    HStack
+                    {
                         Text(LandmarkDisplayTitles.name.rawValue + ": ")
                             .font(Font.landmarkFontBold(25))
                             .padding(4)
@@ -52,7 +59,9 @@ struct SelectedLandmarkView: View {
 
                     ForEach(subTitles, id: \.self) { title in
                         Divider()
-                        HStack{
+                        
+                        HStack
+                        {
                             Text(title.rawValue + ": ")
                                 .font(Font.landmarkFontBold(21))
                                 .padding(5)
@@ -73,7 +82,8 @@ struct SelectedLandmarkView: View {
         }.ignoresSafeArea()
     }
     
-    init(landmark: LandmarkEntity) {
+    init(landmark: LandmarkEntity)
+    {
         self.landmark = landmark
         
         _name = State(initialValue: landmark.name)
@@ -81,7 +91,8 @@ struct SelectedLandmarkView: View {
         _description = State(initialValue: landmark.description)
     }
     
-    func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String {
+    func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String
+    {
         switch forTitle {
         case .name:
             return name
@@ -93,7 +104,8 @@ struct SelectedLandmarkView: View {
     }
 }
 
-struct SelectedLandmarkView_Previews: PreviewProvider {
+struct SelectedLandmarkView_Previews: PreviewProvider
+{
     static var previews: some View {
         SelectedLandmarkView(landmark: LandmarkEntity(name: "Venice Beach Boardwalk"))
     }

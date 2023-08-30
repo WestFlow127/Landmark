@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-extension Font {
+extension Font
+{
     static let landmarkFont: (CGFloat) -> Font = { size in
         Font.custom("JosefinSans-Regular", size: size)
     }
