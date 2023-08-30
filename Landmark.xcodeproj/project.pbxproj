@@ -75,7 +75,7 @@
 		227B483928C46ED100C9897A /* Landmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Landmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227B483C28C46ED100C9897A /* LandmarkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkApp.swift; sourceTree = "<group>"; };
 		227B483E28C46ED100C9897A /* LandmarkMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMainView.swift; sourceTree = "<group>"; };
-		227B484028C46ED400C9897A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		227B484028C46ED400C9897A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		227B484328C46ED400C9897A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		227B484928C46ED400C9897A /* LandmarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227B484D28C46ED400C9897A /* LandmarkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkTests.swift; sourceTree = "<group>"; };
@@ -211,6 +211,10 @@
 		227B483B28C46ED100C9897A /* Landmark */ = {
 			isa = PBXGroup;
 			children = (
+				229980AB28DB988A006A8538 /* Info.plist */,
+				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
+				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
+				229980B128DBE1FD006A8538 /* Resources */,
 				227B483C28C46ED100C9897A /* LandmarkApp.swift */,
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
@@ -220,11 +224,6 @@
 				224388CD28D92B7000833CF7 /* Authentication */,
 				220735A328DACE2100577AB8 /* LandmarkFirebase */,
 				224388C628D9107C00833CF7 /* Extensions */,
-				229980B128DBE1FD006A8538 /* Resources */,
-				229980AB28DB988A006A8538 /* Info.plist */,
-				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
-				227B484028C46ED400C9897A /* Assets.xcassets */,
-				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
 				227B484228C46ED400C9897A /* Preview Content */,
 			);
 			path = Landmark;
@@ -266,6 +265,7 @@
 		229980B128DBE1FD006A8538 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				227B484028C46ED400C9897A /* Assets.xcassets */,
 				2274E65D28DFC20F00175614 /* Fonts */,
 			);
 			path = Resources;
