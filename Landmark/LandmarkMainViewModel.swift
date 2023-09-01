@@ -19,7 +19,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [LandmarkEntity] = []
-    
+
     private var cancellables: Set<AnyCancellable> = []
     
     var locationManager: CLLocationManager?
@@ -28,14 +28,23 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     {
         super.init()
         
-        landmarkProvider.$landmarks
-            .assign(to: \.landmarks, on: self)
+        landmarkProvider.getLandmarks()
+            .sink(receiveCompletion: {
+                error in
+                
+                debugPrint("getLandmarks() completed: \(error)")
+            }, receiveValue: {
+                landmarks in
+               
+                self.landmarks = landmarks
+            })
             .store(in: &cancellables)
     }
     
     func checkIfLocationServicesIsEnabled()
     {
-        if CLLocationManager.locationServicesEnabled() {
+        if CLLocationManager.locationServicesEnabled()
+        {
             locationManager = CLLocationManager()
             locationManager?.activityType = .other
             locationManager?.delegate = self
