@@ -38,3 +38,4 @@ Pods/
 # Operating System files
 .DS_Store
 
+Pods/Manifest.lock
