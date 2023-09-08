@@ -5,11 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "LandMark_AppIcon.png",
+      "filename" : "castle_dark@64px.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "castle@128px.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

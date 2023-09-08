@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-extension Color {
+extension Color
+{
     static let ui = Color.UI()
     
     struct UI {

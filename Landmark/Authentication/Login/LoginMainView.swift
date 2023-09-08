@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct LoginMainView: View {
+struct LoginMainView: View
+{
     @State var email = ""
     @State var password = ""
     @State var isCreatingAccount = false
@@ -16,28 +17,39 @@ struct LoginMainView: View {
     @State private var emptyEmailAlertIsPresented = false
 
     @EnvironmentObject var viewModel: LoginViewModel
+    @Environment(\.colorScheme) var colorScheme
     
-    var body: some View {
-        NavigationView {
-            if viewModel.signedIn {
+    var isDarkMode: Bool {
+        colorScheme == .dark
+    }
+    
+    var body: some View
+    {
+        NavigationStack
+        {
+            if viewModel.signedIn
+            {
                 LandmarkMainView()
                     .onAppear{
                         email = ""
                         password = ""
                     }
             } else {
-                VStack{
-                    Image("logo")
+                VStack
+                {
+                    Image(isDarkMode ? "castle_dark" : "castle")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
                     
-                    VStack{
+                    VStack
+                    {
                         TextField("Email Address", text: $email)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .padding()
                             .background(Color(.secondarySystemBackground))
+                            .cornerRadius(8)
                             .alert(isPresented: $emptyEmailAlertIsPresented) {
                                 Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
                             }
@@ -47,6 +59,7 @@ struct LoginMainView: View {
                             .autocapitalization(.none)
                             .padding()
                             .background(Color(.secondarySystemBackground))
+                            .cornerRadius(8)
                             .alert(isPresented: $emptyPasswordAlertIsPresented) {
                                 Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
                             }
@@ -75,6 +88,8 @@ struct LoginMainView: View {
                                 .background(Color.blue)
                             
                         }
+                        .cornerRadius(8)
+                        .padding(10)
                         .alert(isPresented: $viewModel.hasLoginError) {
                             debugPrint("Login Error: \(viewModel.loginError!)")
 
@@ -86,6 +101,7 @@ struct LoginMainView: View {
                         } label: {
                             Text(isCreatingAccount ? "Sign In" : "Create Acoount")
                         }
+                        .padding(5)
                     }
                     .padding()
                     
@@ -98,8 +114,20 @@ struct LoginMainView: View {
     }
 }
 
-struct LoginMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginMainView()
+struct LoginMainView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+        let viewModel = LoginViewModel()
+        
+        Group{
+            LoginMainView()
+                .preferredColorScheme(.light)
+                .environmentObject(viewModel)
+            
+            LoginMainView()
+                .preferredColorScheme(.dark)
+                .environmentObject(viewModel)
+        }
     }
 }
