@@ -12,7 +12,8 @@ struct LoginMainView: View
     @State var email = ""
     @State var password = ""
     @State var isCreatingAccount = false
-   
+    @State var doesRemember: Bool = false
+    
     @State private var emptyPasswordAlertIsPresented = false
     @State private var emptyEmailAlertIsPresented = false
 
@@ -21,6 +22,10 @@ struct LoginMainView: View
     
     var isDarkMode: Bool {
         colorScheme == .dark
+    }
+    
+    var rememberedEmail: String? {
+        viewModel.authManager.rememberedEmail
     }
     
     var body: some View
@@ -42,74 +47,103 @@ struct LoginMainView: View
                         .scaledToFit()
                         .frame(width: 150, height: 150)
                     
-                    VStack
+                    VStack(alignment: .leading)
                     {
-                        TextField("Email Address", text: $email)
-                            .disableAutocorrection(true)
-                            .autocapitalization(.none)
-                            .padding()
-                            .background(Color(.secondarySystemBackground))
-                            .cornerRadius(8)
-                            .alert(isPresented: $emptyEmailAlertIsPresented) {
-                                Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
-                            }
-                        
-                        SecureField("Password", text: $password)
-                            .disableAutocorrection(true)
-                            .autocapitalization(.none)
-                            .padding()
-                            .background(Color(.secondarySystemBackground))
-                            .cornerRadius(8)
-                            .alert(isPresented: $emptyPasswordAlertIsPresented) {
-                                Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
-                            }
-                        
-                        Button {
-                            guard !email.isEmpty, !password.isEmpty else {
-                                if email.isEmpty {
-                                    emptyEmailAlertIsPresented = true
+                        Group {
+                            TextField("Email Address", text: $email)
+                                .task {
+                                   email = rememberedEmail ?? ""
                                 }
-                                if password.isEmpty{
-                                    emptyPasswordAlertIsPresented = true
+                                .alert(isPresented: $emptyEmailAlertIsPresented) {
+                                    Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
                                 }
-                                return
-                            }
                             
-                            if !isCreatingAccount {
-                                viewModel.signIn(email: email, password: password)
-                            } else {
-                                viewModel.signUp(email: email, password: password)
-                            }
-                        } label: {
-                            Text(isCreatingAccount ? "Create Account" : "Sign In")
-                                .foregroundColor(Color.white)
-                                .frame(width: 200, height: 50)
-                                .cornerRadius(8)
-                                .background(Color.blue)
-                            
+                            SecureField("Password", text: $password)
+                                .alert(isPresented: $emptyPasswordAlertIsPresented)
+                                {
+                                    Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
+                                }
                         }
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
                         .cornerRadius(8)
-                        .padding(10)
-                        .alert(isPresented: $viewModel.hasLoginError) {
-                            debugPrint("Login Error: \(viewModel.loginError!)")
-
-                            return Alert(title: Text("Failed to login or create account.\n Check Internet connection."), dismissButton: .default(Text("Ok")))
-                        }
                         
-                        Button {
-                            isCreatingAccount = !isCreatingAccount
-                        } label: {
-                            Text(isCreatingAccount ? "Sign In" : "Create Acoount")
+                        Group {
+                            Toggle(isOn: $doesRemember) {
+                                Text("Remember me?")
+                            }
+                            .padding([.leading, .top], 5)
+                            .toggleStyle(.checkmark)
                         }
-                        .padding(5)
+                        .foregroundColor(Color.secondary)
+                        .shadow(radius: 0.25)
                     }
                     .padding()
+                    
+                    Button(action: signIn)
+                    {
+                        Text(isCreatingAccount ? "Create Account" : "Sign In")
+                            .foregroundColor(Color.white)
+                            .frame(width: 200, height: 50)
+                            .cornerRadius(8)
+                            .background(Color.blue)
+                        
+                    }
+                    .cornerRadius(8)
+                    .padding(10)
+                    .alert(isPresented: $viewModel.hasLoginError) {
+                        let error = viewModel.loginError!
+                        
+                        debugPrint("Login Error: \(String(describing: viewModel.loginError))")
+                        
+                        var errorMessage = viewModel.loginError?.localizedDescription
+                        
+                        return Alert(
+                            title: Text(errorMessage ?? "Failed Login"),
+                            dismissButton: .default(
+                                Text("Ok"),
+                                action: { viewModel.loginError = nil })
+                        )
+                    }
+                    
+                    Button {
+                        isCreatingAccount = !isCreatingAccount
+                    } label: {
+                        Text(isCreatingAccount ? "Sign In" : "Create Acoount")
+                    }
+                    .padding(5)
                     
                     Spacer()
                 }
                 .navigationTitle(!isCreatingAccount ? "Sign In" : "Create Acount")
                 .background(Color.ui.mainColor)
             }
+        }
+    }
+    
+    func signIn()
+    {
+        guard !email.isEmpty, !password.isEmpty else
+        {
+            if email.isEmpty {
+                emptyEmailAlertIsPresented = true
+            }
+            if password.isEmpty{
+                emptyPasswordAlertIsPresented = true
+            }
+            return
+        }
+        
+        if !isCreatingAccount {
+            viewModel.signIn(email: email, password: password)
+            
+            if doesRemember {
+                viewModel.rememberEmail(email: email)
+            }
+        } else {
+            viewModel.signUp(email: email, password: password)
         }
     }
 }
