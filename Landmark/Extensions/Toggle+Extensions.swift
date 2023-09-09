@@ -21,6 +21,8 @@ struct CheckboxToggleStyle: ToggleStyle
                 .overlay {
                     if configuration.isOn {
                         Image(systemName: "checkmark")
+                            .resizable()
+                            .frame(width: 12, height: 12)
                     }
                 }
                 .onTapGesture {
