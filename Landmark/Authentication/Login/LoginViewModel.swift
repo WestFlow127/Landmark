@@ -20,7 +20,7 @@ class LoginViewModel: ObservableObject
     }
     @Published var hasLoginError: Bool = false
 
-    func rememberEmail(email: String) {
+    func rememberEmail(email: String?) {
         authManager.rememberedEmail = email
     }
     

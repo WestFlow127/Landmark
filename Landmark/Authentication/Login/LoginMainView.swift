@@ -9,16 +9,16 @@ import SwiftUI
 
 struct LoginMainView: View
 {
-    @State var email = ""
-    @State var password = ""
+    @EnvironmentObject var viewModel: LoginViewModel
+    @Environment(\.colorScheme) var colorScheme
+    
+    @State private var email = ""
+    @State private var password = ""
     @State var isCreatingAccount = false
     @State var doesRemember: Bool = false
     
     @State private var emptyPasswordAlertIsPresented = false
     @State private var emptyEmailAlertIsPresented = false
-
-    @EnvironmentObject var viewModel: LoginViewModel
-    @Environment(\.colorScheme) var colorScheme
     
     var isDarkMode: Bool {
         colorScheme == .dark
@@ -28,6 +28,10 @@ struct LoginMainView: View
         viewModel.authManager.rememberedEmail
     }
     
+    var currentModeTitle: String {
+        !isCreatingAccount ? "Sign In" : "Create Acoount"
+    }
+    
     var body: some View
     {
         NavigationStack
@@ -35,7 +39,7 @@ struct LoginMainView: View
             if viewModel.signedIn
             {
                 LandmarkMainView()
-                    .onAppear{
+                    .onAppear {
                         email = ""
                         password = ""
                     }
@@ -47,82 +51,112 @@ struct LoginMainView: View
                         .scaledToFit()
                         .frame(width: 150, height: 150)
                     
-                    VStack(alignment: .leading)
-                    {
-                        Group {
-                            TextField("Email Address", text: $email)
-                                .task {
-                                   email = rememberedEmail ?? ""
-                                }
-                                .alert(isPresented: $emptyEmailAlertIsPresented) {
-                                    Alert(title: Text("Email cannot be empty."), dismissButton: .default(Text("Ok")))
-                                }
-                            
-                            SecureField("Password", text: $password)
-                                .alert(isPresented: $emptyPasswordAlertIsPresented)
-                                {
-                                    Alert(title: Text("Password cannot be empty."), dismissButton: .default(Text("Ok")))
-                                }
-                        }
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(8)
-                        
-                        Group {
-                            Toggle(isOn: $doesRemember) {
-                                Text("Remember me?")
-                            }
-                            .padding([.leading, .top], 5)
-                            .toggleStyle(.checkmark)
-                        }
-                        .foregroundColor(Color.secondary)
-                        .shadow(radius: 0.25)
-                    }
-                    .padding()
+                    credentialInputView
                     
-                    Button(action: signIn)
-                    {
-                        Text(isCreatingAccount ? "Create Account" : "Sign In")
-                            .foregroundColor(Color.white)
-                            .frame(width: 200, height: 50)
-                            .cornerRadius(8)
-                            .background(Color.blue)
-                        
-                    }
-                    .cornerRadius(8)
-                    .padding(10)
-                    .alert(isPresented: $viewModel.hasLoginError) {
-                        let error = viewModel.loginError!
-                        
-                        debugPrint("Login Error: \(String(describing: viewModel.loginError))")
-                        
-                        var errorMessage = viewModel.loginError?.localizedDescription
-                        
-                        return Alert(
-                            title: Text(errorMessage ?? "Failed Login"),
-                            dismissButton: .default(
-                                Text("Ok"),
-                                action: { viewModel.loginError = nil })
-                        )
-                    }
+                    signInButton
                     
-                    Button {
-                        isCreatingAccount = !isCreatingAccount
-                    } label: {
-                        Text(isCreatingAccount ? "Sign In" : "Create Acoount")
-                    }
-                    .padding(5)
+                    toggleAuthMode
                     
                     Spacer()
                 }
-                .navigationTitle(!isCreatingAccount ? "Sign In" : "Create Acount")
+                .navigationTitle(currentModeTitle)
                 .background(Color.ui.mainColor)
             }
         }
     }
     
+    var credentialInputView: some View
+    {
+        // Credentials Input View
+        VStack(alignment: .leading)
+        {
+            Group {
+                TextField("Email Address", text: $email)
+                    .task {
+                       email = rememberedEmail ?? ""
+                    }
+                    .alert(isPresented: $emptyEmailAlertIsPresented)
+                    {
+                        Alert(
+                            title: Text("Email cannot be empty."),
+                            dismissButton: .default(Text("Ok"))
+                        )
+                    }
+                
+                SecureField("Password", text: $password)
+                    .alert(isPresented: $emptyPasswordAlertIsPresented)
+                    {
+                        Alert(
+                            title: Text("Password cannot be empty."),
+                            dismissButton: .default(Text("Ok"))
+                        )
+                    }
+            }
+            .disableAutocorrection(true)
+            .autocapitalization(.none)
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(8)
+            
+            Group {
+                Toggle(isOn: $doesRemember) {
+                    Text("Remember me?")
+                }
+                .padding([.leading, .top], 5)
+                .toggleStyle(.checkmark)
+            }
+            .foregroundColor(Color.secondary)
+            .shadow(radius: 0.25)
+        }
+        .padding()
+    }
+    
+    var signInButton: some View
+    {
+        // Sign In Button
+        Button(action: signIn)
+        {
+            Text(currentModeTitle)
+                .foregroundColor(Color.white)
+                .frame(width: 200, height: 50)
+                .cornerRadius(8)
+                .background(Color.blue)
+            
+        }
+        .cornerRadius(8)
+        .padding(10)
+        .alert(isPresented: $viewModel.hasLoginError)
+        {
+            let error = viewModel.loginError!
+            
+            debugPrint("Login Error: \(String(describing: error))")
+            
+            let errorMessage = error.localizedDescription
+            
+            return Alert(
+                title: Text(errorMessage),
+                dismissButton: .default(
+                    Text("Ok"),
+                    action: { viewModel.loginError = nil })
+            )
+        }
+    }
+    
+    // Toggle account login/creation mode
+    var toggleAuthMode: some View
+    {
+        Button {
+            isCreatingAccount = !isCreatingAccount
+        } label: {
+            Text(isCreatingAccount ? "Sign In" : "Create Acoount")
+        }
+        .padding(5)
+    }
+}
+
+// MARK: Functions
+extension LoginMainView
+{
     func signIn()
     {
         guard !email.isEmpty, !password.isEmpty else
@@ -139,9 +173,7 @@ struct LoginMainView: View
         if !isCreatingAccount {
             viewModel.signIn(email: email, password: password)
             
-            if doesRemember {
-                viewModel.rememberEmail(email: email)
-            }
+            viewModel.rememberEmail(email: doesRemember ? email : nil)
         } else {
             viewModel.signUp(email: email, password: password)
         }
