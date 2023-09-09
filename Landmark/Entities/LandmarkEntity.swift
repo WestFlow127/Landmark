@@ -26,9 +26,9 @@ struct LandmarkEntity: Identifiable, Codable
     
     init(name: String)
     {
-        self.id = "Test1"
-        self.location = "Ocean Front Walk, Venice, CA 90291"
-        self.description = "Venice has some really cool art and more things to buy!"
+        self.id = ""
+        self.location = ""
+        self.description = ""
         self.name = name
         self.imageUrlPaths = []
         self.geoLocation = GeoPoint(latitude: 33.33, longitude: 118.333)
