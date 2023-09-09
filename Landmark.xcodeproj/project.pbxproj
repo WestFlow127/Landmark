@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F3D7DFC6224E0872DA2ABEE /* Pods_Landmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CC136C0CD8D04FF3082C3 /* Pods_Landmark.framework */; };
+		2205820B2AABE88800B71380 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205820A2AABE88800B71380 /* View+Extensions.swift */; };
 		220735A528DACEA300577AB8 /* LandmarkFirestoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */; };
 		220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A728DAD58D00577AB8 /* LandmarkEntity.swift */; };
 		2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		1DEAC3153AC6842867CF117F /* Pods-LandmarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkTests/Pods-LandmarkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2205820A2AABE88800B71380 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		220735A028DAB86C00577AB8 /* Landmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Landmark.entitlements; sourceTree = "<group>"; };
 		220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkFirestoreProvider.swift; sourceTree = "<group>"; };
 		220735A728DAD58D00577AB8 /* LandmarkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkEntity.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				224388C728D910A800833CF7 /* Color+Extensions.swift */,
 				229980B428DBE46F006A8538 /* Font+Extensions.swift */,
 				226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */,
+				2205820A2AABE88800B71380 /* View+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */,
 				224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */,
+				2205820B2AABE88800B71380 /* View+Extensions.swift in Sources */,
 				224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */,
 				227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */,
 				226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */,
