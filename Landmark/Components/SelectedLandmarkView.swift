@@ -90,8 +90,8 @@ struct SelectedLandmarkView: View
         _viewModel = StateObject(wrappedValue: viewModel)
 
         _name = State(initialValue: viewModel.landmark.name)
-        _location = State(initialValue: viewModel.landmark.location)
-        _description = State(initialValue: viewModel.landmark.description)
+        _location = State(initialValue: viewModel.landmark.location ?? "")
+        _description = State(initialValue: viewModel.landmark.description ?? "")
     }
     
     func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String
