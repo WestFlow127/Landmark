@@ -67,7 +67,7 @@ struct LandmarkMainView: View
                     .shiny()
             }
             
-            ToolbarItem (placement: .navigationBarTrailing)
+            ToolbarItem(placement: .navigationBarTrailing)
             {
                 Menu
                 {
@@ -77,12 +77,13 @@ struct LandmarkMainView: View
                     })
                 } label: {
                     Image(systemName: "plus")
-                        .padding(.trailing, 7)
+                        .frame(width: 36, height: 36)
                         .shiny()
                 }
-                .frame(width: 36, height: 36, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(36/2)
+                .frame(width: 36, height: 36, alignment: .trailing)
+                .background(.white.opacity(0.85))
+                .cornerRadius(18)
+                .shadow(radius: 1, y: 1)
             }
         }
         .ignoresSafeArea()
