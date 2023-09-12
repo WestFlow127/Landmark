@@ -17,78 +17,81 @@ enum LandmarkDisplayTitles: String
 struct SelectedLandmarkView: View
 {
     @Environment(\.dismiss) var dismiss
-    var landmark: LandmarkEntity
     var subTitles: [LandmarkDisplayTitles] = [.location, .description]
+    
+    @StateObject private var viewModel: SelectedLandmarkViewModel
     
     @State private var name: String
     @State private var location: String
     @State private var description: String
-    
+
     var body: some View
     {
-        NavigationView
+        ScrollView
         {
-            GeometryReader
-            { proxy in
-                
-                VStack(alignment: .leading)
+            VStack(alignment: .leading)
+            {
+                TabView
                 {
-                    Image("test_landmark")
-                        .resizable()
-                        .frame(width: proxy.size.width)
-                        .offset(CGSize(width: -5, height: -5))
-                        .aspectRatio(contentMode: .fit)
+                    ForEach(viewModel.landmarkImages, id: \.self) { image in
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UIScreen.main.bounds.width)
+//                            .offset(CGSize(width: -5, height: -5))
+                    }
+                }
+                .frame(height: UIScreen.main.bounds.height / 3)
+                
+                HStack
+                {
+                    Text(LandmarkDisplayTitles.name.rawValue + ": ")
+                        .font(Font.landmarkFontBold(25))
+                        .padding(4)
+                        .offset(x: 2.5, y: 2.5)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.secondary, lineWidth: 2)
+                        }
                     
-                    HStack
-                    {
-                        Text(LandmarkDisplayTitles.name.rawValue + ": ")
-                            .font(Font.landmarkFontBold(25))
-                            .padding(4)
+                    Text(name)
+                        .font(Font.landmarkFontBold(25))
+                        .padding(5)
+                        .offset(x: 2.5, y: 2.5)
+                        .fixedSize()
+                }
+                
+                ForEach(subTitles, id: \.self)
+                { title in
+                    Divider()
+                    
+                    HStack{
+                        Text(title.rawValue + ": ")
+                            .font(Font.landmarkFontBold(21))
+                            .padding(5)
                             .offset(x: 2.5, y: 2.5)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color.secondary, lineWidth: 2)
                             }
                         
-                        Text(name)
-                            .font(Font.landmarkFontBold(25))
+                        Text(getDisplayValue(forTitle: title))
+                            .font(Font.landmarkFontBold(21))
                             .padding(5)
                             .offset(x: 2.5, y: 2.5)
-                            .fixedSize()
-                    }
-
-                    ForEach(subTitles, id: \.self) { title in
-                        Divider()
-                        
-                        HStack
-                        {
-                            Text(title.rawValue + ": ")
-                                .font(Font.landmarkFontBold(21))
-                                .padding(5)
-                                .offset(x: 2.5, y: 2.5)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.secondary, lineWidth: 2)
-                                }
-                            
-                            Text(getDisplayValue(forTitle: title))
-                                .font(Font.landmarkFontBold(21))
-                                .padding(5)
-                                .offset(x: 2.5, y: 2.5)
-                        }
                     }
                 }.padding(5)
             }
         }.ignoresSafeArea()
     }
     
-    init(landmark: LandmarkEntity)
+    init(viewModel: SelectedLandmarkViewModel)
     {
-        self.landmark = landmark
-        
-        _name = State(initialValue: landmark.name)
-        _location = State(initialValue: landmark.location)
-        _description = State(initialValue: landmark.description)
+        _viewModel = StateObject(wrappedValue: viewModel)
+
+        _name = State(initialValue: viewModel.landmark.name)
+        _location = State(initialValue: viewModel.landmark.location ?? "")
+        _description = State(initialValue: viewModel.landmark.description ?? "")
     }
     
     func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String
@@ -107,6 +110,6 @@ struct SelectedLandmarkView: View
 struct SelectedLandmarkView_Previews: PreviewProvider
 {
     static var previews: some View {
-        SelectedLandmarkView(landmark: LandmarkEntity(name: "Venice Beach Boardwalk"))
+        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: LandmarkEntity(name: "Venice Beach Boardwalk")))
     }
 }

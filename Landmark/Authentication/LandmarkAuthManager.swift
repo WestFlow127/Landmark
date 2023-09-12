@@ -15,8 +15,17 @@ final class LandmarkAuthManager
     private init() {}
     
     let auth = Auth.auth()
-
+    
+    private let rememberedEmailKey = "rememberedEmail"
+    
     var isSignedIn: Bool {
         return auth.currentUser != nil
+    }
+    
+    var rememberedEmail: String? {
+        get { UserDefaults.standard.string(forKey: rememberedEmailKey) }
+        set {
+            UserDefaults.standard.set(newValue, forKey: rememberedEmailKey)
+        }
     }
 }

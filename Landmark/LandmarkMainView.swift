@@ -52,9 +52,10 @@ struct LandmarkMainView: View
                     viewModel.checkIfLocationServicesIsEnabled()
                 }
             }
-            .sheet(item: $selectedPlace)
-            { landmark in
-                SelectedLandmarkView(landmark: landmark)
+            .sheet(item: $selectedPlace) { landmark in
+                let viewModel = SelectedLandmarkViewModel(landmark: landmark)
+
+                SelectedLandmarkView(viewModel: viewModel)
             }
         }
         .toolbar {
