@@ -22,7 +22,8 @@ final class LandmarkAuthManager
         return auth.currentUser != nil
     }
     
-    var rememberedEmail: String? {
+    var rememberedEmail: String?
+    {
         get { UserDefaults.standard.string(forKey: rememberedEmailKey) }
         set {
             UserDefaults.standard.set(newValue, forKey: rememberedEmailKey)
