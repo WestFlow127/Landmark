@@ -43,14 +43,21 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     
     func checkIfLocationServicesIsEnabled()
     {
-        if CLLocationManager.locationServicesEnabled()
+        DispatchQueue.global(qos: .userInteractive).async
         {
-            locationManager = CLLocationManager()
-            locationManager?.activityType = .other
-            locationManager?.delegate = self
-        } else {
-            // TODO: show alert to enabled locations services
-            print("You need to turn on Location Services for this app in iOS Settings.")
+            [weak self] in
+            
+            guard let self else { return }
+            
+            if CLLocationManager.locationServicesEnabled()
+            {
+                self.locationManager = CLLocationManager()
+                self.locationManager?.activityType = .other
+                self.locationManager?.delegate = self
+            } else {
+                // TODO: show alert to enabled locations services
+                print("You need to turn on Location Services for this app in iOS Settings.")
+            }
         }
     }
     
