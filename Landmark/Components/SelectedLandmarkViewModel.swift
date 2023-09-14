@@ -8,14 +8,17 @@
 import UIKit
 import Combine
 
-class SelectedLandmarkViewModel: NSObject, ObservableObject {
+class SelectedLandmarkViewModel: NSObject, ObservableObject
+{
     @Published var landmarkImages: [UIImage] = []
     @Published var landmark: LandmarkEntity
+    
     var landmarkProvider = LandmarkFirestoreProvider()
     
     private var cancellables: Set<AnyCancellable> = []
 
-    init(landmark: LandmarkEntity) {
+    init(landmark: LandmarkEntity)
+    {
         self.landmark = landmark
         
         super.init()
@@ -23,8 +26,10 @@ class SelectedLandmarkViewModel: NSObject, ObservableObject {
         getImages()
     }
     
-    func getImages() {
-        if let imagePath = landmark.imageUrlPaths?.first {
+    func getImages()
+    {
+        if let imagePath = landmark.imageUrlPaths?.first
+        {
             landmarkProvider.getLandmarkPhoto(forPath: imagePath)
                 .sink(receiveCompletion: { error in
                     debugPrint("getLandmarkPhoto completed : \(error)")
@@ -33,7 +38,8 @@ class SelectedLandmarkViewModel: NSObject, ObservableObject {
         }
     }
     
-    func setImage(image: UIImage) {
+    func setImage(image: UIImage)
+    {
         debugPrint("Image set!!")
         self.landmarkImages = [image]
     }
