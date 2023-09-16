@@ -19,7 +19,7 @@ final class LandmarkAuthManager
     private let rememberedEmailKey = "rememberedEmail"
     
     var isSignedIn: Bool {
-        return auth.currentUser != nil
+        auth.currentUser != nil
     }
     
     var rememberedEmail: String?
