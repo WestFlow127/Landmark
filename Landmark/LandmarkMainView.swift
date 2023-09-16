@@ -49,7 +49,7 @@ struct LandmarkMainView: View
                     }
                 }
                 .onAppear {
-                    viewModel.checkIfLocationServicesIsEnabled()
+                    viewModel.setupLocationServices()
                 }
             }
             .sheet(item: $selectedPlace) { landmark in

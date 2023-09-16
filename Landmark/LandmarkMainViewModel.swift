@@ -41,24 +41,12 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             .store(in: &cancellables)
     }
     
-    func checkIfLocationServicesIsEnabled()
+    func setupLocationServices()
     {
-        DispatchQueue.global(qos: .userInteractive).async
-        {
-            [weak self] in
-            
-            guard let self else { return }
-            
-            if CLLocationManager.locationServicesEnabled()
-            {
-                self.locationManager = CLLocationManager()
-                self.locationManager?.activityType = .other
-                self.locationManager?.delegate = self
-            } else {
-                // TODO: show alert to enabled locations services
-                print("You need to turn on Location Services for this app in iOS Settings.")
-            }
-        }
+        locationManager = CLLocationManager()
+        locationManager?.activityType = .other
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.delegate = self
     }
     
     private func checkLocationAuthorization()
@@ -77,8 +65,9 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             print("You need to turn on Location Services for this app in iOS Settings.")
         case .authorizedAlways, .authorizedWhenInUse:
             debugPrint("Location Services Authorized")
-            if let location = locationManager.location {
-                debugPrint("RegionSet!")
+
+            if let location = locationManager.location
+            {
                 region = MKCoordinateRegion(center: location.coordinate, span: MapDetails.defaultSpan)
             }
         @unknown default:
