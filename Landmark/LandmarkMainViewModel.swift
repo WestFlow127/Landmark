@@ -16,12 +16,15 @@ struct MapDetails
 
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
 {
+    private var cancellables: Set<AnyCancellable> = []
+
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [LandmarkEntity] = []
 
-    private var cancellables: Set<AnyCancellable> = []
-    
+    @Published var locationServicesOff: Bool = false
+    @Published var locationServicesOffReason: String = "Location services is unavailable."
+
     var locationManager: CLLocationManager?
 
     override init()
@@ -57,12 +60,19 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            
         case .restricted:
-            // TODO: show alert
-            print("Your location is restricted likely due to parental controls.")
+            print("Restricted likely due to parental controls.")
+            
+            locationServicesOff = true
+            locationServicesOffReason = "Your location is restricted likely due to parental controls."
+            
         case .denied:
-            // TODO: show alert to enabled locations services
-            print("You need to turn on Location Services for this app in iOS Settings.")
+            print("Location Services is off.")
+            
+            locationServicesOff = true
+            locationServicesOffReason = "You need to turn on Location Services for this app in iOS Settings."
+            
         case .authorizedAlways, .authorizedWhenInUse:
             debugPrint("Location Services Authorized")
 

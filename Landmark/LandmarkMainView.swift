@@ -57,8 +57,27 @@ struct LandmarkMainView: View
 
                 SelectedLandmarkView(viewModel: viewModel)
             }
+            .alert(isPresented: $viewModel.locationServicesOff) {
+                Alert(
+                    title: Text(viewModel.locationServicesOffReason),
+                    primaryButton: .default(Text("Cancel")),
+                    secondaryButton: .default(Text("Open Settings")) {
+                        openAppSettings()
+                    }
+                )
+            }
         }
         .toolbar {
+            mainViewToolbar
+        }
+        .ignoresSafeArea()
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    var mainViewToolbar: some ToolbarContent
+    {
+        Group
+        {
             ToolbarItem(placement: .principal)
             {
                 Text("Landmark")
@@ -86,8 +105,20 @@ struct LandmarkMainView: View
                 .shadow(radius: 1, y: 1)
             }
         }
-        .ignoresSafeArea()
-        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+extension LandmarkMainView
+{
+    // Function to open the app's settings
+    private func openAppSettings()
+    {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString)
+        else {
+            return
+        }
+        
+        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
     }
 }
 
