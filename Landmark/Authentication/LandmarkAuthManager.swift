@@ -8,7 +8,17 @@
 import Foundation
 import FirebaseAuth
 
-final class LandmarkAuthManager
+protocol AuthService
+{
+    func signIn(withEmail email: String, password: String, completion: ((Any?, Error?) -> Void)?)
+    func createUser(withEmail email: String, password: String, completion: ((Any?, Error?) -> Void)?)
+    func signOut() throws
+    
+    var rememberedEmail: String? { get set }
+    var isSignedIn: Bool { get }
+}
+
+final class LandmarkAuthManager : AuthService
 {
     static let shared = LandmarkAuthManager()
     
@@ -24,8 +34,18 @@ final class LandmarkAuthManager
     
     var rememberedEmail: String? {
         get { UserDefaults.standard.string(forKey: rememberedEmailKey) }
-        set {
-            UserDefaults.standard.set(newValue, forKey: rememberedEmailKey)
-        }
+        set { UserDefaults.standard.set(newValue, forKey: rememberedEmailKey) }
+    }
+    
+    func signIn(withEmail email: String, password: String, completion: ((Any?, Error?) -> Void)?) {
+        auth.signIn(withEmail: email, password: password, completion: completion)
+    }
+    
+    func createUser(withEmail email: String, password: String, completion: ((Any?, Error?) -> Void)?) {
+        auth.createUser(withEmail: email, password: password, completion: completion)
+    }
+    
+    func signOut() throws {
+        try auth.signOut()
     }
 }
