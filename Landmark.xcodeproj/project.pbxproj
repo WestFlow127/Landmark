@@ -397,7 +397,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					227B483828C46ED100C9897A = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -589,18 +589,10 @@
 				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */,
-				224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */,
 				2205820B2AABE88800B71380 /* View+Extensions.swift in Sources */,
-				224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */,
-				227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */,
 				226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */,
-				224388CC28D928FB00833CF7 /* LoginViewModel.swift in Sources */,
-				2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */,
-				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
-				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				229980B528DBE46F006A8538 /* Font+Extensions.swift in Sources */,
 				2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */,
-				220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */,
 				229980B028DBCA1F006A8538 /* SelectedLandmarkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

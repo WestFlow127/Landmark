@@ -12,6 +12,10 @@ class LoginViewModel: ObservableObject
 {
     var authManager: AuthService = LandmarkAuthManager.shared
     
+    var isSignedIn: Bool {
+        authManager.isSignedIn
+    }
+    
     @Published var signedIn = false
     @Published var loginError: Error? {
         didSet {

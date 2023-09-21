@@ -7,17 +7,21 @@
 
 import SwiftUI
 
-enum LandmarkDisplayTitles: String
+enum DisplayTitles: String
 {
     case name = "Landmark"
     case location = "Address"
     case description = "Description"
+    
+    var string: String {
+        rawValue
+    }
 }
 
 struct SelectedLandmarkView: View
 {
     @Environment(\.dismiss) var dismiss
-    var subTitles: [LandmarkDisplayTitles] = [.location, .description]
+    var subTitles: [DisplayTitles] = [.location, .description]
     
     @StateObject private var viewModel: SelectedLandmarkViewModel
     
@@ -45,7 +49,7 @@ struct SelectedLandmarkView: View
                 
                 HStack
                 {
-                    Text(LandmarkDisplayTitles.name.rawValue + ": ")
+                    Text(DisplayTitles.name.string + ": ")
                         .font(Font.landmarkFontBold(25))
                         .padding(4)
                         .offset(x: 2.5, y: 2.5)
@@ -65,20 +69,20 @@ struct SelectedLandmarkView: View
                 { title in
                     Divider()
                     
-                    HStack{
-                        Text(title.rawValue + ": ")
-                            .font(Font.landmarkFontBold(21))
-                            .padding(5)
-                            .offset(x: 2.5, y: 2.5)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.secondary, lineWidth: 2)
-                            }
-                        
-                        Text(getDisplayValue(forTitle: title))
-                            .font(Font.landmarkFontBold(21))
-                            .padding(5)
-                            .offset(x: 2.5, y: 2.5)
+                    HStack
+                    {
+                        Group {
+                            Text(title.rawValue + ": ")
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.secondary, lineWidth: 2)
+                                }
+                            
+                            Text(getDisplayValue(forTitle: title))
+                        }
+                        .font(Font.landmarkFontBold(21))
+                        .padding(5)
+                        .offset(x: 2.5, y: 2.5)
                     }
                 }.padding(5)
             }
@@ -94,7 +98,7 @@ struct SelectedLandmarkView: View
         _description = State(initialValue: viewModel.landmark.description ?? "")
     }
     
-    func getDisplayValue(forTitle: LandmarkDisplayTitles) -> String
+    func getDisplayValue(forTitle: DisplayTitles) -> String
     {
         switch forTitle {
         case .name:
