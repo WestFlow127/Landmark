@@ -31,6 +31,7 @@
 		227B484E28C46ED400C9897A /* LandmarkModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B484D28C46ED400C9897A /* LandmarkModelTests.swift */; };
 		227B485828C46ED400C9897A /* LandmarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485728C46ED400C9897A /* LandmarkUITests.swift */; };
 		227B485A28C46ED400C9897A /* LandmarkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */; };
+		228390C72ABC0007009ED4AC /* LandmarkAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228390C62ABC0007009ED4AC /* LandmarkAuthenticationTests.swift */; };
 		2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289488E28FE4B3800C3A404 /* RequestErrors.swift */; };
 		229980AA28DB904A006A8538 /* LandmarkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980A928DB904A006A8538 /* LandmarkConstants.swift */; };
 		229980AD28DBAFEE006A8538 /* AppleSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AC28DBAFEE006A8538 /* AppleSignInController.swift */; };
@@ -89,6 +90,7 @@
 		227B485328C46ED400C9897A /* LandmarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227B485728C46ED400C9897A /* LandmarkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkUITests.swift; sourceTree = "<group>"; };
 		227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		228390C62ABC0007009ED4AC /* LandmarkAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAuthenticationTests.swift; sourceTree = "<group>"; };
 		2289488E28FE4B3800C3A404 /* RequestErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestErrors.swift; sourceTree = "<group>"; };
 		229980A928DB904A006A8538 /* LandmarkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkConstants.swift; sourceTree = "<group>"; };
 		229980AB28DB988A006A8538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		227B484C28C46ED400C9897A /* LandmarkTests */ = {
 			isa = PBXGroup;
 			children = (
+				228390C52ABBFD3E009ED4AC /* Test Authentication */,
 				22B83EB92AAFDEB5000AE09A /* Test Models */,
 			);
 			path = LandmarkTests;
@@ -263,6 +266,14 @@
 				227B485928C46ED400C9897A /* LandmarkUITestsLaunchTests.swift */,
 			);
 			path = LandmarkUITests;
+			sourceTree = "<group>";
+		};
+		228390C52ABBFD3E009ED4AC /* Test Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				228390C62ABC0007009ED4AC /* LandmarkAuthenticationTests.swift */,
+			);
+			path = "Test Authentication";
 			sourceTree = "<group>";
 		};
 		229980AE28DBC9F0006A8538 /* Components */ = {
@@ -591,6 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				227B484E28C46ED400C9897A /* LandmarkModelTests.swift in Sources */,
+				228390C72ABC0007009ED4AC /* LandmarkAuthenticationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

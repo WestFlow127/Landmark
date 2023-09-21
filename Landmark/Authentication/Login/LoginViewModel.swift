@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class LoginViewModel: ObservableObject
 {
-    let authManager = LandmarkAuthManager.shared
+    var authManager: AuthService = LandmarkAuthManager.shared
     
     var isSignedIn: Bool {
         authManager.isSignedIn
@@ -30,46 +30,40 @@ class LoginViewModel: ObservableObject
     
     func signIn(email: String, password: String)
     {
-        let auth = authManager.auth
-        
-        auth.signIn(withEmail: email, password: password)
+        authManager.signIn(withEmail: email, password: password)
         {
             [weak self] result, error in
         
-            guard result != nil, error == nil else {
-                self?.loginError = error
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.signedIn = true
-            }
+            self?.handleSignInUpCallback(result, error)
         }
     }
     
     func signUp(email: String, password: String)
     {
-        let auth = authManager.auth
-
-        auth.createUser(withEmail: email, password: password)
+        authManager.createUser(withEmail: email, password: password)
         {
             [weak self] result, error in
             
-            guard result != nil, error == nil else {
-                self?.loginError = error
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.signedIn = true
-            }
+            self?.handleSignInUpCallback(result, error)
+        }
+    }
+    
+    func handleSignInUpCallback(_ result: Any?, _ error: Error?)
+    {
+        guard result != nil, error == nil else {
+            self.loginError = error
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.signedIn = true
         }
     }
     
     func logout()
     {
         do {
-            try authManager.auth.signOut()
+            try authManager.signOut()
             
             debugPrint("Sign out success!")
         } catch {
