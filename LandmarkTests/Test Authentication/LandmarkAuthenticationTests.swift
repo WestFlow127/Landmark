@@ -19,9 +19,8 @@ class MockAuthService: AuthService
     var testExpectation: XCTestExpectation?
     
     var rememberedEmail: String? = nil
-    
     var isSignedIn: Bool = true
-    
+
     init() {}
     
     func checkEmailPasswordNotEmpty(
@@ -72,7 +71,7 @@ class MockAuthService: AuthService
     func signOut() throws
     {
         guard let signOutReturnValue else { XCTFail("signOutReturnValue not set"); return }
-        
+
         if !signOutReturnValue {
             throw AuthErrorCode(.keychainError)
         }
