@@ -64,12 +64,13 @@ class LoginViewModel: ObservableObject
     {
         do {
             try authManager.signOut()
-            
-            debugPrint("Sign out success!")
         } catch {
             debugPrint("Sign Out Error: \(error)")
+            return
         }
-        
+
         signedIn = false
+        
+        debugPrint("Sign out success!")
     }
 }

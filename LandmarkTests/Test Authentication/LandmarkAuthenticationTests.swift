@@ -14,9 +14,13 @@ class MockAuthService: AuthService
 {
     var signInReturnValue: Bool?
     var createUserReturnValue: Bool?
-    var signOutReturnValue: Bool = true
+    var signOutReturnValue: Bool?
     
     var testExpectation: XCTestExpectation?
+    
+    var rememberedEmail: String? = nil
+    
+    var isSignedIn: Bool = true
     
     init() {}
     
@@ -67,14 +71,12 @@ class MockAuthService: AuthService
     
     func signOut() throws
     {
+        guard let signOutReturnValue else { XCTFail("signOutReturnValue not set"); return }
+        
         if !signOutReturnValue {
             throw AuthErrorCode(.keychainError)
         }
     }
-    
-    var rememberedEmail: String? = nil
-    
-    var isSignedIn: Bool = true
 }
 
 final class LandmarkAuthenticationTests: XCTestCase {
@@ -146,9 +148,40 @@ final class LandmarkAuthenticationTests: XCTestCase {
         XCTAssertFalse(loginViewModel.signedIn)
     }
     
-    func testSignOut() {
+    func testCreateUserSuccess() {
         // Arrange
-        mockAuthService.signOutReturnValue = false
+        mockAuthService.createUserReturnValue = true
+        mockAuthService.testExpectation = self.expectation(description: "Create user should succeed.")
+
+        // Act
+        loginViewModel.signUp(email: "test@email.com", password: "testpassword")
+        
+        // Assert
+        waitForExpectations(timeout: 5, handler: nil)
+
+        XCTAssertNil(loginViewModel.loginError)
+        XCTAssertTrue(loginViewModel.signedIn)
+    }
+    
+    func testCreateUserFailure() {
+        // Arrange
+        mockAuthService.createUserReturnValue = nil
+        mockAuthService.testExpectation = self.expectation(description: "Create user should fail.")
+
+        // Act
+        loginViewModel.signUp(email: "test@email.com", password: "testpassword")
+        
+        // Assert
+        waitForExpectations(timeout: 5, handler: nil)
+
+        XCTAssertNotNil(loginViewModel.loginError)
+        XCTAssertFalse(loginViewModel.signedIn)
+    }
+    
+    
+    func testSignOutSuccess() {
+        // Arrange
+        mockAuthService.signOutReturnValue = true
 
         // Act
         loginViewModel.logout()
@@ -157,6 +190,16 @@ final class LandmarkAuthenticationTests: XCTestCase {
         XCTAssertFalse(loginViewModel.signedIn)
     }
     
-    // TODO: Create User Tests
+    func testSignOutFailed() {
+        // Arrange
+        mockAuthService.signOutReturnValue = false
+
+        // Act
+        loginViewModel.signedIn = true
+        loginViewModel.logout()
+        
+        // Assert
+        XCTAssertTrue(loginViewModel.signedIn)
+    }
 }
 
