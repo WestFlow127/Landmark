@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F3D7DFC6224E0872DA2ABEE /* Pods_Landmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CC136C0CD8D04FF3082C3 /* Pods_Landmark.framework */; };
 		2205820B2AABE88800B71380 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205820A2AABE88800B71380 /* View+Extensions.swift */; };
 		220735A528DACEA300577AB8 /* LandmarkFirestoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */; };
 		220735A828DAD58D00577AB8 /* LandmarkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A728DAD58D00577AB8 /* LandmarkEntity.swift */; };
@@ -24,6 +23,13 @@
 		224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388CE28D92B9200833CF7 /* LandmarkAuthManager.swift */; };
 		226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */; };
 		226A1D6D28FBD0730059A14C /* SelectedLandmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A1D6C28FBD0730059A14C /* SelectedLandmarkViewModel.swift */; };
+		226EF79C2EEE12F400B5914B /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79B2EEE12F400B5914B /* FirebaseAppCheck */; };
+		226EF79E2EEE12F400B5914B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79D2EEE12F400B5914B /* FirebaseAuth */; };
+		226EF7A02EEE12F400B5914B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79F2EEE12F400B5914B /* FirebaseCore */; };
+		226EF7A22EEE12F400B5914B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A12EEE12F400B5914B /* FirebaseFirestore */; };
+		226EF7A42EEE12F400B5914B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A32EEE12F400B5914B /* FirebaseFirestoreCombine-Community */; };
+		226EF7A62EEE136A00B5914B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A52EEE136A00B5914B /* FirebaseStorage */; };
+		226EF7A82EEE136A00B5914B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A72EEE136A00B5914B /* FirebaseStorageCombine-Community */; };
 		227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B483C28C46ED100C9897A /* LandmarkApp.swift */; };
 		227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B483E28C46ED100C9897A /* LandmarkMainView.swift */; };
 		227B484128C46ED400C9897A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227B484028C46ED400C9897A /* Assets.xcassets */; };
@@ -62,7 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1DEAC3153AC6842867CF117F /* Pods-LandmarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkTests/Pods-LandmarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2205820A2AABE88800B71380 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		220735A028DAB86C00577AB8 /* Landmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Landmark.entitlements; sourceTree = "<group>"; };
 		220735A428DACEA300577AB8 /* LandmarkFirestoreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkFirestoreProvider.swift; sourceTree = "<group>"; };
@@ -100,11 +105,6 @@
 		229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Regular.ttf"; sourceTree = "<group>"; };
 		229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
 		453539C21DEF0191487D9241 /* Pods_LandmarkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		648BBA74FF1AEC153561AD51 /* Pods-LandmarkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkTests.release.xcconfig"; path = "Target Support Files/Pods-LandmarkTests/Pods-LandmarkTests.release.xcconfig"; sourceTree = "<group>"; };
-		B220C8A03A9FDBB250D9284C /* Pods-Landmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Landmark.release.xcconfig"; path = "Target Support Files/Pods-Landmark/Pods-Landmark.release.xcconfig"; sourceTree = "<group>"; };
-		B95681718B6FCB78BDF32835 /* Pods-Landmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Landmark.debug.xcconfig"; path = "Target Support Files/Pods-Landmark/Pods-Landmark.debug.xcconfig"; sourceTree = "<group>"; };
-		CCBAF229AE9324B6D33554DD /* Pods-Landmark-LandmarkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Landmark-LandmarkUITests.release.xcconfig"; path = "Target Support Files/Pods-Landmark-LandmarkUITests/Pods-Landmark-LandmarkUITests.release.xcconfig"; sourceTree = "<group>"; };
-		CD7AC98BF3A2F2FA6C8D0AFC /* Pods-Landmark-LandmarkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Landmark-LandmarkUITests.debug.xcconfig"; path = "Target Support Files/Pods-Landmark-LandmarkUITests/Pods-Landmark-LandmarkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5DDD617E751B9CD5851A867 /* Pods_Landmark_LandmarkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Landmark_LandmarkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5CC136C0CD8D04FF3082C3 /* Pods_Landmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Landmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,8 +114,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226EF79C2EEE12F400B5914B /* FirebaseAppCheck in Frameworks */,
+				226EF79E2EEE12F400B5914B /* FirebaseAuth in Frameworks */,
+				226EF7A82EEE136A00B5914B /* FirebaseStorageCombine-Community in Frameworks */,
+				226EF7A02EEE12F400B5914B /* FirebaseCore in Frameworks */,
+				226EF7A42EEE12F400B5914B /* FirebaseFirestoreCombine-Community in Frameworks */,
+				226EF7A62EEE136A00B5914B /* FirebaseStorage in Frameworks */,
+				226EF7A22EEE12F400B5914B /* FirebaseFirestore in Frameworks */,
 				22BD892628E2997D0025CB0C /* Shiny in Frameworks */,
-				1F3D7DFC6224E0872DA2ABEE /* Pods_Landmark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +212,6 @@
 				227B484C28C46ED400C9897A /* LandmarkTests */,
 				227B485628C46ED400C9897A /* LandmarkUITests */,
 				227B483A28C46ED100C9897A /* Products */,
-				C9A8A6EFB0AA1DF7A06612E9 /* Pods */,
 				521674F885D20EF8BBF074EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -312,19 +317,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C9A8A6EFB0AA1DF7A06612E9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B95681718B6FCB78BDF32835 /* Pods-Landmark.debug.xcconfig */,
-				B220C8A03A9FDBB250D9284C /* Pods-Landmark.release.xcconfig */,
-				CD7AC98BF3A2F2FA6C8D0AFC /* Pods-Landmark-LandmarkUITests.debug.xcconfig */,
-				CCBAF229AE9324B6D33554DD /* Pods-Landmark-LandmarkUITests.release.xcconfig */,
-				1DEAC3153AC6842867CF117F /* Pods-LandmarkTests.debug.xcconfig */,
-				648BBA74FF1AEC153561AD51 /* Pods-LandmarkTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -332,11 +324,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 227B485D28C46ED400C9897A /* Build configuration list for PBXNativeTarget "Landmark" */;
 			buildPhases = (
-				9E73F0A0B3B6AD13BC829A04 /* [CP] Check Pods Manifest.lock */,
 				227B483528C46ED100C9897A /* Sources */,
 				227B483628C46ED100C9897A /* Frameworks */,
 				227B483728C46ED100C9897A /* Resources */,
-				5E10D92AD94DB19A137643DB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -345,6 +335,13 @@
 			name = Landmark;
 			packageProductDependencies = (
 				22BD892328E27EA80025CB0C /* Shiny */,
+				226EF79B2EEE12F400B5914B /* FirebaseAppCheck */,
+				226EF79D2EEE12F400B5914B /* FirebaseAuth */,
+				226EF79F2EEE12F400B5914B /* FirebaseCore */,
+				226EF7A12EEE12F400B5914B /* FirebaseFirestore */,
+				226EF7A32EEE12F400B5914B /* FirebaseFirestoreCombine-Community */,
+				226EF7A52EEE136A00B5914B /* FirebaseStorage */,
+				226EF7A72EEE136A00B5914B /* FirebaseStorageCombine-Community */,
 			);
 			productName = Landmark;
 			productReference = 227B483928C46ED100C9897A /* Landmark.app */;
@@ -423,6 +420,7 @@
 			mainGroup = 227B483028C46ED100C9897A;
 			packageReferences = (
 				22BD892228E27EA80025CB0C /* XCRemoteSwiftPackageReference "shiny" */,
+				226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 227B483A28C46ED100C9897A /* Products */;
 			projectDirPath = "";
@@ -486,49 +484,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Landmark-LandmarkUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5E10D92AD94DB19A137643DB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Landmark/Pods-Landmark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Landmark/Pods-Landmark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Landmark/Pods-Landmark-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9E73F0A0B3B6AD13BC829A04 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Landmark-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -755,7 +710,6 @@
 		};
 		227B485E28C46ED400C9897A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B95681718B6FCB78BDF32835 /* Pods-Landmark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -792,7 +746,6 @@
 		};
 		227B485F28C46ED400C9897A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B220C8A03A9FDBB250D9284C /* Pods-Landmark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -829,7 +782,6 @@
 		};
 		227B486128C46ED400C9897A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DEAC3153AC6842867CF117F /* Pods-LandmarkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -850,7 +802,6 @@
 		};
 		227B486228C46ED400C9897A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 648BBA74FF1AEC153561AD51 /* Pods-LandmarkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -871,7 +822,6 @@
 		};
 		227B486428C46ED400C9897A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD7AC98BF3A2F2FA6C8D0AFC /* Pods-Landmark-LandmarkUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -891,7 +841,6 @@
 		};
 		227B486528C46ED400C9897A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCBAF229AE9324B6D33554DD /* Pods-Landmark-LandmarkUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -951,6 +900,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
+			};
+		};
 		22BD892228E27EA80025CB0C /* XCRemoteSwiftPackageReference "shiny" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/maustinstar/shiny.git";
@@ -962,6 +919,41 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		226EF79B2EEE12F400B5914B /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		226EF79D2EEE12F400B5914B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		226EF79F2EEE12F400B5914B /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		226EF7A12EEE12F400B5914B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		226EF7A32EEE12F400B5914B /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		226EF7A52EEE136A00B5914B /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		226EF7A72EEE136A00B5914B /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
 		22BD892328E27EA80025CB0C /* Shiny */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22BD892228E27EA80025CB0C /* XCRemoteSwiftPackageReference "shiny" */;

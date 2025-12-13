@@ -7,7 +7,6 @@
 
 import CoreLocation
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 import Foundation
 
 struct LandmarkEntity: Identifiable, Equatable, Codable {
