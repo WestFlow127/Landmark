@@ -16,12 +16,15 @@ struct MapDetails
 
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
 {
+    private var cancellables: Set<AnyCancellable> = []
+
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [LandmarkEntity] = []
 
-    private var cancellables: Set<AnyCancellable> = []
-    
+    @Published var locationServicesOff: Bool = false
+    @Published var locationServicesOffReason: String = "Location services is unavailable."
+
     var locationManager: CLLocationManager?
 
     override init()
@@ -41,24 +44,12 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             .store(in: &cancellables)
     }
     
-    func checkIfLocationServicesIsEnabled()
+    func setupLocationServices()
     {
-        DispatchQueue.global(qos: .userInteractive).async
-        {
-            [weak self] in
-            
-            guard let self else { return }
-            
-            if CLLocationManager.locationServicesEnabled()
-            {
-                self.locationManager = CLLocationManager()
-                self.locationManager?.activityType = .other
-                self.locationManager?.delegate = self
-            } else {
-                // TODO: show alert to enabled locations services
-                print("You need to turn on Location Services for this app in iOS Settings.")
-            }
-        }
+        locationManager = CLLocationManager()
+        locationManager?.activityType = .other
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.delegate = self
     }
     
     private func checkLocationAuthorization()
@@ -69,16 +60,24 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
             
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            
         case .restricted:
-            // TODO: show alert
-            print("Your location is restricted likely due to parental controls.")
+            print("Restricted likely due to parental controls.")
+            
+            locationServicesOff = true
+            locationServicesOffReason = "Your location is restricted likely due to parental controls."
+            
         case .denied:
-            // TODO: show alert to enabled locations services
-            print("You need to turn on Location Services for this app in iOS Settings.")
+            print("Location Services is off.")
+            
+            locationServicesOff = true
+            locationServicesOffReason = "You need to turn on Location Services for this app in iOS Settings."
+            
         case .authorizedAlways, .authorizedWhenInUse:
             debugPrint("Location Services Authorized")
-            if let location = locationManager.location {
-                debugPrint("RegionSet!")
+
+            if let location = locationManager.location
+            {
                 region = MKCoordinateRegion(center: location.coordinate, span: MapDetails.defaultSpan)
             }
         @unknown default:
