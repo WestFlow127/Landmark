@@ -98,6 +98,7 @@ struct LoginMainView: View {
                 }
                 .padding([.leading, .top], 5)
                 .toggleStyle(.checkmark)
+                .foregroundStyle(Color.black)
             }
             .foregroundColor(Color.secondary)
             .shadow(radius: 0.25)
@@ -112,7 +113,7 @@ struct LoginMainView: View {
                 .foregroundColor(Color.white)
                 .frame(width: 200, height: 50)
                 .cornerRadius(8)
-                .background(Color.blue)
+                .background(Color.black)
         }
         .cornerRadius(8)
         .padding(10)
@@ -140,6 +141,7 @@ struct LoginMainView: View {
         } label: {
             Text(self.isCreatingAccount ? "Sign In" : "Create Acoount")
         }
+        .foregroundStyle(Color.black)
         .padding(5)
     }
 }
