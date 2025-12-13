@@ -5,41 +5,36 @@
 //  Created by Weston Mitchell on 10/15/22.
 //
 
-import UIKit
 import Combine
+import UIKit
 
-class SelectedLandmarkViewModel: NSObject, ObservableObject
-{
+class SelectedLandmarkViewModel: NSObject, ObservableObject {
     @Published var landmarkImages: [UIImage] = []
     @Published var landmark: LandmarkEntity
-    
+
     var landmarkProvider = LandmarkFirestoreProvider()
-    
+
     private var cancellables: Set<AnyCancellable> = []
 
-    init(landmark: LandmarkEntity)
-    {
+    init(landmark: LandmarkEntity) {
         self.landmark = landmark
-        
+
         super.init()
 
-        getImages()
+        self.getImages()
     }
-    
-    func getImages()
-    {
-        if let imagePath = landmark.imageUrlPaths?.first
-        {
-            landmarkProvider.getLandmarkPhoto(forPath: imagePath)
+
+    func getImages() {
+        if let imagePath = landmark.imageUrlPaths?.first {
+            self.landmarkProvider.getLandmarkPhoto(forPath: imagePath)
                 .sink(receiveCompletion: { error in
                     debugPrint("getLandmarkPhoto completed : \(error)")
-                }, receiveValue: setImage)
-                .store(in: &cancellables)
+                }, receiveValue: self.setImage)
+                .store(in: &self.cancellables)
         }
     }
-    
-    func setImage(image: UIImage)
-    {
+
+    func setImage(image: UIImage) {
         debugPrint("Image set!!")
         self.landmarkImages = [image]
     }

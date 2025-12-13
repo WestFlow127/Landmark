@@ -9,7 +9,7 @@ import Foundation
 
 enum DataResponseError: Error {
     case emptyData
-    
+
     var reason: String {
         switch self {
         case .emptyData:

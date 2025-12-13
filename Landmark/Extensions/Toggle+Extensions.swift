@@ -8,12 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct CheckboxToggleStyle: ToggleStyle
-{
-    func makeBody(configuration: Configuration) -> some View
-    {
+struct CheckboxToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
         HStack {
- 
             RoundedRectangle(cornerRadius: 5.0)
                 .stroke(lineWidth: 3)
                 .frame(width: 20, height: 20)
@@ -30,14 +27,12 @@ struct CheckboxToggleStyle: ToggleStyle
                         configuration.isOn.toggle()
                     }
                 }
- 
+
             configuration.label
- 
         }
     }
 }
 
-extension ToggleStyle where Self == CheckboxToggleStyle
-{
+extension ToggleStyle where Self == CheckboxToggleStyle {
     static var checkmark: CheckboxToggleStyle { CheckboxToggleStyle() }
 }

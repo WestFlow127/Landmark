@@ -5,72 +5,66 @@
 //  Created by Weston Mitchell on 9/19/22.
 //
 
-import Foundation
 import FirebaseAuth
+import Foundation
 
-class LoginViewModel: ObservableObject
-{
+class LoginViewModel: ObservableObject {
     var authManager: AuthService = LandmarkAuthManager.shared
-    
+
     var isSignedIn: Bool {
-        authManager.isSignedIn
+        self.authManager.isSignedIn
     }
-    
+
     @Published var signedIn = false
     @Published var loginError: Error? {
         didSet {
-            hasLoginError = loginError != nil
+            self.hasLoginError = self.loginError != nil
         }
     }
+
     @Published var hasLoginError: Bool = false
 
     func rememberEmail(email: String?) {
-        authManager.rememberedEmail = email
+        self.authManager.rememberedEmail = email
     }
-    
-    func signIn(email: String, password: String)
-    {
-        authManager.signIn(withEmail: email, password: password)
-        {
+
+    func signIn(email: String, password: String) {
+        self.authManager.signIn(withEmail: email, password: password) {
             [weak self] result, error in
-        
+
             self?.handleSignInUpCallback(result, error)
         }
     }
-    
-    func signUp(email: String, password: String)
-    {
-        authManager.createUser(withEmail: email, password: password)
-        {
+
+    func signUp(email: String, password: String) {
+        self.authManager.createUser(withEmail: email, password: password) {
             [weak self] result, error in
-            
+
             self?.handleSignInUpCallback(result, error)
         }
     }
-    
-    func handleSignInUpCallback(_ result: Any?, _ error: Error?)
-    {
+
+    func handleSignInUpCallback(_ result: Any?, _ error: Error?) {
         guard result != nil, error == nil else {
             self.loginError = error
             return
         }
-        
+
         DispatchQueue.main.async {
             self.signedIn = true
         }
     }
-    
-    func logout()
-    {
+
+    func logout() {
         do {
-            try authManager.signOut()
+            try self.authManager.signOut()
         } catch {
             debugPrint("Sign Out Error: \(error)")
             return
         }
 
-        signedIn = false
-        
+        self.signedIn = false
+
         debugPrint("Sign out success!")
     }
 }

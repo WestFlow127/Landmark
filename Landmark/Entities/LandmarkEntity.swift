@@ -5,25 +5,24 @@
 //  Created by Weston Mitchell on 9/20/22.
 //
 
-import Foundation
+import CoreLocation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
-import CoreLocation
+import Foundation
 
-struct LandmarkEntity: Identifiable, Equatable, Codable
-{
+struct LandmarkEntity: Identifiable, Equatable, Codable {
     @DocumentID var id: String?
-    
+
     var location: String?
     var description: String?
     var name: String
     var imageUrlPaths: [String]?
     var geoLocation: GeoPoint
-    
+
     var _2DCoord: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: geoLocation.latitude, longitude: geoLocation.longitude)
+        CLLocationCoordinate2D(latitude: self.geoLocation.latitude, longitude: self.geoLocation.longitude)
     }
-    
+
     init(name: String,
          id: String,
          location: String? = nil,
@@ -38,7 +37,7 @@ struct LandmarkEntity: Identifiable, Equatable, Codable
         self.imageUrlPaths = imageUrlPaths
         self.geoLocation = geoLocation
     }
-    
+
     init(name: String) {
         self.name = name
         self.geoLocation = GeoPoint(latitude: 0, longitude: 0)

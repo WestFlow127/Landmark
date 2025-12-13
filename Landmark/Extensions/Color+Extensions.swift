@@ -8,11 +8,6 @@
 import Foundation
 import SwiftUI
 
-extension Color
-{
-    static let ui = Color.UI()
-    
-    struct UI {
-         let mainColor = Color("landmarkMainColor")
-    }
+extension Color {
+    static let mainColor = Color("landmarkMainColor")
 }
