@@ -63,6 +63,9 @@ struct LoginMainView: View
                 .background(Color.ui.mainColor)
             }
         }
+        .onAppear{
+            viewModel.signedIn = viewModel.isSignedIn
+        }
     }
     
     var credentialInputView: some View
