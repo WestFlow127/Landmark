@@ -42,7 +42,7 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
 
-    func getLandmarks() -> Future<[LandmarkEntity], Error> {
+    func getLandmarks() -> Future<[Landmark], Error> {
         Future {
             [weak self] promise in
 
@@ -61,7 +61,7 @@ class LandmarkFirestoreProvider: ObservableObject {
                 }
 
                 let landmarks = documents.compactMap { queryDocumentSnapshot in
-                    let result = Result { try queryDocumentSnapshot.data(as: LandmarkEntity.self) }
+                    let result = Result { try queryDocumentSnapshot.data(as: Landmark.self) }
 
                     switch result {
                     case let .success(landmark):
@@ -80,7 +80,7 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
 
-    func addLandmark(landmark _: LandmarkEntity) {
+    func addLandmark(landmark _: Landmark) {
         //        do {
         //            _ = try db.collection()
         //        }

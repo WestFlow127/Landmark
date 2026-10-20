@@ -102,6 +102,6 @@ struct SelectedLandmarkView: View {
 
 struct SelectedLandmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: LandmarkEntity(name: "Venice Beach Boardwalk")))
+        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: Landmark(name: "Venice Beach Boardwalk")))
     }
 }

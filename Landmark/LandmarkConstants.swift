@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct FirebaseConstants {
+final class FirebaseConstants {
     let landmarkCollection = "landmarks"
 
     /// singleton instance
-    static let `default` = FirebaseConstants()
+    static let shared = FirebaseConstants()
+
+    private init() {}
 }

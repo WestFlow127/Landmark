@@ -14,7 +14,7 @@ struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
     @EnvironmentObject var loginViewModel: LoginViewModel
 
-    @State private var selectedPlace: LandmarkEntity?
+    @State private var selectedPlace: Landmark?
 
     var body: some View {
         VStack {

@@ -1,5 +1,5 @@
 //
-//  LandmarkLocationEntity.swift
+//  Landmark.swift
 //  Landmark
 //
 //  Created by Weston Mitchell on 9/20/22.
@@ -9,7 +9,7 @@ import CoreLocation
 import FirebaseFirestore
 import Foundation
 
-struct LandmarkEntity: Identifiable, Equatable, Codable {
+struct Landmark: Identifiable, Equatable, Codable {
     @DocumentID var id: String?
 
     var location: String?

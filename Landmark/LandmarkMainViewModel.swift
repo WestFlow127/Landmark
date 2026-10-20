@@ -18,7 +18,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
 
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
-    @Published var landmarks: [LandmarkEntity] = []
+    @Published var landmarks: [Landmark] = []
 
     @Published var locationServicesOff: Bool = false
     @Published var locationServicesOffReason: String = "Location services is unavailable."
