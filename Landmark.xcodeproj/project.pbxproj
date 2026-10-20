@@ -80,7 +80,7 @@
 		223715A528EA7B3C009521DC /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
 		224388C428D909A100833CF7 /* LoginMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainView.swift; sourceTree = "<group>"; };
 		224388C728D910A800833CF7 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
-		224388C928D926F300833CF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Landmark App Certs+/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		224388C928D926F300833CF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Landmark App Certs+/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		224388CB28D928FB00833CF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		224388CE28D92B9200833CF7 /* LandmarkAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAuthManager.swift; sourceTree = "<group>"; };
 		226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+Extensions.swift"; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		228390C62ABC0007009ED4AC /* LandmarkAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAuthenticationTests.swift; sourceTree = "<group>"; };
 		2289488E28FE4B3800C3A404 /* RequestErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestErrors.swift; sourceTree = "<group>"; };
 		229980A928DB904A006A8538 /* LandmarkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkConstants.swift; sourceTree = "<group>"; };
-		229980AB28DB988A006A8538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		229980AB28DB988A006A8538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		229980AC28DBAFEE006A8538 /* AppleSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInController.swift; sourceTree = "<group>"; };
 		229980AF28DBCA1F006A8538 /* SelectedLandmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLandmarkView.swift; sourceTree = "<group>"; };
 		229980B428DBE46F006A8538 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
@@ -209,6 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				227B483B28C46ED100C9897A /* Landmark */,
+				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
+				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
+				229980AB28DB988A006A8538 /* Info.plist */,
 				227B484C28C46ED400C9897A /* LandmarkTests */,
 				227B485628C46ED400C9897A /* LandmarkUITests */,
 				227B483A28C46ED100C9897A /* Products */,
@@ -229,10 +232,6 @@
 		227B483B28C46ED100C9897A /* Landmark */ = {
 			isa = PBXGroup;
 			children = (
-				220735A028DAB86C00577AB8 /* Landmark.entitlements */,
-				229980AB28DB988A006A8538 /* Info.plist */,
-				224388C928D926F300833CF7 /* GoogleService-Info.plist */,
-				229980B128DBE1FD006A8538 /* Resources */,
 				227B483C28C46ED100C9897A /* LandmarkApp.swift */,
 				227B483E28C46ED100C9897A /* LandmarkMainView.swift */,
 				2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */,
@@ -243,6 +242,7 @@
 				220735A328DACE2100577AB8 /* LandmarkFirebase */,
 				224388C628D9107C00833CF7 /* Extensions */,
 				227B484228C46ED400C9897A /* Preview Content */,
+				229980B128DBE1FD006A8538 /* Resources */,
 			);
 			path = Landmark;
 			sourceTree = "<group>";
