@@ -44,20 +44,7 @@ struct LandmarkMainView: View {
                     .onAppear {
                         self.viewModel.setupLocationServices()
                     }
-                    Button {
-                        // present camera / capture flow
-                    } label: {
-                        Image(systemName: "camera.viewfinder")
-                            .font(.system(size: 28, weight: .medium))
-                            .tint(.primary)
-                            .frame(width: 28, height: 28)
-                            .padding(14)
-                            .frame(width: 55, height: 55)
-                            .background(.ultraThinMaterial, in: Circle())
-                            .shadow(radius: 2)
-                    }
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 40)
+                    self.cameraButton
                 }
             }
             .sheet(item: self.$selectedPlace) { landmark in
@@ -107,6 +94,23 @@ struct LandmarkMainView: View {
             .cornerRadius(18)
             .shadow(radius: 1, y: 1)
         }
+    }
+
+    var cameraButton: some View {
+        Button {
+            // present camera / capture flow
+        } label: {
+            Image(systemName: "camera.viewfinder")
+                .font(.system(size: 28, weight: .medium))
+                .tint(.primary)
+                .frame(width: 28, height: 28)
+                .padding(14)
+                .frame(width: 52, height: 52)
+                .background(.ultraThinMaterial, in: Circle())
+                .shadow(radius: 2)
+        }
+        .padding(.trailing, 20)
+        .padding(.bottom, 40)
     }
 }
 
