@@ -36,7 +36,6 @@ struct SelectedLandmarkView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: UIScreen.main.bounds.width)
-//                            .offset(CGSize(width: -5, height: -5))
                     }
                 }
                 .frame(height: UIScreen.main.bounds.height / 3)

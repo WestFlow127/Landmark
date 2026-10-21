@@ -27,7 +27,6 @@ class LandmarkFirestoreProvider: ObservableObject {
 
         return Future {
             promise in
-
             ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
                 if let error = error {
                     promise(Result.failure(error))
@@ -45,7 +44,6 @@ class LandmarkFirestoreProvider: ObservableObject {
     func getLandmarks() -> Future<[Landmark], Error> {
         Future {
             [weak self] promise in
-
             guard let self = self else { return }
 
             let landmarks = self.db.collection("landmarks").addSnapshotListener { querySnapshot, error in

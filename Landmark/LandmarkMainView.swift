@@ -13,37 +13,51 @@ import SwiftUI
 struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
     @EnvironmentObject var loginViewModel: LoginViewModel
-
     @State private var selectedPlace: Landmark?
 
     var body: some View {
         VStack {
             ViewThatFits {
-                Map(coordinateRegion: self.$viewModel.region,
-                    showsUserLocation: true,
-                    annotationItems: self.viewModel.landmarks)
-                { landmark in
+                ZStack(alignment: .bottomTrailing) {
+                    Map(coordinateRegion: self.$viewModel.region,
+                        showsUserLocation: true,
+                        annotationItems: self.viewModel.landmarks)
+                    { landmark in
+                        MapAnnotation(coordinate: landmark._2DCoord) {
+                            VStack {
+                                Image(systemName: "star.circle")
+                                    .resizable()
+                                    .foregroundColor(.red)
+                                    .frame(width: 25, height: 25)
+                                    .background(.white)
+                                    .clipShape(Circle())
 
-                    MapAnnotation(coordinate: landmark._2DCoord) {
-                        VStack {
-                            Image(systemName: "star.circle")
-                                .resizable()
-                                .foregroundColor(.red)
-                                .frame(width: 25, height: 25)
-                                .background(.white)
-                                .clipShape(Circle())
-
-                            Text(landmark.name)
-                                .font(Font.caption)
-                                .lineLimit(2)
-                        }
-                        .onTapGesture {
-                            self.selectedPlace = landmark
+                                Text(landmark.name)
+                                    .font(Font.caption)
+                                    .lineLimit(2)
+                            }
+                            .onTapGesture {
+                                self.selectedPlace = landmark
+                            }
                         }
                     }
-                }
-                .onAppear {
-                    self.viewModel.setupLocationServices()
+                    .onAppear {
+                        self.viewModel.setupLocationServices()
+                    }
+                    Button {
+                        // present camera / capture flow
+                    } label: {
+                        Image(systemName: "camera.viewfinder")
+                            .font(.system(size: 28, weight: .medium))
+                            .tint(.primary)
+                            .frame(width: 28, height: 28)
+                            .padding(14)
+                            .frame(width: 55, height: 55)
+                            .background(.ultraThinMaterial, in: Circle())
+                            .shadow(radius: 2)
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 40)
                 }
             }
             .sheet(item: self.$selectedPlace) { landmark in
@@ -68,31 +82,30 @@ struct LandmarkMainView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
+    @ViewBuilder
     var mainViewToolbar: some ToolbarContent {
-        Group {
-            ToolbarItem(placement: .principal) {
-                Text("Landmark")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+        ToolbarItem(placement: .principal) {
+            Text("Landmark")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .shiny()
+        }
+
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Menu {
+                Button("Logout", action: {
+                    self.viewModel.landmarkProvider.cancelListeners()
+                    self.loginViewModel.logout()
+                })
+            } label: {
+                Image(systemName: "plus")
+                    .frame(width: 36, height: 36)
                     .shiny()
             }
-
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    Button("Logout", action: {
-                        self.viewModel.landmarkProvider.cancelListeners()
-                        self.loginViewModel.logout()
-                    })
-                } label: {
-                    Image(systemName: "plus")
-                        .frame(width: 36, height: 36)
-                        .shiny()
-                }
-                .frame(width: 36, height: 36, alignment: .trailing)
-                .background(.white.opacity(0.85))
-                .cornerRadius(18)
-                .shadow(radius: 1, y: 1)
-            }
+            .frame(width: 36, height: 36, alignment: .trailing)
+            .background(.white.opacity(0.85))
+            .cornerRadius(18)
+            .shadow(radius: 1, y: 1)
         }
     }
 }
