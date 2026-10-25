@@ -27,7 +27,6 @@ class LandmarkFirestoreProvider: ObservableObject {
 
         return Future {
             promise in
-
             ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
                 if let error = error {
                     promise(Result.failure(error))
@@ -42,48 +41,70 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
 
-    func getLandmarks() -> Future<[LandmarkEntity], Error> {
-        Future {
-            [weak self] promise in
-
-            guard let self = self else { return }
-
-            let landmarks = self.db.collection("landmarks").addSnapshotListener { querySnapshot, error in
+    /// Emits the full list of landmarks now and again every time the collection changes,
+    /// e.g. after a new landmark is added. Removes its Firestore listener when the stream ends.
+    func landmarksStream() -> AsyncThrowingStream<[Landmark], Error> {
+        AsyncThrowingStream { continuation in
+            let listener = self.db.collection("landmarks").addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     debugPrint("Error in snapshotListener: \(error)")
-                    promise(Result.failure(error))
+                    continuation.finish(throwing: error)
                     return
                 }
 
                 guard let documents = querySnapshot?.documents else {
-                    promise(Result.failure(DataResponseError.emptyData))
+                    continuation.finish(throwing: DataResponseError.emptyData)
                     return
                 }
 
-                let landmarks = documents.compactMap { queryDocumentSnapshot in
-                    let result = Result { try queryDocumentSnapshot.data(as: LandmarkEntity.self) }
-
-                    switch result {
-                    case let .success(landmark):
-                        return landmark
-
-                    case let .failure(error):
-                        debugPrint("Decoding Error: \(error)")
-
-                        promise(Result.failure(error))
+                // A document that fails to decode is skipped so one bad record doesn't hide the rest.
+                let landmarks = documents.compactMap { queryDocumentSnapshot -> Landmark? in
+                    do {
+                        return try queryDocumentSnapshot.data(as: Landmark.self)
+                    } catch {
+                        debugPrint("Decoding Error for \(queryDocumentSnapshot.documentID): \(error)")
                         return nil
                     }
                 }
-                promise(Result.success(landmarks))
+                continuation.yield(landmarks)
             }
-            self.listeners?.append(landmarks)
+
+            self.listeners?.append(listener)
+            continuation.onTermination = { _ in listener.remove() }
         }
     }
 
-    func addLandmark(landmark _: LandmarkEntity) {
-        //        do {
-        //            _ = try db.collection()
-        //        }
+    /// Makes the title safe to use as a Storage file name.
+    private static func fileName(from title: String) -> String {
+        let cleaned = title
+            .components(separatedBy: CharacterSet(charactersIn: "/\\?%*|\"<>:#[]"))
+            .joined(separator: "-")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return cleaned.isEmpty ? "photo" : cleaned
+    }
+
+    /// Uploads a landmark photo to Storage, named after the landmark's title, and returns its path,
+    /// e.g. "/landmarks/<landmarkId>/<title>.jpeg".
+    func uploadLandmarkPhoto(_ data: Data, landmarkId: String, title: String) async throws -> String {
+        let path = "/landmarks/\(landmarkId)/\(Self.fileName(from: title)).jpeg"
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+
+        _ = try await self.storage.reference(withPath: path).putDataAsync(data, metadata: metadata)
+
+        return path
+    }
+
+    /// Writes the landmark to Firestore using its `id` as the document ID.
+    func addLandmark(landmark: Landmark) async throws {
+        guard let id = landmark.id else { throw DataResponseError.missingId }
+
+        try self.db.collection("landmarks").document(id).setData(from: landmark)
+    }
+
+    func deleteLandmarkPhoto(atPath path: String) async {
+        try? await self.storage.reference(withPath: path).delete()
     }
 
     func cancelListeners() {

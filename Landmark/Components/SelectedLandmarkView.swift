@@ -36,7 +36,6 @@ struct SelectedLandmarkView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: UIScreen.main.bounds.width)
-//                            .offset(CGSize(width: -5, height: -5))
                     }
                 }
                 .frame(height: UIScreen.main.bounds.height / 3)
@@ -102,6 +101,6 @@ struct SelectedLandmarkView: View {
 
 struct SelectedLandmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: LandmarkEntity(name: "Venice Beach Boardwalk")))
+        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: Landmark(name: "Venice Beach Boardwalk")))
     }
 }
