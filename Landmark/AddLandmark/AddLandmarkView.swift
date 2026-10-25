@@ -73,7 +73,7 @@ struct AddLandmarkView: View {
                 Text("Getting location…")
                     .foregroundColor(.secondary)
             } else if self.viewModel.coordinate == nil {
-                Text("Location unavailable. Enable Location Services to add a landmark.")
+                Text("We couldn't determine this landmark's location. Enable Location Services and try again.")
                     .foregroundColor(.red)
             } else {
                 Text(self.viewModel.addressText)

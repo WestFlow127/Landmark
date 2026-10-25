@@ -10,7 +10,7 @@ import UIKit
 enum AddLandmarkFlow {
     case idle
     case camera
-    case editing(UIImage)
+    case editing(CapturedPhoto)
 
     var isCamera: Bool {
         if case .camera = self {
@@ -20,15 +20,15 @@ enum AddLandmarkFlow {
         }
     }
 
-    var capturedImage: UIImage? {
-        if case let .editing(image) = self {
-            return image
+    var capturedPhoto: CapturedPhoto? {
+        if case let .editing(photo) = self {
+            return photo
         } else {
             return nil
         }
     }
 
     var isEditing: Bool {
-        self.capturedImage != nil
+        self.capturedPhoto != nil
     }
 }

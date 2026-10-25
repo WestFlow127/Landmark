@@ -35,21 +35,31 @@ final class AddLandmarkViewModel: ObservableObject {
             && self.coordinate != nil
     }
 
+    private let metadataCoordinate: CLLocationCoordinate2D?
+
     /// Location capture starts immediately so it reflects where the photo was taken.
-    init(capturedImage: UIImage, landmarkProvider: LandmarkFirestoreProvider = LandmarkFirestoreProvider()) {
+    init(capturedPhoto: CapturedPhoto, landmarkProvider: LandmarkFirestoreProvider = LandmarkFirestoreProvider()) {
         self.landmarkProvider = landmarkProvider
-        self.croppedImage = capturedImage.croppedToSquare()
+        self.croppedImage = capturedPhoto.image.croppedToSquare()
+        self.metadataCoordinate = capturedPhoto.metadataCoordinate
 
         Task { await self.loadLocation() }
     }
 
+    /// Prefers the device's current location, falls back to the photo's metadata, and otherwise
+    /// leaves `coordinate` nil so the view can show an error.
     private func loadLocation() async {
         defer { self.isLoadingLocation = false }
 
-        guard let location = await self.locationFetcher.currentLocation() else { return }
-
-        self.coordinate = location.coordinate
-        self.address = await self.locationFetcher.address(for: location)
+        if let location = await self.locationFetcher.currentLocation() {
+            self.coordinate = location.coordinate
+            self.address = await self.locationFetcher.address(for: location)
+        } else if let metadataCoordinate {
+            self.coordinate = metadataCoordinate
+            self.address = await self.locationFetcher.address(
+                for: CLLocation(latitude: metadataCoordinate.latitude, longitude: metadataCoordinate.longitude)
+            )
+        }
     }
 
     /// Uploads the photo, then records its path on a new landmark document.

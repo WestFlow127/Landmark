@@ -69,8 +69,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         self.addLandmarkFlow = .camera
     }
 
-    func photoCaptured(_ capturedImage: UIImage) {
-        self.addLandmarkFlow = .editing(capturedImage)
+    func photoCaptured(_ capturedPhoto: CapturedPhoto) {
+        self.addLandmarkFlow = .editing(capturedPhoto)
     }
 
     func cancelAddLandmark() {

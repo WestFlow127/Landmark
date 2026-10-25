@@ -10,7 +10,7 @@ import SwiftUI
 struct SimulatedCameraView: View {
     static let sampleImageName = "landmark-Ship"
 
-    let onCapture: (UIImage) -> Void
+    let onCapture: (CapturedPhoto) -> Void
     let onCancel: () -> Void
 
     private let sampleImage = UIImage(named: SimulatedCameraView.sampleImageName)
@@ -38,7 +38,7 @@ struct SimulatedCameraView: View {
 
                 Button("Use Photo") {
                     if let sampleImage {
-                        self.onCapture(sampleImage)
+                        self.onCapture(CapturedPhoto(image: sampleImage))
                     }
                 }
                 .fontWeight(.semibold)

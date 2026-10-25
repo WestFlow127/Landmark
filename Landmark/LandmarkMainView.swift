@@ -77,8 +77,8 @@ struct LandmarkMainView: View {
             }
         }
         .navigationDestination(isPresented: self.viewModel.isEditing) {
-            if let image = self.viewModel.addLandmarkFlow.capturedImage {
-                AddLandmarkView(viewModel: AddLandmarkViewModel(capturedImage: image))
+            if let photo = self.viewModel.addLandmarkFlow.capturedPhoto {
+                AddLandmarkView(viewModel: AddLandmarkViewModel(capturedPhoto: photo))
             }
         }
         .toolbar {

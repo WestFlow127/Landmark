@@ -17,7 +17,7 @@ struct CameraPicker: UIViewControllerRepresentable {
         #endif
     }
 
-    let onCapture: (UIImage) -> Void
+    let onCapture: (CapturedPhoto) -> Void
     let onCancel: () -> Void
 
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -34,10 +34,10 @@ struct CameraPicker: UIViewControllerRepresentable {
     }
 
     final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        let onCapture: (UIImage) -> Void
+        let onCapture: (CapturedPhoto) -> Void
         let onCancel: () -> Void
 
-        init(onCapture: @escaping (UIImage) -> Void, onCancel: @escaping () -> Void) {
+        init(onCapture: @escaping (CapturedPhoto) -> Void, onCancel: @escaping () -> Void) {
             self.onCapture = onCapture
             self.onCancel = onCancel
         }
@@ -46,7 +46,7 @@ struct CameraPicker: UIViewControllerRepresentable {
                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any])
         {
             if let image = info[.originalImage] as? UIImage {
-                self.onCapture(image)
+                self.onCapture(CapturedPhoto(image: image, metadata: info[.mediaMetadata] as? [AnyHashable: Any]))
             } else {
                 self.onCancel()
             }
