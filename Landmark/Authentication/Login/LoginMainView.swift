@@ -64,7 +64,6 @@ struct LoginMainView: View {
     }
 
     var credentialInputView: some View {
-        // Credentials Input View
         VStack(alignment: .leading) {
             Group {
                 TextField("Email Address", text: self.$email)
@@ -107,7 +106,6 @@ struct LoginMainView: View {
     }
 
     var signInButton: some View {
-        // Sign In Button
         Button(action: signIn) {
             Text(self.currentModeTitle)
                 .foregroundColor(Color.white)
