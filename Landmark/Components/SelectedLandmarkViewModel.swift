@@ -35,7 +35,6 @@ class SelectedLandmarkViewModel: NSObject, ObservableObject {
     }
 
     func setImage(image: UIImage) {
-        debugPrint("Image set!!")
         self.landmarkImages = [image]
     }
 }
