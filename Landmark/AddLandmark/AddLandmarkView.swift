@@ -7,6 +7,7 @@ import SwiftUI
 
 struct AddLandmarkView: View {
     @StateObject var viewModel: AddLandmarkViewModel
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ScrollView {
@@ -28,21 +29,38 @@ struct AddLandmarkView: View {
                     .textFieldStyle(.roundedBorder)
 
                 Button {
-                    self.viewModel.uploadLandmark()
+                    Task { await self.viewModel.uploadLandmark() }
                 } label: {
-                    Text("Upload Landmark")
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 6)
+                    Group {
+                        if self.viewModel.isUploading {
+                            ProgressView()
+                        } else {
+                            Text("Post Landmark")
+                                .fontWeight(.semibold)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(!self.viewModel.canUpload)
+                .disabled(!self.viewModel.canUpload || self.viewModel.isUploading)
             }
             .padding()
         }
         .scrollDismissesKeyboard(.interactively)
         .navigationTitle("New Landmark")
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: self.viewModel.didUpload) { didUpload in
+            if didUpload { self.dismiss() }
+        }
+        .alert("Upload Failed", isPresented: Binding(
+            get: { self.viewModel.uploadErrorMessage != nil },
+            set: { if !$0 { self.viewModel.uploadErrorMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(self.viewModel.uploadErrorMessage ?? "")
+        }
     }
 
     private var locationRow: some View {

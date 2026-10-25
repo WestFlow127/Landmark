@@ -78,10 +78,37 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
 
-    func addLandmark(landmark _: Landmark) {
-        //        do {
-        //            _ = try db.collection()
-        //        }
+    /// Makes the title safe to use as a Storage file name.
+    private static func fileName(from title: String) -> String {
+        let cleaned = title
+            .components(separatedBy: CharacterSet(charactersIn: "/\\?%*|\"<>:#[]"))
+            .joined(separator: "-")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return cleaned.isEmpty ? "photo" : cleaned
+    }
+
+    /// Uploads a landmark photo to Storage, named after the landmark's title, and returns its path,
+    /// e.g. "/landmarks/<landmarkId>/<title>.jpeg".
+    func uploadLandmarkPhoto(_ data: Data, landmarkId: String, title: String) async throws -> String {
+        let path = "/landmarks/\(landmarkId)/\(Self.fileName(from: title)).jpeg"
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+
+        _ = try await self.storage.reference(withPath: path).putDataAsync(data, metadata: metadata)
+
+        return path
+    }
+
+    /// Writes the landmark to Firestore using its `id` as the document ID.
+    func addLandmark(landmark: Landmark) async throws {
+        guard let id = landmark.id else { throw DataResponseError.missingId }
+
+        try self.db.collection("landmarks").document(id).setData(from: landmark)
+    }
+
+    func deleteLandmarkPhoto(atPath path: String) async {
+        try? await self.storage.reference(withPath: path).delete()
     }
 
     func cancelListeners() {
