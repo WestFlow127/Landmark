@@ -16,6 +16,7 @@
 		22276CE530883E6200AA6FB5 /* AddLandmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */; };
 		22276CE8308849C600AA6FB5 /* AddLandmarkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE7308849C600AA6FB5 /* AddLandmarkFlow.swift */; };
 		22276CEA308E9EB700AA6FB5 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE9308E9EB700AA6FB5 /* UIImage+Extensions.swift */; };
+		22276CEC308EA14500AA6FB5 /* SimulatedCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CEB308EA14500AA6FB5 /* SimulatedCameraView.swift */; };
 		2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */; };
 		223715A128EA7A3A009521DC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2237159F28EA7A3A009521DC /* Montserrat-Regular.ttf */; };
 		223715A228EA7A3A009521DC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223715A028EA7A3A009521DC /* Montserrat-Bold.ttf */; };
@@ -84,6 +85,7 @@
 		22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkView.swift; sourceTree = "<group>"; };
 		22276CE7308849C600AA6FB5 /* AddLandmarkFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkFlow.swift; sourceTree = "<group>"; };
 		22276CE9308E9EB700AA6FB5 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		22276CEB308EA14500AA6FB5 /* SimulatedCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedCameraView.swift; sourceTree = "<group>"; };
 		2234FB3B28C5B1F000549D3F /* LandmarkMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMainViewModel.swift; sourceTree = "<group>"; };
 		2237159F28EA7A3A009521DC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		223715A028EA7A3A009521DC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				22276CDE30883E5400AA6FB5 /* CameraPicker.swift */,
 				22276CE230883E5E00AA6FB5 /* AddLandmarkViewModel.swift */,
 				22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */,
+				22276CEB308EA14500AA6FB5 /* SimulatedCameraView.swift */,
 			);
 			path = AddLandmark;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				220735A828DAD58D00577AB8 /* Landmark.swift in Sources */,
 				22276CE8308849C600AA6FB5 /* AddLandmarkFlow.swift in Sources */,
+				22276CEC308EA14500AA6FB5 /* SimulatedCameraView.swift in Sources */,
 				22276CEA308E9EB700AA6FB5 /* UIImage+Extensions.swift in Sources */,
 				2205820B2AABE88800B71380 /* View+Extensions.swift in Sources */,
 				226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */,

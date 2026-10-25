@@ -9,7 +9,12 @@ import UIKit
 /// Wraps `UIImagePickerController` in camera mode and reports the captured photo.
 struct CameraPicker: UIViewControllerRepresentable {
     static var isCameraAvailable: Bool {
-        UIImagePickerController.isSourceTypeAvailable(.camera)
+        // Recent simulators report a camera as available but only show a blank viewfinder.
+        #if targetEnvironment(simulator)
+            return false
+        #else
+            return UIImagePickerController.isSourceTypeAvailable(.camera)
+        #endif
     }
 
     let onCapture: (UIImage) -> Void

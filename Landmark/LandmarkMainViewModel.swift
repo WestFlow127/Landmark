@@ -17,7 +17,6 @@ struct MapDetails {
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var cancellables: Set<AnyCancellable> = []
 
-    @Published var showCameraUnavailable: Bool = false
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [Landmark] = []
@@ -66,11 +65,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     }
 
     func startAddLandmark() {
-        if CameraPicker.isCameraAvailable {
-            self.addLandmarkFlow = .camera
-        } else {
-            self.showCameraUnavailable = true
-        }
+        // The view decides between the real camera and the sample-photo stand-in.
+        self.addLandmarkFlow = .camera
     }
 
     func photoCaptured(_ capturedImage: UIImage) {
