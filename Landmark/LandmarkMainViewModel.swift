@@ -105,6 +105,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
 
         case .authorizedAlways, .authorizedWhenInUse:
             debugPrint("Location Services Authorized")
+            self.locationManager?.requestLocation()
 
             if let location = locationManager.location {
                 self.region = MKCoordinateRegion(center: location.coordinate, span: MapDetails.defaultSpan)
@@ -113,6 +114,16 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         @unknown default:
             break
         }
+    }
+
+    func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let coordinate = locations.last?.coordinate else { return }
+
+        self.region = MKCoordinateRegion(center: coordinate, span: MapDetails.defaultSpan)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        debugPrint("LocationManager failed with error: \(error)")
     }
 
     func locationManagerDidChangeAuthorization(_: CLLocationManager) {
