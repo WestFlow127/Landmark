@@ -23,7 +23,7 @@ class LandmarkModelTests: XCTestCase {
     func testInit_LandmarkEntity() {
         let id = UUID().uuidString
         
-        let landmark = LandmarkEntity(
+        let landmark = Landmark(
             name: "Venice Monument",
             id: id,
             location: "Ocean Front Walk",
@@ -38,7 +38,7 @@ class LandmarkModelTests: XCTestCase {
     }
     
     func testInit_LandmarkEntityNameOnly() {
-        let landmark = LandmarkEntity(name: "My Landmark")
+        let landmark = Landmark(name: "My Landmark")
         
          XCTAssertNotNil(landmark)
          XCTAssertEqual(landmark.name, "My Landmark")
@@ -47,8 +47,8 @@ class LandmarkModelTests: XCTestCase {
     func testLandmark_EquatableTrue() {
         let id = UUID().uuidString
 
-        let landmark = LandmarkEntity(name: "My Landmark", id: id)
-        let landmark2 = LandmarkEntity(name: "My Landmark", id: id)
+        let landmark = Landmark(name: "My Landmark", id: id)
+        let landmark2 = Landmark(name: "My Landmark", id: id)
 
         XCTAssertEqual(landmark, landmark2)
     }
@@ -57,8 +57,8 @@ class LandmarkModelTests: XCTestCase {
         let id = UUID().uuidString
         let id2 = UUID().uuidString
 
-        let landmark = LandmarkEntity(name: "My Landmark", id: id)
-        let landmark2 = LandmarkEntity(name: "My Landmark2", id: id2)
+        let landmark = Landmark(name: "My Landmark", id: id)
+        let landmark2 = Landmark(name: "My Landmark2", id: id2)
 
         XCTAssertNotEqual(landmark, landmark2)
     }
