@@ -62,6 +62,23 @@ struct LandmarkMainView: View {
                 )
             }
         }
+        .fullScreenCover(isPresented: self.viewModel.isShowingCamera) {
+            CameraPicker(
+                onCapture: self.viewModel.photoCaptured,
+                onCancel: self.viewModel.cancelAddLandmark
+            )
+            .ignoresSafeArea()
+        }
+        .navigationDestination(isPresented: self.viewModel.isEditing) {
+            if let image = self.viewModel.addLandmarkFlow.capturedImage {
+                AddLandmarkView(viewModel: AddLandmarkViewModel(capturedImage: image))
+            }
+        }
+        .alert("Camera Unavailable", isPresented: self.$viewModel.showCameraUnavailable) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("This device doesn't have an available camera.")
+        }
         .toolbar {
             self.mainViewToolbar
         }
@@ -98,7 +115,7 @@ struct LandmarkMainView: View {
 
     var cameraButton: some View {
         Button {
-            // present camera / capture flow
+            self.viewModel.startAddLandmark()
         } label: {
             Image(systemName: "camera.viewfinder")
                 .font(.system(size: 28, weight: .medium))

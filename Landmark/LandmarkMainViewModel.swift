@@ -7,6 +7,7 @@
 
 import Combine
 import MapKit
+import SwiftUI
 
 struct MapDetails {
     static let defaultLocation = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
@@ -16,12 +17,37 @@ struct MapDetails {
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var cancellables: Set<AnyCancellable> = []
 
+    @Published var showCameraUnavailable: Bool = false
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [Landmark] = []
+    @Published var addLandmarkFlow: AddLandmarkFlow = .idle
 
     @Published var locationServicesOff: Bool = false
     @Published var locationServicesOffReason: String = "Location services is unavailable."
+
+    var isShowingCamera: Binding<Bool> {
+        return Binding(
+            get: { self.addLandmarkFlow.isCamera },
+            set: { val in
+                if val {
+                    self.addLandmarkFlow = .camera
+                } else if case .camera = self.addLandmarkFlow {
+                    self.addLandmarkFlow = .idle
+                }
+            }
+        )
+    }
+
+    var isEditing: Binding<Bool> {
+        return Binding {
+            self.addLandmarkFlow.isEditing
+        } set: { isEditing in
+            if !isEditing, case .editing = self.addLandmarkFlow {
+                self.addLandmarkFlow = .idle
+            }
+        }
+    }
 
     var locationManager: CLLocationManager?
 
@@ -31,14 +57,28 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         self.landmarkProvider.getLandmarks()
             .sink(receiveCompletion: {
                 error in
-
                 debugPrint("getLandmarks() completed: \(error)")
             }, receiveValue: {
                 landmarks in
-
                 self.landmarks = landmarks
             })
             .store(in: &self.cancellables)
+    }
+
+    func startAddLandmark() {
+        if CameraPicker.isCameraAvailable {
+            self.addLandmarkFlow = .camera
+        } else {
+            self.showCameraUnavailable = true
+        }
+    }
+
+    func photoCaptured(_ capturedImage: UIImage) {
+        self.addLandmarkFlow = .editing(capturedImage)
+    }
+
+    func cancelAddLandmark() {
+        self.addLandmarkFlow = .idle
     }
 
     func setupLocationServices() {
@@ -83,12 +123,3 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         self.checkLocationAuthorization()
     }
 }
-
-//            var geoLoader = CLGeocoder()
-//            geoLoader.geocodeAddressString("Ocean Front Walk, Venice, CA 90291") { placemark, error in
-//
-//                debugPrint("GeoLoader.Error: \(error?.localizedDescription)")
-//                if let coord = placemark?.first?.location?.coordinate {
-//                    debugPrint("Coord \(coord)")
-//                }
-//            }
