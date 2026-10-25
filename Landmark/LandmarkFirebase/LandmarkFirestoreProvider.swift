@@ -41,40 +41,36 @@ class LandmarkFirestoreProvider: ObservableObject {
         }
     }
 
-    func getLandmarks() -> Future<[Landmark], Error> {
-        Future {
-            [weak self] promise in
-            guard let self = self else { return }
-
-            let landmarks = self.db.collection("landmarks").addSnapshotListener { querySnapshot, error in
+    /// Emits the full list of landmarks now and again every time the collection changes,
+    /// e.g. after a new landmark is added. Removes its Firestore listener when the stream ends.
+    func landmarksStream() -> AsyncThrowingStream<[Landmark], Error> {
+        AsyncThrowingStream { continuation in
+            let listener = self.db.collection("landmarks").addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     debugPrint("Error in snapshotListener: \(error)")
-                    promise(Result.failure(error))
+                    continuation.finish(throwing: error)
                     return
                 }
 
                 guard let documents = querySnapshot?.documents else {
-                    promise(Result.failure(DataResponseError.emptyData))
+                    continuation.finish(throwing: DataResponseError.emptyData)
                     return
                 }
 
-                let landmarks = documents.compactMap { queryDocumentSnapshot in
-                    let result = Result { try queryDocumentSnapshot.data(as: Landmark.self) }
-
-                    switch result {
-                    case let .success(landmark):
-                        return landmark
-
-                    case let .failure(error):
-                        debugPrint("Decoding Error: \(error)")
-
-                        promise(Result.failure(error))
+                // A document that fails to decode is skipped so one bad record doesn't hide the rest.
+                let landmarks = documents.compactMap { queryDocumentSnapshot -> Landmark? in
+                    do {
+                        return try queryDocumentSnapshot.data(as: Landmark.self)
+                    } catch {
+                        debugPrint("Decoding Error for \(queryDocumentSnapshot.documentID): \(error)")
                         return nil
                     }
                 }
-                promise(Result.success(landmarks))
+                continuation.yield(landmarks)
             }
-            self.listeners?.append(landmarks)
+
+            self.listeners?.append(listener)
+            continuation.onTermination = { _ in listener.remove() }
         }
     }
 

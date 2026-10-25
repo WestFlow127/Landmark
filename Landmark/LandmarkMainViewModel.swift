@@ -16,6 +16,7 @@ struct MapDetails {
 
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var cancellables: Set<AnyCancellable> = []
+    private var landmarksTask: Task<Void, Never>?
 
     @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     @Published var landmarkProvider = LandmarkFirestoreProvider()
@@ -53,15 +54,22 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     override init() {
         super.init()
 
-        self.landmarkProvider.getLandmarks()
-            .sink(receiveCompletion: {
-                error in
-                debugPrint("getLandmarks() completed: \(error)")
-            }, receiveValue: {
-                landmarks in
-                self.landmarks = landmarks
-            })
-            .store(in: &self.cancellables)
+        // The stream emits again whenever the collection changes, so new landmarks show up on the map.
+        self.landmarksTask = Task { [weak self] in
+            guard let provider = self?.landmarkProvider else { return }
+
+            do {
+                for try await landmarks in provider.landmarksStream() {
+                    await MainActor.run { self?.landmarks = landmarks }
+                }
+            } catch {
+                debugPrint("landmarksStream() failed: \(error)")
+            }
+        }
+    }
+
+    deinit {
+        self.landmarksTask?.cancel()
     }
 
     func startAddLandmark() {
