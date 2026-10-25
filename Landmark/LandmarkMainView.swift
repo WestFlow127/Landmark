@@ -104,12 +104,10 @@ struct LandmarkMainView: View {
             } label: {
                 Image(systemName: "plus")
                     .frame(width: 36, height: 36)
-                    .shiny()
+                    .shiny(.matte(.red))
             }
-            .frame(width: 36, height: 36, alignment: .trailing)
-            .background(.white.opacity(0.85))
-            .cornerRadius(18)
-            .shadow(radius: 1, y: 1)
+            .frame(width: 36, height: 36)
+            .background(.ultraThinMaterial, in: Circle())
         }
     }
 
@@ -121,11 +119,12 @@ struct LandmarkMainView: View {
                 .font(.system(size: 28, weight: .medium))
                 .tint(.primary)
                 .frame(width: 28, height: 28)
+                .shiny(.matte(.red))
                 .padding(14)
-                .frame(width: 52, height: 52)
-                .background(.ultraThinMaterial, in: Circle())
-                .shadow(radius: 2)
         }
+        .frame(width: 52, height: 52)
+        .background(.ultraThinMaterial, in: Circle())
+        .shadow(radius: 2)
         .padding(.trailing, 20)
         .padding(.bottom, 40)
     }
