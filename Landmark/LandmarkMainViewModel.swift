@@ -18,7 +18,9 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     private var cancellables: Set<AnyCancellable> = []
     private var landmarksTask: Task<Void, Never>?
 
-    @Published var region = MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
+    @Published var cameraPosition: MapCameraPosition = .region(
+        MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
+    )
     @Published var landmarkProvider = LandmarkFirestoreProvider()
     @Published var landmarks: [Landmark] = []
     @Published var addLandmarkFlow: AddLandmarkFlow = .idle
@@ -50,6 +52,9 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     }
 
     var locationManager: CLLocationManager?
+
+    /// Set when the user taps the current-location button so the next region update animates.
+    private var animateNextRegionChange = false
 
     override init() {
         super.init()
@@ -92,6 +97,30 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         self.locationManager?.delegate = self
     }
 
+    /// Pulls the map to the user's current location, or prompts/alerts if access isn't granted.
+    func centerOnUserLocation() {
+        if self.locationManager == nil {
+            self.setupLocationServices()
+        }
+
+        self.animateNextRegionChange = true
+        self.locationManager?.requestLocation()
+    }
+
+    /// Moves the map to `coordinate`, animating only when the change was requested by the user.
+    private func updateRegion(center coordinate: CLLocationCoordinate2D) {
+        let newRegion = MKCoordinateRegion(center: coordinate, span: MapDetails.defaultSpan)
+
+        if self.animateNextRegionChange {
+            self.animateNextRegionChange = false
+            withAnimation(.easeInOut(duration: 1.5)) {
+                self.cameraPosition = .region(newRegion)
+            }
+        } else {
+            self.cameraPosition = .region(newRegion)
+        }
+    }
+
     private func checkLocationAuthorization() {
         guard let locationManager = locationManager else { return }
 
@@ -113,10 +142,11 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
 
         case .authorizedAlways, .authorizedWhenInUse:
             debugPrint("Location Services Authorized")
-            self.locationManager?.requestLocation()
 
             if let location = locationManager.location {
-                self.region = MKCoordinateRegion(center: location.coordinate, span: MapDetails.defaultSpan)
+                self.updateRegion(center: location.coordinate)
+            } else {
+                self.locationManager?.requestLocation()
             }
 
         @unknown default:
@@ -127,11 +157,17 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coordinate = locations.last?.coordinate else { return }
 
-        self.region = MKCoordinateRegion(center: coordinate, span: MapDetails.defaultSpan)
+        self.updateRegion(center: coordinate)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+
+    func locationManager(_: CLLocationManager, didFailWithError error: any Error) {
         debugPrint("LocationManager failed with error: \(error)")
+
+        if (error as? CLError)?.code == .denied {
+            self.checkLocationAuthorization()
+        }
+        // Don't leave a stale request that would animate some later, unrelated update.
+        self.animateNextRegionChange = false
     }
 
     func locationManagerDidChangeAuthorization(_: CLLocationManager) {
