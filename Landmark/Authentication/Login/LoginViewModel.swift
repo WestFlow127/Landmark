@@ -64,7 +64,5 @@ class LoginViewModel: ObservableObject {
         }
 
         self.signedIn = false
-
-        debugPrint("Sign out success!")
     }
 }

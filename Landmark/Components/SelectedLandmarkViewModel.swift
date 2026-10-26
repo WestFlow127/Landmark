@@ -10,13 +10,13 @@ import UIKit
 
 class SelectedLandmarkViewModel: NSObject, ObservableObject {
     @Published var landmarkImages: [UIImage] = []
-    @Published var landmark: LandmarkEntity
+    @Published var landmark: Landmark
 
     var landmarkProvider = LandmarkFirestoreProvider()
 
     private var cancellables: Set<AnyCancellable> = []
 
-    init(landmark: LandmarkEntity) {
+    init(landmark: Landmark) {
         self.landmark = landmark
 
         super.init()
@@ -35,7 +35,6 @@ class SelectedLandmarkViewModel: NSObject, ObservableObject {
     }
 
     func setImage(image: UIImage) {
-        debugPrint("Image set!!")
         self.landmarkImages = [image]
     }
 }
