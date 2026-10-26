@@ -10,6 +10,14 @@ import SwiftUI
 
 extension Color {
     static let mainColor = Color("landmarkMainColor")
+}
+
+extension UIColor {
+    /// UIKit counterpart of `Color.mainColor`, for APIs that require a `UIColor`.
+    static let mainColor = UIColor(named: "landmarkMainColor") ?? .systemBlue
+}
+
+extension Color {
 
     /// Input background that stands out from a material popover: near-white in light mode,
     /// a lifted gray in dark mode.

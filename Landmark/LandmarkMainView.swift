@@ -103,7 +103,7 @@ struct LandmarkMainView: View {
             Text("Landmark")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .shiny()
+                .shiny(.hyperGlossy(UIColor.mainColor))
         }
 
         ToolbarItem(placement: .navigationBarLeading) {
@@ -112,7 +112,7 @@ struct LandmarkMainView: View {
             } label: {
                 Image(systemName: "person.fill")
                     .frame(width: 36, height: 36)
-                    .shiny(.matte(.red))
+                    .shiny(.hyperGlossy(UIColor.mainColor))
             }
             .frame(width: 36, height: 36)
             .background(.ultraThinMaterial, in: Circle())
@@ -132,7 +132,7 @@ struct LandmarkMainView: View {
             } label: {
                 Image(systemName: "plus")
                     .frame(width: 36, height: 36)
-                    .shiny(.matte(.red))
+                    .shiny(.hyperGlossy(UIColor.mainColor))
             }
             .frame(width: 36, height: 36)
             .background(.ultraThinMaterial, in: Circle())
@@ -147,7 +147,7 @@ struct LandmarkMainView: View {
                 .font(.system(size: 28, weight: .medium))
                 .tint(.primary)
                 .frame(width: 28, height: 28)
-                .shiny(.matte(.red))
+                .shiny(.hyperGlossy(UIColor.mainColor))
                 .padding(14)
         }
         .frame(width: 52, height: 52)
@@ -163,7 +163,7 @@ struct LandmarkMainView: View {
                 .font(.system(size: 24, weight: .medium))
                 .tint(.primary)
                 .frame(width: 28, height: 28)
-                .shiny(.matte(.red))
+                .shiny(.hyperGlossy(UIColor.mainColor))
                 .padding(14)
         }
         .frame(width: 52, height: 52)
