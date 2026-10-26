@@ -19,32 +19,40 @@ struct LandmarkMainView: View {
         VStack {
             ViewThatFits {
                 ZStack(alignment: .bottomTrailing) {
-                    Map(coordinateRegion: self.$viewModel.region,
-                        showsUserLocation: true,
-                        annotationItems: self.viewModel.landmarks)
-                    { landmark in
-                        MapAnnotation(coordinate: landmark._2DCoord) {
-                            VStack {
-                                Image(systemName: "star.circle")
-                                    .resizable()
-                                    .foregroundColor(.red)
-                                    .frame(width: 25, height: 25)
-                                    .background(.white)
-                                    .clipShape(Circle())
+                    Map(position: self.$viewModel.cameraPosition) {
+                        UserAnnotation()
 
-                                Text(landmark.name)
-                                    .font(Font.caption)
-                                    .lineLimit(2)
-                            }
-                            .onTapGesture {
-                                self.selectedPlace = landmark
+                        ForEach(self.viewModel.landmarks) { landmark in
+                            Annotation(coordinate: landmark._2DCoord) {
+                                VStack {
+                                    Image(systemName: "star.circle")
+                                        .resizable()
+                                        .foregroundColor(.red)
+                                        .frame(width: 25, height: 25)
+                                        .background(.white)
+                                        .clipShape(Circle())
+
+                                    Text(landmark.name)
+                                        .font(Font.caption)
+                                        .lineLimit(2)
+                                }
+                                .onTapGesture {
+                                    self.selectedPlace = landmark
+                                }
+                            } label: {
+                                EmptyView()
                             }
                         }
                     }
                     .onAppear {
                         self.viewModel.setupLocationServices()
                     }
-                    self.cameraButton
+                    VStack(spacing: 12) {
+                        self.currentLocationButton
+                        self.cameraButton
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 40)
                 }
             }
             .sheet(item: self.$selectedPlace) { landmark in
@@ -54,7 +62,7 @@ struct LandmarkMainView: View {
             }
             .alert(isPresented: self.$viewModel.locationServicesOff) {
                 Alert(
-                    title: Text(self.viewModel.locationServicesOffReason),
+                    title: Text(self.viewModel.locationServicesOffMessage),
                     primaryButton: .default(Text("Cancel")),
                     secondaryButton: .default(Text("Open Settings")) {
                         openAppSettings()
@@ -127,8 +135,22 @@ struct LandmarkMainView: View {
         .frame(width: 52, height: 52)
         .background(.ultraThinMaterial, in: Circle())
         .shadow(radius: 2)
-        .padding(.trailing, 20)
-        .padding(.bottom, 40)
+    }
+
+    var currentLocationButton: some View {
+        Button {
+            self.viewModel.centerOnUserLocation()
+        } label: {
+            Image(systemName: "location.fill")
+                .font(.system(size: 24, weight: .medium))
+                .tint(.primary)
+                .frame(width: 28, height: 28)
+                .shiny(.matte(.red))
+                .padding(14)
+        }
+        .frame(width: 52, height: 52)
+        .background(.ultraThinMaterial, in: Circle())
+        .shadow(radius: 2)
     }
 }
 
