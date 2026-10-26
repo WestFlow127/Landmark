@@ -14,6 +14,7 @@ struct LandmarkMainView: View {
     @StateObject private var viewModel = LandmarkMainViewModel()
     @EnvironmentObject var loginViewModel: LoginViewModel
     @State private var selectedPlace: Landmark?
+    @State private var isShowingProfile = false
 
     var body: some View {
         VStack {
@@ -103,6 +104,23 @@ struct LandmarkMainView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .shiny()
+        }
+
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button {
+                self.isShowingProfile = true
+            } label: {
+                Image(systemName: "person.fill")
+                    .frame(width: 36, height: 36)
+                    .shiny(.matte(.red))
+            }
+            .frame(width: 36, height: 36)
+            .background(.ultraThinMaterial, in: Circle())
+            .accessibilityLabel("Profile")
+            .popover(isPresented: self.$isShowingProfile) {
+                ProfileView()
+                    .presentationCompactAdaptation(.popover)
+            }
         }
 
         ToolbarItem(placement: .navigationBarTrailing) {

@@ -107,6 +107,56 @@ class LandmarkFirestoreProvider: ObservableObject {
         try? await self.storage.reference(withPath: path).delete()
     }
 
+    // MARK: - User profile
+
+    private func currentUserId() throws -> String {
+        guard let uid = self.auth.auth.currentUser?.uid else { throw DataResponseError.notSignedIn }
+
+        return uid
+    }
+
+    /// Returns the signed-in user's profile, or an empty one if they haven't saved anything yet.
+    func fetchUserProfile() async throws -> UserProfile {
+        let uid = try self.currentUserId()
+        let snapshot = try await self.db.collection(UserProfile.collectionName).document(uid).getDocument()
+
+        guard snapshot.exists else { return UserProfile(id: uid) }
+
+        return try snapshot.data(as: UserProfile.self)
+    }
+
+    /// Writes the signed-in user's profile to `users/{uid}`, replacing the existing document.
+    func saveUserProfile(_ profile: UserProfile) async throws {
+        let uid = try self.currentUserId()
+
+        try await self.db.collection(UserProfile.collectionName).document(uid).setData(from: profile)
+    }
+
+    /// The Storage folder that holds everything owned by the signed-in user, e.g. "/users/<uid>".
+    /// Build per-user paths (profile picture, future private landmarks) from this.
+    private func userStoragePath() throws -> String {
+        "/users/\(try self.currentUserId())"
+    }
+
+    /// Uploads the signed-in user's profile picture and returns its Storage path.
+    func uploadProfilePhoto(_ data: Data) async throws -> String {
+        let path = "\(try self.userStoragePath())/profile.jpeg"
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+
+        _ = try await self.storage.reference(withPath: path).putDataAsync(data, metadata: metadata)
+
+        return path
+    }
+
+    func downloadImage(atPath path: String) async throws -> UIImage {
+        let data = try await self.storage.reference(withPath: path).data(maxSize: 5 * 1024 * 1024)
+
+        guard let image = UIImage(data: data) else { throw DataResponseError.emptyData }
+
+        return image
+    }
+
     func cancelListeners() {
         guard let listeners else { return }
 

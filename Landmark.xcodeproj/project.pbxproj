@@ -54,6 +54,9 @@
 		229980B528DBE46F006A8538 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980B428DBE46F006A8538 /* Font+Extensions.swift */; };
 		229980B828DBEAE0006A8538 /* DancingScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */; };
 		229980B928DBEAE0006A8538 /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */; };
+		22BA92C8308ED8AD007A7882 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92C6308ED8AD007A7882 /* ProfileViewModel.swift */; };
+		22BA92C9308ED8AD007A7882 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92C5308ED8AD007A7882 /* ProfileView.swift */; };
+		22BA92CB308ED8BC007A7882 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92CA308ED8BC007A7882 /* UserProfile.swift */; };
 		22BD892628E2997D0025CB0C /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 22BD892328E27EA80025CB0C /* Shiny */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +123,9 @@
 		229980B428DBE46F006A8538 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Regular.ttf"; sourceTree = "<group>"; };
 		229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
+		22BA92C5308ED8AD007A7882 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		22BA92C6308ED8AD007A7882 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		22BA92CA308ED8BC007A7882 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,7 @@
 		220735A628DAD54200577AB8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				22BA92CA308ED8BC007A7882 /* UserProfile.swift */,
 				220735A728DAD58D00577AB8 /* Landmark.swift */,
 			);
 			path = Models;
@@ -271,6 +278,7 @@
 				229980A928DB904A006A8538 /* LandmarkConstants.swift */,
 				22276CDD30883E5400AA6FB5 /* AddLandmark */,
 				229980AE28DBC9F0006A8538 /* Components */,
+				22BA92C7308ED8AD007A7882 /* Profile */,
 				220735A628DAD54200577AB8 /* Models */,
 				224388CD28D92B7000833CF7 /* Authentication */,
 				22276CE6308847E400AA6FB5 /* Services */,
@@ -340,6 +348,15 @@
 				227B484D28C46ED400C9897A /* LandmarkModelTests.swift */,
 			);
 			path = "Test Models";
+			sourceTree = "<group>";
+		};
+		22BA92C7308ED8AD007A7882 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				22BA92C5308ED8AD007A7882 /* ProfileView.swift */,
+				22BA92C6308ED8AD007A7882 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -509,6 +526,9 @@
 				22276CE130883E5900AA6FB5 /* LocationFetcher.swift in Sources */,
 				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
+				22BA92C8308ED8AD007A7882 /* ProfileViewModel.swift in Sources */,
+				22BA92C9308ED8AD007A7882 /* ProfileView.swift in Sources */,
+				22BA92CB308ED8BC007A7882 /* UserProfile.swift in Sources */,
 				220735A828DAD58D00577AB8 /* Landmark.swift in Sources */,
 				2258EBCF308EB16500AEE0BF /* CapturedPhoto.swift in Sources */,
 				22276CE8308849C600AA6FB5 /* AddLandmarkFlow.swift in Sources */,
