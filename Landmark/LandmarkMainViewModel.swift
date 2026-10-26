@@ -17,6 +17,8 @@ struct MapDetails {
 final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var cancellables: Set<AnyCancellable> = []
     private var landmarksTask: Task<Void, Never>?
+    private let locationServicesOffPrompt = "You need to turn on Location Services for this app in iOS Settings."
+    private let locationServicesOffGeneric = "Please turn on Location Services in iOS Settings."
 
     @Published var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
@@ -26,7 +28,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     @Published var addLandmarkFlow: AddLandmarkFlow = .idle
 
     @Published var locationServicesOff: Bool = false
-    @Published var locationServicesOffReason: String = "Location services is unavailable."
+    @Published var locationServicesOffMessage: String = "Location services is unavailable."
 
     var isShowingCamera: Binding<Bool> {
         return Binding(
@@ -59,7 +61,8 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     override init() {
         super.init()
 
-        // The stream emits again whenever the collection changes, so new landmarks show up on the map.
+        // The stream emits again whenever the collection changes,
+        // so new landmarks show up on the map.
         self.landmarksTask = Task { [weak self] in
             guard let provider = self?.landmarkProvider else { return }
 
@@ -126,22 +129,27 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
 
         switch locationManager.authorizationStatus {
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
+            if !self.locationServicesOff {
+                locationManager.requestWhenInUseAuthorization()
+            } else {
+                self.locationServicesOffMessage = self.locationServicesOffPrompt
+            }
 
         case .restricted:
             print("Restricted likely due to parental controls.")
 
             self.locationServicesOff = true
-            self.locationServicesOffReason = "Your location is restricted likely due to parental controls."
+            self.locationServicesOffMessage = "Your location is restricted likely due to parental controls."
 
         case .denied:
             print("Location Services is off.")
 
             self.locationServicesOff = true
-            self.locationServicesOffReason = "You need to turn on Location Services for this app in iOS Settings."
+            self.locationServicesOffMessage = self.locationServicesOffPrompt
 
         case .authorizedAlways, .authorizedWhenInUse:
             debugPrint("Location Services Authorized")
+            guard !self.locationServicesOff else { return }
 
             if let location = locationManager.location {
                 self.updateRegion(center: location.coordinate)
@@ -164,8 +172,10 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         debugPrint("LocationManager failed with error: \(error)")
 
         if (error as? CLError)?.code == .denied {
-            self.checkLocationAuthorization()
+            self.locationServicesOff = true
+            self.locationServicesOffMessage = self.locationServicesOffGeneric
         }
+
         // Don't leave a stale request that would animate some later, unrelated update.
         self.animateNextRegionChange = false
     }

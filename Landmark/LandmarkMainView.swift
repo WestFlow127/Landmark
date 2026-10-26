@@ -62,7 +62,7 @@ struct LandmarkMainView: View {
             }
             .alert(isPresented: self.$viewModel.locationServicesOff) {
                 Alert(
-                    title: Text(self.viewModel.locationServicesOffReason),
+                    title: Text(self.viewModel.locationServicesOffMessage),
                     primaryButton: .default(Text("Cancel")),
                     secondaryButton: .default(Text("Open Settings")) {
                         openAppSettings()
