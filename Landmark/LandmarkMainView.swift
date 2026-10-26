@@ -56,9 +56,9 @@ struct LandmarkMainView: View {
                 }
             }
             .sheet(item: self.$selectedPlace) { landmark in
-                let viewModel = SelectedLandmarkViewModel(landmark: landmark)
+                let viewModel = LandmarkCardViewModel(landmark: landmark)
 
-                SelectedLandmarkView(viewModel: viewModel)
+                LandmarkCardView(viewModel: viewModel)
             }
             .alert(isPresented: self.$viewModel.locationServicesOff) {
                 Alert(
