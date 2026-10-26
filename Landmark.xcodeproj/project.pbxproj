@@ -57,6 +57,7 @@
 		22BA92C8308ED8AD007A7882 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92C6308ED8AD007A7882 /* ProfileViewModel.swift */; };
 		22BA92C9308ED8AD007A7882 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92C5308ED8AD007A7882 /* ProfileView.swift */; };
 		22BA92CB308ED8BC007A7882 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92CA308ED8BC007A7882 /* UserProfile.swift */; };
+		22BA92CD308EE16F007A7882 /* ToastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA92CC308EE16F007A7882 /* ToastService.swift */; };
 		22BD892628E2997D0025CB0C /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 22BD892328E27EA80025CB0C /* Shiny */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		22BA92C5308ED8AD007A7882 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22BA92C6308ED8AD007A7882 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		22BA92CA308ED8BC007A7882 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		22BA92CC308EE16F007A7882 /* ToastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				22BA92CA308ED8BC007A7882 /* UserProfile.swift */,
 				220735A728DAD58D00577AB8 /* Landmark.swift */,
+				2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,7 +190,6 @@
 				22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */,
 				22276CDE30883E5400AA6FB5 /* CameraPicker.swift */,
 				22276CEB308EA14500AA6FB5 /* SimulatedCameraView.swift */,
-				2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */,
 			);
 			path = AddLandmark;
 			sourceTree = "<group>";
@@ -195,6 +197,7 @@
 		22276CE6308847E400AA6FB5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				22BA92CC308EE16F007A7882 /* ToastService.swift */,
 				22276CE030883E5900AA6FB5 /* LocationFetcher.swift */,
 			);
 			path = Services;
@@ -513,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22276CE530883E6200AA6FB5 /* AddLandmarkView.swift in Sources */,
+				22BA92CD308EE16F007A7882 /* ToastService.swift in Sources */,
 				22276CE330883E5E00AA6FB5 /* AddLandmarkViewModel.swift in Sources */,
 				229980AA28DB904A006A8538 /* LandmarkConstants.swift in Sources */,
 				224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */,
