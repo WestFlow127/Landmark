@@ -18,6 +18,7 @@ struct LandmarkApp: App {
 
             LoginMainView()
                 .environmentObject(viewModel)
+                .toastHost()
                 .onAppear {
                     viewModel.signedIn = viewModel.authManager.isSignedIn
                 }

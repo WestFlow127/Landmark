@@ -7,6 +7,7 @@ import PhotosUI
 import SwiftUI
 
 struct ProfileView: View {
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel = ProfileViewModel()
     @State private var pickerItem: PhotosPickerItem?
 
@@ -170,7 +171,12 @@ struct ProfileView: View {
 
     private var saveButton: some View {
         Button {
-            Task { await self.viewModel.save() }
+            Task {
+                // Close the popover on success so the toast behind it is visible.
+                if await self.viewModel.save() {
+                    self.dismiss()
+                }
+            }
         } label: {
             Group {
                 if self.viewModel.isSaving {

@@ -98,8 +98,10 @@ final class ProfileViewModel: ObservableObject {
         self.profileImage = image
     }
 
-    func save() async {
-        guard self.canSave else { return }
+    /// Returns whether the profile was saved, so the view can close itself on success.
+    @discardableResult
+    func save() async -> Bool {
+        guard self.canSave else { return false }
 
         self.isSaving = true
         defer { self.isSaving = false }
@@ -119,9 +121,13 @@ final class ProfileViewModel: ObservableObject {
 
             self.savedProfile = profile
             self.pendingImage = nil
+
+            ToastService.shared.show("Profile saved")
+            return true
         } catch {
             debugPrint("save() profile failed: \(error)")
             self.errorMessage = "Your profile couldn't be saved. Please try again."
+            return false
         }
     }
 }
