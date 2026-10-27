@@ -39,6 +39,8 @@
 		226EF7A42EEE12F400B5914B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A32EEE12F400B5914B /* FirebaseFirestoreCombine-Community */; };
 		226EF7A62EEE136A00B5914B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A52EEE136A00B5914B /* FirebaseStorage */; };
 		226EF7A82EEE136A00B5914B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF7A72EEE136A00B5914B /* FirebaseStorageCombine-Community */; };
+		227A056430903E06005024BD /* AddLandmarkFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A056330903E06005024BD /* AddLandmarkFlowTests.swift */; };
+		227A056630903E0A005024BD /* CapturedPhotoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A056530903E0A005024BD /* CapturedPhotoTests.swift */; };
 		227A056930903E0E005024BD /* UIImageExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A056830903E0E005024BD /* UIImageExtensionsTests.swift */; };
 		227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B483C28C46ED100C9897A /* LandmarkApp.swift */; };
 		227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B483E28C46ED100C9897A /* LandmarkMainView.swift */; };
@@ -102,6 +104,8 @@
 		2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhoto.swift; sourceTree = "<group>"; };
 		226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+Extensions.swift"; sourceTree = "<group>"; };
 		226A1D6C28FBD0730059A14C /* SelectedLandmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLandmarkViewModel.swift; sourceTree = "<group>"; };
+		227A056330903E06005024BD /* AddLandmarkFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkFlowTests.swift; sourceTree = "<group>"; };
+		227A056530903E0A005024BD /* CapturedPhotoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhotoTests.swift; sourceTree = "<group>"; };
 		227A056830903E0E005024BD /* UIImageExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensionsTests.swift; sourceTree = "<group>"; };
 		227B483928C46ED100C9897A /* Landmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Landmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227B483C28C46ED100C9897A /* LandmarkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkApp.swift; sourceTree = "<group>"; };
@@ -240,6 +244,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		227A056230903E06005024BD /* Test AddLandmark */ = {
+			isa = PBXGroup;
+			children = (
+				227A056330903E06005024BD /* AddLandmarkFlowTests.swift */,
+				227A056530903E0A005024BD /* CapturedPhotoTests.swift */,
+			);
+			path = "Test AddLandmark";
+			sourceTree = "<group>";
+		};
 		227A056730903E0E005024BD /* Test Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +318,7 @@
 			children = (
 				228390C52ABBFD3E009ED4AC /* Test Authentication */,
 				22B83EB92AAFDEB5000AE09A /* Test Models */,
+				227A056230903E06005024BD /* Test AddLandmark */,
 				227A056730903E0E005024BD /* Test Extensions */,
 			);
 			path = LandmarkTests;
@@ -538,8 +552,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227A056630903E0A005024BD /* CapturedPhotoTests.swift in Sources */,
 				227B484E28C46ED400C9897A /* LandmarkModelTests.swift in Sources */,
 				228390C72ABC0007009ED4AC /* LandmarkAuthenticationTests.swift in Sources */,
+				227A056430903E06005024BD /* AddLandmarkFlowTests.swift in Sources */,
 				227A056930903E0E005024BD /* UIImageExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
