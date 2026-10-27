@@ -73,7 +73,7 @@ class MockAuthService: AuthService
         guard let signOutReturnValue else { XCTFail("signOutReturnValue not set"); return }
 
         if !signOutReturnValue {
-            throw AuthErrorCode(.keychainError)
+            throw NSError(domain: AuthErrorDomain, code: AuthErrorCode.keychainError.rawValue)
         }
     }
 }

@@ -62,4 +62,23 @@ class LandmarkModelTests: XCTestCase {
 
         XCTAssertNotEqual(landmark, landmark2)
     }
+
+    func testLandmark_2DCoordMatchesGeoLocation() {
+        let landmark = Landmark(
+            name: "My Landmark",
+            id: UUID().uuidString,
+            geoLocation: GeoPoint(latitude: 33.5, longitude: -118.25)
+        )
+
+        XCTAssertEqual(landmark._2DCoord.latitude, 33.5)
+        XCTAssertEqual(landmark._2DCoord.longitude, -118.25)
+    }
+
+    func testInit_NameOnlyDefaultsToOrigin() {
+        let landmark = Landmark(name: "My Landmark")
+
+        XCTAssertNil(landmark.id)
+        XCTAssertEqual(landmark.geoLocation.latitude, 0)
+        XCTAssertEqual(landmark.geoLocation.longitude, 0)
+    }
 }
