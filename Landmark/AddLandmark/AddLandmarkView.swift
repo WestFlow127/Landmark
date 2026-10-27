@@ -11,13 +11,13 @@ struct AddLandmarkView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: .spacingLarge) {
                 Image(uiImage: self.viewModel.croppedImage)
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: .infinity)
                     .aspectRatio(1, contentMode: .fit)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .clipShape(RoundedRectangle(cornerRadius: .cornerRadiusMedium))
 
                 self.locationRow
 
@@ -40,7 +40,7 @@ struct AddLandmarkView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 6)
+                    .padding(.vertical, .buttonVerticalPadding)
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(!self.viewModel.canUpload || self.viewModel.isUploading)
@@ -64,7 +64,7 @@ struct AddLandmarkView: View {
     }
 
     private var locationRow: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: .spacingSmall) {
             Image(systemName: "mappin.and.ellipse")
                 .foregroundColor(.red)
 

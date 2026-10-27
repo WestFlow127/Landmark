@@ -32,6 +32,7 @@
 		224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388CE28D92B9200833CF7 /* LandmarkAuthManager.swift */; };
 		2258EBCF308EB16500AEE0BF /* CapturedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */; };
 		226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */; };
+		AA00000000000000000000A2 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000A1 /* CGFloat+Extensions.swift */; };
 		226A1D6D28FBD0730059A14C /* LandmarkCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A1D6C28FBD0730059A14C /* LandmarkCardViewModel.swift */; };
 		226EF79C2EEE12F400B5914B /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79B2EEE12F400B5914B /* FirebaseAppCheck */; };
 		226EF79E2EEE12F400B5914B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79D2EEE12F400B5914B /* FirebaseAuth */; };
@@ -111,6 +112,7 @@
 		224388CE28D92B9200833CF7 /* LandmarkAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAuthManager.swift; sourceTree = "<group>"; };
 		2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhoto.swift; sourceTree = "<group>"; };
 		226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+Extensions.swift"; sourceTree = "<group>"; };
+		AA00000000000000000000A1 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		226A1D6C28FBD0730059A14C /* LandmarkCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkCardViewModel.swift; sourceTree = "<group>"; };
 		227A056330903E06005024BD /* AddLandmarkFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkFlowTests.swift; sourceTree = "<group>"; };
 		227A056530903E0A005024BD /* CapturedPhotoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhotoTests.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				224388C728D910A800833CF7 /* Color+Extensions.swift */,
 				229980B428DBE46F006A8538 /* Font+Extensions.swift */,
 				226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */,
+				AA00000000000000000000A1 /* CGFloat+Extensions.swift */,
 				2205820A2AABE88800B71380 /* View+Extensions.swift */,
 				22276CE9308E9EB700AA6FB5 /* UIImage+Extensions.swift */,
 			);
@@ -572,6 +575,7 @@
 				22276CEA308E9EB700AA6FB5 /* UIImage+Extensions.swift in Sources */,
 				2205820B2AABE88800B71380 /* View+Extensions.swift in Sources */,
 				226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */,
+				AA00000000000000000000A2 /* CGFloat+Extensions.swift in Sources */,
 				229980B528DBE46F006A8538 /* Font+Extensions.swift in Sources */,
 				2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */,
 				22276CDF30883E5400AA6FB5 /* CameraPicker.swift in Sources */,

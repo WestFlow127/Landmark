@@ -12,7 +12,7 @@ struct LandmarkCardView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: .spacingLarge) {
                 TabView {
                     ForEach(self.viewModel.landmarkImages, id: \.self) { image in
                         Image(uiImage: image)
@@ -25,7 +25,7 @@ struct LandmarkCardView: View {
                 .tabViewStyle(.page)
                 .frame(maxWidth: .infinity)
                 .aspectRatio(1, contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: .cornerRadiusMedium))
 
                 if let location = self.viewModel.landmark.location, !location.isEmpty {
                     self.locationRow(location)
@@ -49,7 +49,7 @@ struct LandmarkCardView: View {
     }
 
     private func locationRow(_ location: String) -> some View {
-        HStack(spacing: 8) {
+        HStack(spacing: .spacingSmall) {
             Image(systemName: "mappin.and.ellipse")
                 .foregroundColor(.red)
 
