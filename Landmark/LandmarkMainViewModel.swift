@@ -23,7 +23,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     @Published var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     )
-    @Published var landmarkProvider: any LandmarkProviding
+    let landmarkProvider: any LandmarkProviding
     @Published var landmarks: [Landmark] = []
     @Published var addLandmarkFlow: AddLandmarkFlow = .idle
 
