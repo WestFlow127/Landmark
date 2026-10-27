@@ -23,7 +23,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     @Published var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(center: MapDetails.defaultLocation, span: MapDetails.defaultSpan)
     )
-    @Published var landmarkProvider = LandmarkFirestoreProvider()
+    @Published var landmarkProvider: any LandmarkProviding
     @Published var landmarks: [Landmark] = []
     @Published var addLandmarkFlow: AddLandmarkFlow = .idle
 
@@ -58,7 +58,9 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     /// Set when the user taps the current-location button so the next region update animates.
     private var animateNextRegionChange = false
 
-    override init() {
+    init(landmarkProvider: any LandmarkProviding = LandmarkFirestoreProvider()) {
+        self.landmarkProvider = landmarkProvider
+
         super.init()
 
         // The stream emits again whenever the collection changes,

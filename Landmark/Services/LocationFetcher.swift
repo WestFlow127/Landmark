@@ -5,8 +5,14 @@
 
 import CoreLocation
 
+/// The location lookups the add-landmark flow needs, so tests can swap in a mock.
+protocol LocationProviding: AnyObject {
+    func currentLocation() async -> CLLocation?
+    func address(for location: CLLocation) async -> String?
+}
+
 /// One-shot async wrapper around `CLLocationManager.requestLocation()` plus reverse geocoding.
-final class LocationFetcher: NSObject, CLLocationManagerDelegate {
+final class LocationFetcher: NSObject, CLLocationManagerDelegate, LocationProviding {
     private let manager = CLLocationManager()
     private var continuation: CheckedContinuation<CLLocation?, Never>?
 
