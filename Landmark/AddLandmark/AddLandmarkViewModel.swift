@@ -40,8 +40,8 @@ final class AddLandmarkViewModel: ObservableObject {
     /// Location capture starts immediately so it reflects where the photo was taken.
     init(
         capturedPhoto: CapturedPhoto,
-        landmarkProvider: any LandmarkProviding = LandmarkFirestoreProvider(),
-        locationFetcher: any LocationProviding = LocationFetcher()
+        landmarkProvider: any LandmarkProviding,
+        locationFetcher: any LocationProviding
     ) {
         self.landmarkProvider = landmarkProvider
         self.locationFetcher = locationFetcher

@@ -12,12 +12,15 @@ import SwiftUI
 struct LandmarkApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    private let dependencies = AppDependencies()
+
     var body: some Scene {
         WindowGroup {
             let viewModel = LoginViewModel()
 
             LoginMainView()
                 .environmentObject(viewModel)
+                .environment(\.dependencies, self.dependencies)
                 .onAppear {
                     viewModel.signedIn = viewModel.authManager.isSignedIn
                 }

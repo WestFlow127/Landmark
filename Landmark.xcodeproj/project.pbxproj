@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 110;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		220735A828DAD58D00577AB8 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735A728DAD58D00577AB8 /* Landmark.swift */; };
 		22276CDF30883E5400AA6FB5 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CDE30883E5400AA6FB5 /* CameraPicker.swift */; };
 		22276CE130883E5900AA6FB5 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE030883E5900AA6FB5 /* LocationFetcher.swift */; };
+		22276CE230883E5900AA6FB5 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE330883E5900AA6FB5 /* AppDependencies.swift */; };
 		22276CE330883E5E00AA6FB5 /* AddLandmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE230883E5E00AA6FB5 /* AddLandmarkViewModel.swift */; };
 		22276CE530883E6200AA6FB5 /* AddLandmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */; };
 		22276CE8308849C600AA6FB5 /* AddLandmarkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22276CE7308849C600AA6FB5 /* AddLandmarkFlow.swift */; };
@@ -90,6 +91,7 @@
 		220735A728DAD58D00577AB8 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		22276CDE30883E5400AA6FB5 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		22276CE030883E5900AA6FB5 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		22276CE330883E5900AA6FB5 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		22276CE230883E5E00AA6FB5 /* AddLandmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkViewModel.swift; sourceTree = "<group>"; };
 		22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkView.swift; sourceTree = "<group>"; };
 		22276CE7308849C600AA6FB5 /* AddLandmarkFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkFlow.swift; sourceTree = "<group>"; };
@@ -143,7 +145,6 @@
 /* Begin PBXFrameworksBuildPhase section */
 		227B483628C46ED100C9897A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				226EF79C2EEE12F400B5914B /* FirebaseAppCheck in Frameworks */,
 				226EF79E2EEE12F400B5914B /* FirebaseAuth in Frameworks */,
@@ -154,21 +155,16 @@
 				226EF7A22EEE12F400B5914B /* FirebaseFirestore in Frameworks */,
 				22BD892628E2997D0025CB0C /* Shiny in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		227B484628C46ED400C9897A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		227B485028C46ED400C9897A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -208,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				22276CE030883E5900AA6FB5 /* LocationFetcher.swift */,
+				22276CE330883E5900AA6FB5 /* AppDependencies.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -422,8 +419,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = Landmark;
 			packageProductDependencies = (
 				22BD892328E27EA80025CB0C /* Shiny */,
@@ -499,7 +494,6 @@
 				};
 			};
 			buildConfigurationList = 227B483428C46ED100C9897A /* Build configuration list for PBXProject "Landmark" */;
-			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -511,6 +505,7 @@
 				22BD892228E27EA80025CB0C /* XCRemoteSwiftPackageReference "shiny" */,
 				226EF79A2EEE12F400B5914B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
+			preferredProjectObjectVersion = 110;
 			productRefGroup = 227B483A28C46ED100C9897A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -525,7 +520,6 @@
 /* Begin PBXResourcesBuildPhase section */
 		227B483728C46ED100C9897A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				223715A128EA7A3A009521DC /* Montserrat-Regular.ttf in Resources */,
 				22276CEE308EA49E00AA6FB5 /* VeniceBeach.gpx in Resources */,
@@ -539,28 +533,22 @@
 				223715A728EA7B3C009521DC /* JosefinSans-SemiBold.ttf in Resources */,
 				223715A228EA7A3A009521DC /* Montserrat-Bold.ttf in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		227B484728C46ED400C9897A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		227B485128C46ED400C9897A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		227B483528C46ED100C9897A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				22276CE530883E6200AA6FB5 /* AddLandmarkView.swift in Sources */,
 				22276CE330883E5E00AA6FB5 /* AddLandmarkViewModel.swift in Sources */,
@@ -574,6 +562,7 @@
 				229980AD28DBAFEE006A8538 /* AppleSignInController.swift in Sources */,
 				2234FB3C28C5B1F000549D3F /* LandmarkMainViewModel.swift in Sources */,
 				22276CE130883E5900AA6FB5 /* LocationFetcher.swift in Sources */,
+				22276CE230883E5900AA6FB5 /* AppDependencies.swift in Sources */,
 				227B483D28C46ED100C9897A /* LandmarkApp.swift in Sources */,
 				224388C528D909A100833CF7 /* LoginMainView.swift in Sources */,
 				220735A828DAD58D00577AB8 /* Landmark.swift in Sources */,
@@ -589,11 +578,9 @@
 				227A056B30903F33005024BD /* LandmarkProviding.swift in Sources */,
 				229980B028DBCA1F006A8538 /* SelectedLandmarkView.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		227B484528C46ED400C9897A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				227A057030903F5B005024BD /* AddLandmarkViewModelTests.swift in Sources */,
 				227A056630903E0A005024BD /* CapturedPhotoTests.swift in Sources */,
@@ -606,16 +593,13 @@
 				227A056E30903F4E005024BD /* MockLandmarkProvider.swift in Sources */,
 				227A056930903E0E005024BD /* UIImageExtensionsTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		227B484F28C46ED400C9897A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				227B485A28C46ED400C9897A /* LandmarkUITestsLaunchTests.swift in Sources */,
 				227B485828C46ED400C9897A /* LandmarkUITests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -633,7 +617,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		227B485B28C46ED400C9897A /* Debug */ = {
+		227B485B28C46ED400C9897A /* Debug configuration for PBXProject "Landmark" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -693,7 +677,7 @@
 			};
 			name = Debug;
 		};
-		227B485C28C46ED400C9897A /* Release */ = {
+		227B485C28C46ED400C9897A /* Release configuration for PBXProject "Landmark" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -747,7 +731,7 @@
 			};
 			name = Release;
 		};
-		227B485E28C46ED400C9897A /* Debug */ = {
+		227B485E28C46ED400C9897A /* Debug configuration for PBXNativeTarget "Landmark" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -784,7 +768,7 @@
 			};
 			name = Debug;
 		};
-		227B485F28C46ED400C9897A /* Release */ = {
+		227B485F28C46ED400C9897A /* Release configuration for PBXNativeTarget "Landmark" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -821,7 +805,7 @@
 			};
 			name = Release;
 		};
-		227B486128C46ED400C9897A /* Debug */ = {
+		227B486128C46ED400C9897A /* Debug configuration for PBXNativeTarget "LandmarkTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -841,7 +825,7 @@
 			};
 			name = Debug;
 		};
-		227B486228C46ED400C9897A /* Release */ = {
+		227B486228C46ED400C9897A /* Release configuration for PBXNativeTarget "LandmarkTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -861,7 +845,7 @@
 			};
 			name = Release;
 		};
-		227B486428C46ED400C9897A /* Debug */ = {
+		227B486428C46ED400C9897A /* Debug configuration for PBXNativeTarget "LandmarkUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -880,7 +864,7 @@
 			};
 			name = Debug;
 		};
-		227B486528C46ED400C9897A /* Release */ = {
+		227B486528C46ED400C9897A /* Release configuration for PBXNativeTarget "LandmarkUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -905,37 +889,33 @@
 		227B483428C46ED100C9897A /* Build configuration list for PBXProject "Landmark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				227B485B28C46ED400C9897A /* Debug */,
-				227B485C28C46ED400C9897A /* Release */,
+				227B485B28C46ED400C9897A /* Debug configuration for PBXProject "Landmark" */,
+				227B485C28C46ED400C9897A /* Release configuration for PBXProject "Landmark" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		227B485D28C46ED400C9897A /* Build configuration list for PBXNativeTarget "Landmark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				227B485E28C46ED400C9897A /* Debug */,
-				227B485F28C46ED400C9897A /* Release */,
+				227B485E28C46ED400C9897A /* Debug configuration for PBXNativeTarget "Landmark" */,
+				227B485F28C46ED400C9897A /* Release configuration for PBXNativeTarget "Landmark" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		227B486028C46ED400C9897A /* Build configuration list for PBXNativeTarget "LandmarkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				227B486128C46ED400C9897A /* Debug */,
-				227B486228C46ED400C9897A /* Release */,
+				227B486128C46ED400C9897A /* Debug configuration for PBXNativeTarget "LandmarkTests" */,
+				227B486228C46ED400C9897A /* Release configuration for PBXNativeTarget "LandmarkTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		227B486328C46ED400C9897A /* Build configuration list for PBXNativeTarget "LandmarkUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				227B486428C46ED400C9897A /* Debug */,
-				227B486528C46ED400C9897A /* Release */,
+				227B486428C46ED400C9897A /* Debug configuration for PBXNativeTarget "LandmarkUITests" */,
+				227B486528C46ED400C9897A /* Release configuration for PBXNativeTarget "LandmarkUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

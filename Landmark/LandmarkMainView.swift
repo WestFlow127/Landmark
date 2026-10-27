@@ -11,9 +11,14 @@ import Shiny
 import SwiftUI
 
 struct LandmarkMainView: View {
-    @StateObject private var viewModel = LandmarkMainViewModel()
+    @Environment(\.dependencies) private var dependencies
+    @StateObject private var viewModel: LandmarkMainViewModel
     @EnvironmentObject var loginViewModel: LoginViewModel
     @State private var selectedPlace: Landmark?
+
+    init(dependencies: AppDependencies) {
+        _viewModel = StateObject(wrappedValue: LandmarkMainViewModel(landmarkProvider: dependencies.landmarkProvider))
+    }
 
     var body: some View {
         VStack {
@@ -86,7 +91,13 @@ struct LandmarkMainView: View {
         }
         .navigationDestination(isPresented: self.viewModel.isEditing) {
             if let photo = self.viewModel.addLandmarkFlow.capturedPhoto {
-                AddLandmarkView(viewModel: AddLandmarkViewModel(capturedPhoto: photo))
+                AddLandmarkView(
+                    viewModel: AddLandmarkViewModel(
+                        capturedPhoto: photo,
+                        landmarkProvider: self.dependencies.landmarkProvider,
+                        locationFetcher: self.dependencies.locationFetcher
+                    )
+                )
             }
         }
         .toolbar {
@@ -171,7 +182,7 @@ struct ContentView_Previews: PreviewProvider {
         let viewModel = LoginViewModel()
 
         NavigationStack {
-            LandmarkMainView()
+            LandmarkMainView(dependencies: AppDependencies())
                 .environmentObject(viewModel)
         }
     }
