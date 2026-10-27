@@ -1,5 +1,5 @@
 //
-//  SelectedLandmarkView.swift
+//  LandmarkCardView.swift
 //  Landmark
 //
 //  Created by Weston Mitchell on 9/21/22.
@@ -17,11 +17,11 @@ enum DisplayTitles: String {
     }
 }
 
-struct SelectedLandmarkView: View {
+struct LandmarkCardView: View {
     @Environment(\.dismiss) var dismiss
     var subTitles: [DisplayTitles] = [.location, .description]
 
-    @StateObject private var viewModel: SelectedLandmarkViewModel
+    @StateObject private var viewModel: LandmarkCardViewModel
 
     @State private var name: String
     @State private var location: String
@@ -79,7 +79,7 @@ struct SelectedLandmarkView: View {
         }.ignoresSafeArea()
     }
 
-    init(viewModel: SelectedLandmarkViewModel) {
+    init(viewModel: LandmarkCardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
 
         _name = State(initialValue: viewModel.landmark.name)
@@ -99,8 +99,8 @@ struct SelectedLandmarkView: View {
     }
 }
 
-struct SelectedLandmarkView_Previews: PreviewProvider {
+struct LandmarkCardView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedLandmarkView(viewModel: SelectedLandmarkViewModel(landmark: Landmark(name: "Venice Beach Boardwalk")))
+        LandmarkCardView(viewModel: LandmarkCardViewModel(landmark: Landmark(name: "Venice Beach Boardwalk")))
     }
 }

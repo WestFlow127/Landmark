@@ -32,7 +32,7 @@
 		224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224388CE28D92B9200833CF7 /* LandmarkAuthManager.swift */; };
 		2258EBCF308EB16500AEE0BF /* CapturedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */; };
 		226867FC2AAAD5DA00E0912B /* Toggle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */; };
-		226A1D6D28FBD0730059A14C /* SelectedLandmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A1D6C28FBD0730059A14C /* SelectedLandmarkViewModel.swift */; };
+		226A1D6D28FBD0730059A14C /* LandmarkCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A1D6C28FBD0730059A14C /* LandmarkCardViewModel.swift */; };
 		226EF79C2EEE12F400B5914B /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79B2EEE12F400B5914B /* FirebaseAppCheck */; };
 		226EF79E2EEE12F400B5914B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79D2EEE12F400B5914B /* FirebaseAuth */; };
 		226EF7A02EEE12F400B5914B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 226EF79F2EEE12F400B5914B /* FirebaseCore */; };
@@ -60,7 +60,7 @@
 		2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289488E28FE4B3800C3A404 /* RequestErrors.swift */; };
 		229980AA28DB904A006A8538 /* LandmarkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980A928DB904A006A8538 /* LandmarkConstants.swift */; };
 		229980AD28DBAFEE006A8538 /* AppleSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AC28DBAFEE006A8538 /* AppleSignInController.swift */; };
-		229980B028DBCA1F006A8538 /* SelectedLandmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AF28DBCA1F006A8538 /* SelectedLandmarkView.swift */; };
+		229980B028DBCA1F006A8538 /* LandmarkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980AF28DBCA1F006A8538 /* LandmarkCardView.swift */; };
 		229980B528DBE46F006A8538 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229980B428DBE46F006A8538 /* Font+Extensions.swift */; };
 		229980B828DBEAE0006A8538 /* DancingScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */; };
 		229980B928DBEAE0006A8538 /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */; };
@@ -91,8 +91,8 @@
 		220735A728DAD58D00577AB8 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		22276CDE30883E5400AA6FB5 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		22276CE030883E5900AA6FB5 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
-		22276CE330883E5900AA6FB5 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		22276CE230883E5E00AA6FB5 /* AddLandmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkViewModel.swift; sourceTree = "<group>"; };
+		22276CE330883E5900AA6FB5 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		22276CE430883E6200AA6FB5 /* AddLandmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkView.swift; sourceTree = "<group>"; };
 		22276CE7308849C600AA6FB5 /* AddLandmarkFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkFlow.swift; sourceTree = "<group>"; };
 		22276CE9308E9EB700AA6FB5 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		224388CE28D92B9200833CF7 /* LandmarkAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAuthManager.swift; sourceTree = "<group>"; };
 		2258EBCE308EB16500AEE0BF /* CapturedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhoto.swift; sourceTree = "<group>"; };
 		226867FB2AAAD5DA00E0912B /* Toggle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+Extensions.swift"; sourceTree = "<group>"; };
-		226A1D6C28FBD0730059A14C /* SelectedLandmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLandmarkViewModel.swift; sourceTree = "<group>"; };
+		226A1D6C28FBD0730059A14C /* LandmarkCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkCardViewModel.swift; sourceTree = "<group>"; };
 		227A056330903E06005024BD /* AddLandmarkFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLandmarkFlowTests.swift; sourceTree = "<group>"; };
 		227A056530903E0A005024BD /* CapturedPhotoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhotoTests.swift; sourceTree = "<group>"; };
 		227A056830903E0E005024BD /* UIImageExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensionsTests.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		229980A928DB904A006A8538 /* LandmarkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkConstants.swift; sourceTree = "<group>"; };
 		229980AB28DB988A006A8538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		229980AC28DBAFEE006A8538 /* AppleSignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInController.swift; sourceTree = "<group>"; };
-		229980AF28DBCA1F006A8538 /* SelectedLandmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLandmarkView.swift; sourceTree = "<group>"; };
+		229980AF28DBCA1F006A8538 /* LandmarkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkCardView.swift; sourceTree = "<group>"; };
 		229980B428DBE46F006A8538 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		229980B628DBEADF006A8538 /* DancingScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Regular.ttf"; sourceTree = "<group>"; };
 		229980B728DBEAE0006A8538 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
@@ -382,8 +382,8 @@
 		229980AE28DBC9F0006A8538 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				229980AF28DBCA1F006A8538 /* SelectedLandmarkView.swift */,
-				226A1D6C28FBD0730059A14C /* SelectedLandmarkViewModel.swift */,
+				229980AF28DBCA1F006A8538 /* LandmarkCardView.swift */,
+				226A1D6C28FBD0730059A14C /* LandmarkCardViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -555,7 +555,7 @@
 				229980AA28DB904A006A8538 /* LandmarkConstants.swift in Sources */,
 				224388C828D910A800833CF7 /* Color+Extensions.swift in Sources */,
 				224388CF28D92B9200833CF7 /* LandmarkAuthManager.swift in Sources */,
-				226A1D6D28FBD0730059A14C /* SelectedLandmarkViewModel.swift in Sources */,
+				226A1D6D28FBD0730059A14C /* LandmarkCardViewModel.swift in Sources */,
 				220735A528DACEA300577AB8 /* LandmarkFirestoreProvider.swift in Sources */,
 				227B483F28C46ED100C9897A /* LandmarkMainView.swift in Sources */,
 				224388CC28D928FB00833CF7 /* LoginViewModel.swift in Sources */,
@@ -576,7 +576,7 @@
 				2289488F28FE4B3800C3A404 /* RequestErrors.swift in Sources */,
 				22276CDF30883E5400AA6FB5 /* CameraPicker.swift in Sources */,
 				227A056B30903F33005024BD /* LandmarkProviding.swift in Sources */,
-				229980B028DBCA1F006A8538 /* SelectedLandmarkView.swift in Sources */,
+				229980B028DBCA1F006A8538 /* LandmarkCardView.swift in Sources */,
 			);
 		};
 		227B484528C46ED400C9897A /* Sources */ = {
