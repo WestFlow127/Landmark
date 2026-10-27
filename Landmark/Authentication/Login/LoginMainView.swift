@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginMainView: View {
     @EnvironmentObject var viewModel: LoginViewModel
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dependencies) var dependencies
 
     @State private var email = ""
     @State private var password = ""
@@ -34,7 +35,7 @@ struct LoginMainView: View {
     var body: some View {
         NavigationStack {
             if self.viewModel.signedIn {
-                LandmarkMainView()
+                LandmarkMainView(dependencies: self.dependencies)
                     .onAppear {
                         self.email = ""
                         self.password = ""

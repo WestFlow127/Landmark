@@ -58,7 +58,7 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
     /// Set when the user taps the current-location button so the next region update animates.
     private var animateNextRegionChange = false
 
-    init(landmarkProvider: any LandmarkProviding = LandmarkFirestoreProvider()) {
+    init(landmarkProvider: any LandmarkProviding) {
         self.landmarkProvider = landmarkProvider
 
         super.init()
