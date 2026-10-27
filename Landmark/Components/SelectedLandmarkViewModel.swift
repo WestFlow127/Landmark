@@ -12,12 +12,13 @@ class SelectedLandmarkViewModel: NSObject, ObservableObject {
     @Published var landmarkImages: [UIImage] = []
     @Published var landmark: Landmark
 
-    var landmarkProvider = LandmarkFirestoreProvider()
+    var landmarkProvider: any LandmarkProviding
 
     private var cancellables: Set<AnyCancellable> = []
 
-    init(landmark: Landmark) {
+    init(landmark: Landmark, landmarkProvider: any LandmarkProviding = LandmarkFirestoreProvider()) {
         self.landmark = landmark
+        self.landmarkProvider = landmarkProvider
 
         super.init()
 
