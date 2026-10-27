@@ -33,7 +33,7 @@ struct LandmarkMainView: View {
                                     Image(systemName: "star.circle")
                                         .resizable()
                                         .foregroundColor(.red)
-                                        .frame(width: 25, height: 25)
+                                        .frame(width: .mapAnnotationIconSize, height: .mapAnnotationIconSize)
                                         .background(.white)
                                         .clipShape(Circle())
 
@@ -52,18 +52,18 @@ struct LandmarkMainView: View {
                     .onAppear {
                         self.viewModel.setupLocationServices()
                     }
-                    VStack(spacing: 12) {
+                    VStack(spacing: .spacingMedium) {
                         self.currentLocationButton
                         self.cameraButton
                     }
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 40)
+                    .padding(.trailing, .floatingButtonTrailingInset)
+                    .padding(.bottom, .floatingButtonBottomInset)
                 }
             }
             .sheet(item: self.$selectedPlace) { landmark in
-                let viewModel = SelectedLandmarkViewModel(landmark: landmark)
+                let viewModel = LandmarkCardViewModel(landmark: landmark)
 
-                SelectedLandmarkView(viewModel: viewModel)
+                LandmarkCardView(viewModel: viewModel)
             }
             .alert(isPresented: self.$viewModel.locationServicesOff) {
                 Alert(
@@ -124,10 +124,10 @@ struct LandmarkMainView: View {
                 })
             } label: {
                 Image(systemName: "plus")
-                    .frame(width: 36, height: 36)
+                    .frame(width: .toolbarButtonSize, height: .toolbarButtonSize)
                     .shiny(.matte(.red))
             }
-            .frame(width: 36, height: 36)
+            .frame(width: .toolbarButtonSize, height: .toolbarButtonSize)
             .background(.ultraThinMaterial, in: Circle())
         }
     }
@@ -137,15 +137,15 @@ struct LandmarkMainView: View {
             self.viewModel.startAddLandmark()
         } label: {
             Image(systemName: "camera.viewfinder")
-                .font(.system(size: 28, weight: .medium))
+                .font(.system(size: .floatingButtonIconSize, weight: .medium))
                 .tint(.primary)
-                .frame(width: 28, height: 28)
+                .frame(width: .floatingButtonIconSize, height: .floatingButtonIconSize)
                 .shiny(.matte(.red))
-                .padding(14)
+                .padding(.floatingButtonIconPadding)
         }
-        .frame(width: 52, height: 52)
+        .frame(width: .floatingButtonSize, height: .floatingButtonSize)
         .background(.ultraThinMaterial, in: Circle())
-        .shadow(radius: 2)
+        .shadow(radius: .floatingButtonShadowRadius)
     }
 
     var currentLocationButton: some View {
@@ -153,15 +153,15 @@ struct LandmarkMainView: View {
             self.viewModel.centerOnUserLocation()
         } label: {
             Image(systemName: "location.fill")
-                .font(.system(size: 24, weight: .medium))
+                .font(.system(size: .locationIconFontSize, weight: .medium))
                 .tint(.primary)
-                .frame(width: 28, height: 28)
+                .frame(width: .floatingButtonIconSize, height: .floatingButtonIconSize)
                 .shiny(.matte(.red))
-                .padding(14)
+                .padding(.floatingButtonIconPadding)
         }
-        .frame(width: 52, height: 52)
+        .frame(width: .floatingButtonSize, height: .floatingButtonSize)
         .background(.ultraThinMaterial, in: Circle())
-        .shadow(radius: 2)
+        .shadow(radius: .floatingButtonShadowRadius)
     }
 }
 

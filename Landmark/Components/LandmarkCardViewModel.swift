@@ -1,5 +1,5 @@
 //
-//  SelectedLandmarkViewModel.swift
+//  LandmarkCardViewModel.swift
 //  Landmark
 //
 //  Created by Weston Mitchell on 10/15/22.
@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-class SelectedLandmarkViewModel: NSObject, ObservableObject {
+class LandmarkCardViewModel: NSObject, ObservableObject {
     @Published var landmarkImages: [UIImage] = []
     @Published var landmark: Landmark
 

@@ -66,11 +66,11 @@ final class LandmarkMainViewModel: NSObject, ObservableObject, CLLocationManager
         // The stream emits again whenever the collection changes,
         // so new landmarks show up on the map.
         self.landmarksTask = Task { [weak self] in
-            guard let provider = self?.landmarkProvider else { return }
+            guard let self else { return }
 
             do {
-                for try await landmarks in provider.landmarksStream() {
-                    await MainActor.run { self?.landmarks = landmarks }
+                for try await landmarks in self.landmarkProvider.landmarksStream() {
+                    await MainActor.run { self.landmarks = landmarks }
                 }
             } catch {
                 debugPrint("landmarksStream() failed: \(error)")
