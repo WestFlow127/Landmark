@@ -38,3 +38,4 @@ Pods/
 # Operating System files
 .DS_Store
 
+Landmark.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
