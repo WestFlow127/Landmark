@@ -7,95 +7,56 @@
 
 import SwiftUI
 
-enum DisplayTitles: String {
-    case name = "Landmark"
-    case location = "Address"
-    case description = "Description"
-
-    var string: String {
-        rawValue
-    }
-}
-
 struct LandmarkCardView: View {
-    @Environment(\.dismiss) var dismiss
-    var subTitles: [DisplayTitles] = [.location, .description]
-
     @StateObject private var viewModel: LandmarkCardViewModel
-
-    @State private var name: String
-    @State private var location: String
-    @State private var description: String
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: .spacingLarge) {
                 TabView {
                     ForEach(self.viewModel.landmarkImages, id: \.self) { image in
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: UIScreen.main.bounds.width)
+                            .frame(maxWidth: .infinity)
+                            .clipped()
                     }
                 }
-                .frame(height: UIScreen.main.bounds.height / 3)
+                .tabViewStyle(.page)
+                .frame(maxWidth: .infinity)
+                .aspectRatio(1, contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: .cornerRadiusMedium))
 
-                HStack {
-                    Text(DisplayTitles.name.string + ": ")
-                        .font(Font.landmarkFontBold(25))
-                        .padding(4)
-                        .offset(x: 2.5, y: 2.5)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.secondary, lineWidth: 2)
-                        }
-
-                    Text(self.name)
-                        .font(Font.landmarkFontBold(25))
-                        .padding(5)
-                        .offset(x: 2.5, y: 2.5)
-                        .fixedSize()
+                if let location = self.viewModel.landmark.location, !location.isEmpty {
+                    self.locationRow(location)
                 }
 
-                ForEach(self.subTitles, id: \.self) { title in
-                    Divider()
+                Text(self.viewModel.landmark.name)
+                    .font(.title2)
+                    .fontWeight(.semibold)
 
-                    HStack {
-                        Group {
-                            Text(title.rawValue + ": ")
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.secondary, lineWidth: 2)
-                                }
-
-                            Text(self.getDisplayValue(forTitle: title))
-                        }
-                        .font(Font.landmarkFontBold(21))
-                        .padding(5)
-                        .offset(x: 2.5, y: 2.5)
-                    }
-                }.padding(5)
+                if let description = self.viewModel.landmark.description, !description.isEmpty {
+                    Text(description)
+                        .foregroundColor(.secondary)
+                }
             }
-        }.ignoresSafeArea()
+            .padding()
+        }
     }
 
     init(viewModel: LandmarkCardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        _name = State(initialValue: viewModel.landmark.name)
-        _location = State(initialValue: viewModel.landmark.location ?? "")
-        _description = State(initialValue: viewModel.landmark.description ?? "")
     }
 
-    func getDisplayValue(forTitle: DisplayTitles) -> String {
-        switch forTitle {
-        case .name:
-            return self.name
-        case .location:
-            return self.location
-        case .description:
-            return self.description
+    private func locationRow(_ location: String) -> some View {
+        HStack(spacing: .spacingSmall) {
+            Image(systemName: "mappin.and.ellipse")
+                .foregroundColor(.red)
+
+            Text(location)
+                .foregroundColor(.secondary)
         }
+        .font(.subheadline)
     }
 }
 

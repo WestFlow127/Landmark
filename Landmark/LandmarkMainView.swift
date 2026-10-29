@@ -11,10 +11,15 @@ import Shiny
 import SwiftUI
 
 struct LandmarkMainView: View {
-    @StateObject private var viewModel = LandmarkMainViewModel()
+    @Environment(\.dependencies) private var dependencies
+    @StateObject private var viewModel: LandmarkMainViewModel
     @EnvironmentObject var loginViewModel: LoginViewModel
     @State private var selectedPlace: Landmark?
     @State private var isShowingProfile = false
+
+    init(dependencies: AppDependencies) {
+        _viewModel = StateObject(wrappedValue: LandmarkMainViewModel(landmarkProvider: dependencies.landmarkProvider))
+    }
 
     var body: some View {
         VStack {
@@ -29,7 +34,7 @@ struct LandmarkMainView: View {
                                     Image(systemName: "star.circle")
                                         .resizable()
                                         .foregroundColor(.red)
-                                        .frame(width: 25, height: 25)
+                                        .frame(width: .mapAnnotationIconSize, height: .mapAnnotationIconSize)
                                         .background(.white)
                                         .clipShape(Circle())
 
@@ -48,12 +53,12 @@ struct LandmarkMainView: View {
                     .onAppear {
                         self.viewModel.setupLocationServices()
                     }
-                    VStack(spacing: 12) {
+                    VStack(spacing: .spacingMedium) {
                         self.currentLocationButton
                         self.cameraButton
                     }
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 40)
+                    .padding(.trailing, .floatingButtonTrailingInset)
+                    .padding(.bottom, .floatingButtonBottomInset)
                 }
             }
             .sheet(item: self.$selectedPlace) { landmark in
@@ -76,7 +81,13 @@ struct LandmarkMainView: View {
         }
         .navigationDestination(isPresented: self.viewModel.isEditing) {
             if let photo = self.viewModel.addLandmarkFlow.capturedPhoto {
-                AddLandmarkView(viewModel: AddLandmarkViewModel(capturedPhoto: photo))
+                AddLandmarkView(
+                    viewModel: AddLandmarkViewModel(
+                        capturedPhoto: photo,
+                        landmarkProvider: self.dependencies.landmarkProvider,
+                        locationFetcher: self.dependencies.locationFetcher
+                    )
+                )
             }
         }
         .toolbar {
@@ -120,10 +131,10 @@ struct LandmarkMainView: View {
                 })
             } label: {
                 Image(systemName: "plus")
-                    .frame(width: 36, height: 36)
+                    .frame(width: .toolbarButtonSize, height: .toolbarButtonSize)
                     .shiny(.hyperGlossy(UIColor.mainColor))
             }
-            .frame(width: 36, height: 36)
+            .frame(width: .toolbarButtonSize, height: .toolbarButtonSize)
             .background(.ultraThinMaterial, in: Circle())
         }
     }
@@ -133,15 +144,15 @@ struct LandmarkMainView: View {
             self.viewModel.startAddLandmark()
         } label: {
             Image(systemName: "camera.viewfinder")
-                .font(.system(size: 28, weight: .medium))
+                .font(.system(size: .floatingButtonIconSize, weight: .medium))
                 .tint(.primary)
-                .frame(width: 28, height: 28)
+                .frame(width: .floatingButtonIconSize, height: .floatingButtonIconSize)
                 .shiny(.hyperGlossy(UIColor.mainColor))
-                .padding(14)
+                .padding(.floatingButtonIconPadding)
         }
-        .frame(width: 52, height: 52)
+        .frame(width: .floatingButtonSize, height: .floatingButtonSize)
         .background(.ultraThinMaterial, in: Circle())
-        .shadow(radius: 2)
+        .shadow(radius: .floatingButtonShadowRadius)
     }
 
     var currentLocationButton: some View {
@@ -149,15 +160,15 @@ struct LandmarkMainView: View {
             self.viewModel.centerOnUserLocation()
         } label: {
             Image(systemName: "location.fill")
-                .font(.system(size: 24, weight: .medium))
+                .font(.system(size: .locationIconFontSize, weight: .medium))
                 .tint(.primary)
-                .frame(width: 28, height: 28)
+                .frame(width: .floatingButtonIconSize, height: .floatingButtonIconSize)
                 .shiny(.hyperGlossy(UIColor.mainColor))
-                .padding(14)
+                .padding(.floatingButtonIconPadding)
         }
-        .frame(width: 52, height: 52)
+        .frame(width: .floatingButtonSize, height: .floatingButtonSize)
         .background(.ultraThinMaterial, in: Circle())
-        .shadow(radius: 2)
+        .shadow(radius: .floatingButtonShadowRadius)
     }
 
     @ViewBuilder
@@ -193,7 +204,7 @@ struct ContentView_Previews: PreviewProvider {
         let viewModel = LoginViewModel()
 
         NavigationStack {
-            LandmarkMainView()
+            LandmarkMainView(dependencies: AppDependencies())
                 .environmentObject(viewModel)
         }
     }

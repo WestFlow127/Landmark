@@ -22,8 +22,8 @@ final class AddLandmarkViewModel: ObservableObject {
     @Published private(set) var didUpload = false
     @Published var uploadErrorMessage: String?
 
-    private let locationFetcher = LocationFetcher()
-    private let landmarkProvider: LandmarkFirestoreProvider
+    private let locationFetcher: any LocationProviding
+    private let landmarkProvider: any LandmarkProviding
 
     var addressText: String {
         self.address ?? Self.unknownAddress
@@ -38,8 +38,13 @@ final class AddLandmarkViewModel: ObservableObject {
     private let metadataCoordinate: CLLocationCoordinate2D?
 
     /// Location capture starts immediately so it reflects where the photo was taken.
-    init(capturedPhoto: CapturedPhoto, landmarkProvider: LandmarkFirestoreProvider = LandmarkFirestoreProvider()) {
+    init(
+        capturedPhoto: CapturedPhoto,
+        landmarkProvider: any LandmarkProviding,
+        locationFetcher: any LocationProviding
+    ) {
         self.landmarkProvider = landmarkProvider
+        self.locationFetcher = locationFetcher
         self.croppedImage = capturedPhoto.image.croppedToSquare()
         self.metadataCoordinate = capturedPhoto.metadataCoordinate
 
