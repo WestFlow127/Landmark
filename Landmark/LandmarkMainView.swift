@@ -72,18 +72,7 @@ struct LandmarkMainView: View {
             }
         }
         .fullScreenCover(isPresented: self.viewModel.isShowingCamera) {
-            if CameraPicker.isCameraAvailable {
-                CameraPicker(
-                    onCapture: self.viewModel.photoCaptured,
-                    onCancel: self.viewModel.cancelAddLandmark
-                )
-                .ignoresSafeArea()
-            } else {
-                SimulatedCameraView(
-                    onCapture: self.viewModel.photoCaptured,
-                    onCancel: self.viewModel.cancelAddLandmark
-                )
-            }
+            self.cameraView.ignoresSafeArea()
         }
         .navigationDestination(isPresented: self.viewModel.isEditing) {
             if let photo = self.viewModel.addLandmarkFlow.capturedPhoto {
@@ -169,6 +158,21 @@ struct LandmarkMainView: View {
         .frame(width: 52, height: 52)
         .background(.ultraThinMaterial, in: Circle())
         .shadow(radius: 2)
+    }
+
+    @ViewBuilder
+    var cameraView: some View {
+        if CameraPicker.isCameraAvailable {
+            CameraPicker(
+                onCapture: self.viewModel.photoCaptured,
+                onCancel: self.viewModel.cancelAddLandmark
+            )
+        } else {
+            SimulatedCameraView(
+                onCapture: self.viewModel.photoCaptured,
+                onCancel: self.viewModel.cancelAddLandmark
+            )
+        }
     }
 }
 
